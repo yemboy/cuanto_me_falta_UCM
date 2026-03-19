@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracker UCM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Background Overlays for Cinematic Feel -->
+  <div class="bg-venom"></div>
+  <div class="bg-strange"></div>
+
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-titles">
+        <h1>MCU Tracker</h1>
+        <p>Tu camino hacia Doomsday</p>
+      </div>
+      
+      <!-- Circular Progress Bar (Tesseract Glow) -->
+      <div class="progress-wrapper">
+        <div class="progress-circle" id="progressCircle">
+          <div class="progress-text">
+            <span id="progressPercent">0</span>%
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- TAB SELECTOR -->
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="fast">Fast Track</button>
+      <button class="tab-btn" data-tab="marathon">Maratón Completo</button>
+    </nav>
+
+    <!-- CONTENT AREA (Accordions injected via JS) -->
+    <main class="content-area" id="contentArea">
+      <!-- Data will be loaded here -->
+    </main>
+
+    <!-- FOOTER CONTROLS -->
+    <footer class="controls">
+      <button id="clearProgressBtn" class="btn-clear">Borrar Progreso</button>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
