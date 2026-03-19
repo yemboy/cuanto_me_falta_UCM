@@ -43,10 +43,11 @@ function saveProgress() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(watchedItems)));
 }
 
-// Group data by phase/level
+// Group data by key (handles missing keys gracefully)
 function groupData(data, key) {
   return data.reduce((acc, item) => {
-    const group = item[key];
+    let group = item[key];
+    if (group === undefined) group = '_none';
     if (!acc[group]) acc[group] = [];
     acc[group].push(item);
     return acc;
@@ -69,13 +70,28 @@ function render() {
   // Render Accordions
   for (const [groupName, items] of Object.entries(groupedData)) {
     const accordion = document.createElement('div');
-    accordion.className = 'accordion'; // Start closed by default except maybe the first one?
-    // Let's open them if they have unwatched items, or just close them all to keep UI clean.
-    // For now, let's open the first one.
+    accordion.className = 'accordion'; 
     
     // Group Stats
     const groupTotal = items.length;
     const groupWatched = items.filter(i => watchedItems.has(i.id)).length;
+
+    // Subcategory logic
+    let itemsHTML = '';
+    const subGroups = groupData(items, 'subcategory');
+    
+    // Process items without subcategory first
+    if (subGroups['_none']) {
+      itemsHTML += subGroups['_none'].map(item => createMovieHTML(item)).join('');
+    }
+    
+    // Process items with subcategories
+    for (const [subName, subItems] of Object.entries(subGroups)) {
+      if (subName !== '_none') {
+        itemsHTML += `<div class="subcategory-header">${subName}</div>`;
+        itemsHTML += subItems.map(item => createMovieHTML(item)).join('');
+      }
+    }
 
     accordion.innerHTML = `
       <div class="accordion-header">
@@ -84,7 +100,7 @@ function render() {
       </div>
       <div class="accordion-content">
         <div class="accordion-inner">
-          ${items.map(item => createMovieHTML(item)).join('')}
+          ${itemsHTML}
         </div>
       </div>
     `;

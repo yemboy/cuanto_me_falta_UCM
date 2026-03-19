@@ -3,175 +3,204 @@ const marathonData = [
     "id": "marathon-blade1998",
     "title": "Blade (1998)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Blade"
   },
   {
     "id": "marathon-bladeii2002",
     "title": "Blade II (2002)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Blade"
   },
   {
     "id": "marathon-bladetrinity2004",
     "title": "Blade: Trinity (2004)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Blade"
   },
   {
     "id": "marathon-xmen2000",
     "title": "X-Men (2000)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-x2xmenunited2003",
     "title": "X2: X-Men United (2003)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-xmenlabatallafinal2006",
     "title": "X-Men: La Batalla Final (2006)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-xmenorígeneswolverine2009",
     "title": "X-Men Orígenes: Wolverine (2009)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-xmenprimerageneración2011",
     "title": "X-Men: Primera Generación (2011)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-wolverineinmortal2013",
     "title": "Wolverine Inmortal (2013)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-xmendíasdelfuturopasado2014",
     "title": "X-Men: Días del Futuro Pasado (2014)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-deadpool2016",
     "title": "Deadpool (2016)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-xmenapocalipsis2016",
     "title": "X-Men: Apocalipsis (2016)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-logan2017",
     "title": "Logan (2017)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-deadpool22018",
     "title": "Deadpool 2 (2018)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-xmendarkphoenix2019",
     "title": "X-Men: Dark Phoenix (2019)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-losnuevosmutantes2020",
     "title": "Los Nuevos Mutantes (2020)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-spiderman2002",
     "title": "Spider-Man (2002)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Spider-Man (Tobey Maguire — Tierra-96283)"
   },
   {
     "id": "marathon-spiderman22004",
     "title": "Spider-Man 2 (2004)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Spider-Man (Tobey Maguire — Tierra-96283)"
   },
   {
     "id": "marathon-spiderman32007",
     "title": "Spider-Man 3 (2007)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Spider-Man (Tobey Maguire — Tierra-96283)"
   },
   {
     "id": "marathon-daredevil2003",
     "title": "Daredevil (2003)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Daredevil / Elektra (Fox)"
   },
   {
     "id": "marathon-elektra2005",
     "title": "Elektra (2005)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Daredevil / Elektra (Fox)"
   },
   {
     "id": "marathon-loscuatrofantásticos2005",
     "title": "Los Cuatro Fantásticos (2005)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Los 4 Fantásticos (Fox)"
   },
   {
     "id": "marathon-los4fantásticosysilversurfer2007",
     "title": "Los 4 Fantásticos y Silver Surfer (2007)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Los 4 Fantásticos (Fox)"
   },
   {
     "id": "marathon-theamazingspiderman2012",
     "title": "The Amazing Spider-Man (2012)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Amazing Spider-Man (Andrew Garfield — Tierra-120703)"
   },
   {
     "id": "marathon-theamazingspiderman22014",
     "title": "The Amazing Spider-Man 2 (2014)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Amazing Spider-Man (Andrew Garfield — Tierra-120703)"
   },
   {
     "id": "marathon-venom2018",
     "title": "Venom (2018)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Sony SSU (Tierra-688B)"
   },
   {
     "id": "marathon-venomlettherebecarnage2021",
     "title": "Venom: Let There Be Carnage (2021)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Sony SSU (Tierra-688B)"
   },
   {
     "id": "marathon-morbius2022",
     "title": "Morbius (2022)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Sony SSU (Tierra-688B)"
   },
   {
     "id": "marathon-venomthelastdance2024",
     "title": "Venom: The Last Dance (2024)",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)"
+    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "subcategory": "Universo Sony SSU (Tierra-688B)"
   },
   {
     "id": "marathon-eyesofwakandaep1",
@@ -387,139 +416,162 @@ const marathonData = [
     "id": "marathon-agentsofshieldtemporada3",
     "title": "Agents of S.H.I.E.L.D. — Temporada 3",
     "details": "2015–2016",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
     "id": "marathon-ironfisttemporada1",
     "title": "Iron Fist — Temporada 1",
     "details": "Feb 2016 — Netflix",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
     "id": "marathon-thedefenders",
     "title": "The Defenders",
     "details": "Mayo 2016 — Netflix. DD+JJ+LC+IF vs La Mano",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
     "id": "marathon-capitánaméricacivilwar",
     "title": "Capitán América: Civil War",
     "details": "2016 — Acuerdos de Sokovia",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
     "id": "marathon-blackwidow",
     "title": "Black Widow",
     "details": "2016 — Post-Civil War",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
     "id": "marathon-blackpanther",
     "title": "Black Panther",
     "details": "2016 — 1 semana post-Civil War",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
     "id": "marathon-spidermanhomecoming",
     "title": "Spider-Man: Homecoming",
     "details": "Otoño 2016 — El \"8 años después\" es un error oficial",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
     "id": "marathon-thepunishertemporada1",
     "title": "The Punisher — Temporada 1",
     "details": "Nov–Dic 2016 — Netflix",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
     "id": "marathon-doctorstrange",
     "title": "Doctor Strange",
     "details": "2016–2017",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
     "id": "marathon-agentsofshieldtemporada4",
     "title": "Agents of S.H.I.E.L.D. — Temporada 4",
     "details": "2017 — Ghost Rider, Darkhold, Framework",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2017: Ragnarök y expansión"
   },
   {
     "id": "marathon-jessicajonestemporada2",
     "title": "Jessica Jones — Temporada 2",
     "details": "Abr–Jun 2017 — Netflix",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2017: Ragnarök y expansión"
   },
   {
     "id": "marathon-lukecagetemporada2",
     "title": "Luke Cage — Temporada 2",
     "details": "Ago–Sep 2017 — Netflix",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2017: Ragnarök y expansión"
   },
   {
     "id": "marathon-ironfisttemporada2",
     "title": "Iron Fist — Temporada 2",
     "details": "2017 — Netflix",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2017: Ragnarök y expansión"
   },
   {
     "id": "marathon-thorragnarok",
     "title": "Thor: Ragnarok",
     "details": "2017 — Destrucción de Asgard",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2017: Ragnarök y expansión"
   },
   {
     "id": "marathon-daredeviltemporada3",
     "title": "Daredevil — Temporada 3",
     "details": "Finales 2017 — Netflix. Fisk sale de prisión",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2017: Ragnarök y expansión"
   },
   {
     "id": "marathon-thepunishertemporada2",
     "title": "The Punisher — Temporada 2",
     "details": "2017–2018 — Netflix",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2017: Ragnarök y expansión"
   },
   {
     "id": "marathon-jessicajonestemporada3",
     "title": "Jessica Jones — Temporada 3",
     "details": "2018 — Netflix. Pre-Chasquido",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2017: Ragnarök y expansión"
   },
   {
     "id": "marathon-agentsofshieldtemporada5",
     "title": "Agents of S.H.I.E.L.D. — Temporada 5",
     "details": "2017–2018 — Diverge del MCU principal aquí",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2018: El Chasquido"
   },
   {
     "id": "marathon-antmanandthewasp",
     "title": "Ant-Man and the Wasp",
     "details": "2018 — Pre-Chasquido. Post-créditos = Chasquido",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2018: El Chasquido"
   },
   {
     "id": "marathon-avengersinfinitywar",
     "title": "Avengers: Infinity War",
     "details": "2018 — El Chasquido de Thanos",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2018: El Chasquido"
   },
   {
     "id": "marathon-agentsofshieldtemporada6",
     "title": "Agents of S.H.I.E.L.D. — Temporada 6",
     "details": "2019 — ⚠️ Ignora el Chasquido. Línea temporal alternativa",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "El Blip (2018–2023)"
   },
   {
     "id": "marathon-agentsofshieldtemporada7",
     "title": "Agents of S.H.I.E.L.D. — Temporada 7",
     "details": "Viajes en el tiempo — ⚠️ Línea temporal alternativa",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "El Blip (2018–2023)"
   },
   {
     "id": "marathon-avengersendgame",
     "title": "Avengers: Endgame",
     "details": "2018 → Oct 2023 — Sacrificio de Tony Stark",
-    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)"
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "subcategory": "2023: El Regreso"
   },
   {
     "id": "marathon-lokitemporada1",
@@ -729,43 +781,50 @@ const marathonData = [
     "id": "marathon-yourfriendlyneighborhoodspiderman",
     "title": "Your Friendly Neighborhood Spider-Man",
     "details": "Línea alternativa — Animada",
-    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA"
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "subcategory": "Canónico pero fuera de Earth-616"
   },
   {
     "id": "marathon-xmen97",
     "title": "X-Men '97",
     "details": "Earth-92131 — Animada. Continuación de los 90s",
-    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA"
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "subcategory": "Canónico pero fuera de Earth-616"
   },
   {
     "id": "marathon-marvelzombies",
     "title": "Marvel Zombies",
     "details": "~2023 alt — Animada. Spin-off de What If S1E5",
-    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA"
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "subcategory": "Canónico pero fuera de Earth-616"
   },
   {
     "id": "marathon-inhumanstemporada1",
     "title": "Inhumans — Temporada 1",
     "details": "~2016 — No canónica",
-    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA"
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "subcategory": "No canónico (Marvel Television)"
   },
   {
     "id": "marathon-runawaystemporadas13",
     "title": "Runaways — Temporadas 1-3",
     "details": "2017–2019 — No canónica. Ignora el Chasquido",
-    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA"
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "subcategory": "No canónico (Marvel Television)"
   },
   {
     "id": "marathon-cloakdaggertemporadas12",
     "title": "Cloak & Dagger — Temporadas 1-2",
     "details": "2017 — No canónica",
-    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA"
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "subcategory": "No canónico (Marvel Television)"
   },
   {
     "id": "marathon-helstromtemporada1",
     "title": "Helstrom — Temporada 1",
     "details": "~2020 — No canónica. Separada del MCU",
-    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA"
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "subcategory": "No canónico (Marvel Television)"
   }
 ];
 const fastTrackData = [
@@ -836,7 +895,7 @@ const fastTrackData = [
     "id": "fast-thefantasticfourfirststeps2025",
     "title": "The Fantastic Four: First Steps (2025)",
     "duration": "~2h 20m",
-    "description": "POR QUÉ: Presenta a los F4 Y a DOCTOR DOOM (Robert Downey Jr.). Sin esta película no entiendes al villano principal de Doomsday.",
+    "description": "POR QUÉ: Presenta a los F4 Y a DOCTOR DOOM (Robert Downey Jr.). Sin esta película no entiendes al villano principal de Doomsday. ⏱️ ~39 horas ",
     "level": "🔴 NIVEL 1: EL MÍNIMO ABSOLUTO (10 películas)"
   },
   {
@@ -885,7 +944,7 @@ const fastTrackData = [
     "id": "fast-antmanandthewaspquantumania2023",
     "title": "Ant-Man and the Wasp: Quantumania (2023)",
     "duration": "2h 05m",
-    "description": "POR QUÉ: Introduce a Kang (reemplazado por Doom pero el Reino Cuántico sigue siendo relevante). Paul Rudd está confirmado en Doomsday.",
+    "description": "POR QUÉ: Introduce a Kang (reemplazado por Doom pero el Reino Cuántico sigue siendo relevante). Paul Rudd está confirmado en Doomsday. ⏱️ ~53 horas · Dos semanas viendo 1-2 por día ",
     "level": "🟡 NIVEL 2: RECOMENDADO (+ 7 películas = 17 total)"
   },
   {
@@ -927,7 +986,7 @@ const fastTrackData = [
     "id": "fast-blackwidow2021",
     "title": "Black Widow (2021)",
     "duration": "2h 14m",
-    "description": "POR QUÉ: Presenta a Yelena Belova (Florence Pugh) y al Red Guardian (David Harbour), ambos confirmados en Doomsday vía Thunderbolts*.",
+    "description": "POR QUÉ: Presenta a Yelena Belova (Florence Pugh) y al Red Guardian (David Harbour), ambos confirmados en Doomsday vía Thunderbolts*. #  │ Película                              │ Año  │ Duración ────┼───────────────────────────────────────┼──────┼───────── 1  │ Iron Man                              │ 2008 │  2h 06m 2  │ Los Vengadores                        │ 2012 │  2h 23m 3  │ Capitán América: Civil War            │ 2016 │  2h 28m 4  │ Black Panther                         │ 2018 │  2h 14m 5  │ Avengers: Infinity War                │ 2018 │  2h 29m 6  │ Avengers: Endgame                     │ 2019 │  3h 01m 7  │ Doctor Strange: Multiverse of Madness │ 2022 │  2h 06m 8  │ Captain America: Brave New World      │ 2025 │  1h 59m 9  │ Thunderbolts*                         │ 2025 │  2h 07m 10  │ The Fantastic Four: First Steps       │ 2025 │  ~2h 20m ────┼───────────────────────────────────────┼──────┼───────── │ TOTAL                                 │      │ ~23h 13m ⚠️ PELÍCULAS QUE PUEDES SALTARTE SIN PROBLEMA • Iron Man 2 y 3 — Contexto de Tony pero no esencial • Thor 1 y 2 — Lo mínimo de Thor se entiende en Avengers • El Increíble Hulk — Nunca se referencia significativamente • Captain Marvel — Carol no está confirmada en Doomsday • Eternals — Autocontenida, no conecta con Doomsday • Spider-Man: Far From Home — Importa para No Way Home pero puedes saltarla si solo ves Nivel 1 • Ant-Man 1 y 2 — Lo necesario se entiende en Quantumania • Secret Invasion — Generalmente ignorada por el MCU mismo 💡 RESUMEN PARA LOS MÁS VAGOS (si solo ven 5) Si tu amigo dice \"dame CINCO y ya\": 1. Avengers: Endgame — El evento que definió todo 2. Civil War — La división que aún importa 3. Thunderbolts* — Conecta directo con Doomsday 4. The Fantastic Four: First Steps — El villano 5. Brave New World — El nuevo Capitán América (Van a perderse contexto pero al menos no estarán completamente perdidos en el cine) 🍿 PRE-UCM OPCIONAL: Si quieren contexto X-Men Los X-Men originales de Fox están confirmados en Doomsday (Patrick Stewart, Ian McKellen, etc.) Si quieren entender quiénes son: ",
     "level": "🟢 NIVEL 3: IDEAL (+ 6 películas = 23 total)"
   },
   {
