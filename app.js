@@ -135,6 +135,10 @@ function createMovieHTML(item) {
   
   const descHTML = item.description ? `<div class="movie-desc">${item.description}</div>` : '';
 
+  const streamingHTML = item.streaming 
+    ? `<div class="streaming-badge" title="Disponible en: ${item.streaming}">${item.streaming}</div>` 
+    : `<div class="streaming-placeholder" title="No hay datos de streaming">📺</div>`;
+
   return `
     <div class="movie-item ${watchedClass}" id="elem-${item.id}" onclick="toggleItem('${item.id}')">
       <div class="checkbox"></div>
@@ -143,7 +147,7 @@ function createMovieHTML(item) {
         ${metaHTML.length > 0 ? `<div class="movie-meta">${metaHTML.join(' • ')}</div>` : ''}
         ${descHTML}
       </div>
-      <div class="streaming-placeholder" title="Próximamente: Dónde ver">📺</div>
+      ${streamingHTML}
     </div>
   `;
 }
