@@ -39,5 +39,9 @@ const ownerProgress = [
   "marathon-ironman3",
   "marathon-agentsofshieldt1eps17",
   "marathon-thorunmundooscuro",
-  "marathon-allhailthekingoneshot"
+  "marathon-allhailthekingoneshot",
+  "marathon-eyesofwakandaep1",
+  "marathon-eyesofwakandaep2",
+  "marathon-eyesofwakandaep3",
+  "marathon-eyesofwakandaep4"
 ];
