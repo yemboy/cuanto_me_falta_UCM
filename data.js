@@ -236,28 +236,28 @@ const marathonData = [
     "title": "Eyes of Wakanda — Ep. 1",
     "details": "1260 a.C. (Creta, Edad del Bronce)",
     "phase": "⚱️ ERA ANTIGUA: WAKANDA A TRAVÉS DE LOS MILENIOS",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-eyesofwakandaep2",
     "title": "Eyes of Wakanda — Ep. 2",
     "details": "1200 a.C. (Guerra de Troya)",
     "phase": "⚱️ ERA ANTIGUA: WAKANDA A TRAVÉS DE LOS MILENIOS",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-eyesofwakandaep3",
     "title": "Eyes of Wakanda — Ep. 3",
     "details": "1400 d.C. (China, dinastía Ming)",
     "phase": "⚱️ ERA ANTIGUA: WAKANDA A TRAVÉS DE LOS MILENIOS",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-eyesofwakandaep4",
     "title": "Eyes of Wakanda — Ep. 4",
     "details": "1896 (Etiopía)",
     "phase": "⚱️ ERA ANTIGUA: WAKANDA A TRAVÉS DE LOS MILENIOS",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-capitánaméricaelprimervengador",
@@ -278,14 +278,14 @@ const marathonData = [
     "title": "Agent Carter — Temporada 1",
     "details": "1946 — Serie ABC, 8 episodios",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-agentcartertemporada2",
     "title": "Agent Carter — Temporada 2",
     "details": "1947 — Serie ABC, 10 episodios",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-capitanamarvel",
@@ -313,7 +313,7 @@ const marathonData = [
     "title": "A Funny Thing Happened on the Way to Thor's Hammer",
     "details": "2010 — One-Shot: Coulson camino a Nuevo México",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-elincreíblehulk",
@@ -362,7 +362,7 @@ const marathonData = [
     "title": "Agents of S.H.I.E.L.D. — T1, Eps. 1–7",
     "details": "Finales 2013",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-thorunmundooscuro",
@@ -383,7 +383,7 @@ const marathonData = [
     "title": "Agents of S.H.I.E.L.D. — T1, Eps. 8–16",
     "details": "Inicios 2014",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-capitánaméricaelsoldadodelinvierno",
@@ -397,7 +397,7 @@ const marathonData = [
     "title": "Agents of S.H.I.E.L.D. — T1, Eps. 17–22",
     "details": "2014 — Post-revelación HYDRA",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-guardianesdelagalaxiavol1",
@@ -418,35 +418,35 @@ const marathonData = [
     "title": "Yo Soy Groot — Temporada 1",
     "details": "2014 — Cortos animados",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-yosoygroottemporada2",
     "title": "Yo Soy Groot — Temporada 2",
     "details": "2014 — Cortos animados",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-agentsofshieldtemporada2",
     "title": "Agents of S.H.I.E.L.D. — Temporada 2",
     "details": "2014–2015 — Conecta con Age of Ultron",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-daredeviltemporada1",
     "title": "Daredevil — Temporada 1",
     "details": "Ene–Feb 2015 — Netflix. Hell's Kitchen post-NY",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-jessicajonestemporada1",
     "title": "Jessica Jones — Temporada 1",
     "details": "Mar–Abr 2015 — Netflix",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-avengerseradeultrón",
@@ -467,21 +467,21 @@ const marathonData = [
     "title": "Daredevil — Temporada 2",
     "details": "Oct–Nov 2015 — Netflix. Introduce Punisher y Elektra",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-lukecagetemporada1",
     "title": "Luke Cage — Temporada 1",
     "details": "Nov–Dic 2015 — Netflix",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-agentsofshieldtemporada3",
     "title": "Agents of S.H.I.E.L.D. — Temporada 3",
     "details": "2015–2016",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
@@ -489,7 +489,7 @@ const marathonData = [
     "title": "Iron Fist — Temporada 1",
     "details": "Feb 2016 — Netflix",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
@@ -537,7 +537,7 @@ const marathonData = [
     "title": "The Punisher — Temporada 1",
     "details": "Nov–Dic 2016 — Netflix",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
@@ -553,7 +553,7 @@ const marathonData = [
     "title": "Agents of S.H.I.E.L.D. — Temporada 4",
     "details": "2017 — Ghost Rider, Darkhold, Framework",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2017: Ragnarök y expansión"
   },
   {
@@ -561,7 +561,7 @@ const marathonData = [
     "title": "Jessica Jones — Temporada 2",
     "details": "Abr–Jun 2017 — Netflix",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2017: Ragnarök y expansión"
   },
   {
@@ -569,7 +569,7 @@ const marathonData = [
     "title": "Luke Cage — Temporada 2",
     "details": "Ago–Sep 2017 — Netflix",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2017: Ragnarök y expansión"
   },
   {
@@ -577,7 +577,7 @@ const marathonData = [
     "title": "Iron Fist — Temporada 2",
     "details": "2017 — Netflix",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2017: Ragnarök y expansión"
   },
   {
@@ -593,7 +593,7 @@ const marathonData = [
     "title": "Daredevil — Temporada 3",
     "details": "Finales 2017 — Netflix. Fisk sale de prisión",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2017: Ragnarök y expansión"
   },
   {
@@ -601,7 +601,7 @@ const marathonData = [
     "title": "The Punisher — Temporada 2",
     "details": "2017–2018 — Netflix",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2017: Ragnarök y expansión"
   },
   {
@@ -609,7 +609,7 @@ const marathonData = [
     "title": "Jessica Jones — Temporada 3",
     "details": "2018 — Netflix. Pre-Chasquido",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2017: Ragnarök y expansión"
   },
   {
@@ -617,7 +617,7 @@ const marathonData = [
     "title": "Agents of S.H.I.E.L.D. — Temporada 5",
     "details": "2017–2018 — Diverge del MCU principal aquí",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "2018: El Chasquido"
   },
   {
@@ -641,7 +641,7 @@ const marathonData = [
     "title": "Agents of S.H.I.E.L.D. — Temporada 6",
     "details": "2019 — ⚠️ Ignora el Chasquido. Línea temporal alternativa",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "El Blip (2018–2023)"
   },
   {
@@ -649,7 +649,7 @@ const marathonData = [
     "title": "Agents of S.H.I.E.L.D. — Temporada 7",
     "details": "Viajes en el tiempo — ⚠️ Línea temporal alternativa",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "El Blip (2018–2023)"
   },
   {
@@ -665,14 +665,21 @@ const marathonData = [
     "title": "Loki — Temporada 1",
     "details": "Fuera del tiempo (TVA) — Loki de 2012 escapa. Muerte de Aquel que Permanece → Multiverso",
     "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
-    "streaming": ""
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "marathon-deadpoolwolverine",
+    "title": "Deadpool & Wolverine",
+    "details": "2024 / Vacío — Conecta Fox con MCU. Narrativamente va aquí",
+    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-whatiftemporada1",
     "title": "What If...? — Temporada 1",
     "details": "Multiverso — Animada. Líneas temporales alternativas",
     "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-wandavision",
@@ -693,7 +700,7 @@ const marathonData = [
     "title": "Shang-Chi y la Leyenda de los Diez Anillos",
     "details": "Abril 2024 — Festival Qingming",
     "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-spidermanfarfromhome",
@@ -717,6 +724,13 @@ const marathonData = [
     "streaming": "🔴 NF"
   },
   {
+    "id": "marathon-doctorstrangeenelmultiversodelalocura",
+    "title": "Doctor Strange en el Multiverso de la Locura",
+    "details": "Finales 2024 — Wanda persigue a America Chavez",
+    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "streaming": "🔵 D+"
+  },
+  {
     "id": "marathon-hawkeye",
     "title": "Hawkeye",
     "details": "Navidad 2024 — Kate Bishop. Reintroduce a Kingpin",
@@ -729,13 +743,6 @@ const marathonData = [
     "details": "Principios 2025 — Marc Spector / Steven Grant + Khonshu",
     "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
     "streaming": "🔵 D+"
-  },
-  {
-    "id": "marathon-doctorstrangeenelmultiversodelalocura",
-    "title": "Doctor Strange en el Multiverso de la Locura",
-    "details": "2025 — Wanda persigue a America Chavez",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
-    "streaming": ""
   },
   {
     "id": "marathon-echo",
@@ -784,7 +791,7 @@ const marathonData = [
     "title": "Guardianes de la Galaxia: Especial Navideño",
     "details": "Navidad ~2025 — Kevin Bacon secuestrado",
     "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-ironheart",
@@ -826,13 +833,6 @@ const marathonData = [
     "title": "Loki — Temporada 2",
     "details": "Fuera del tiempo (TVA) — Cierra la trama de Kang",
     "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
-    "streaming": ""
-  },
-  {
-    "id": "marathon-deadpoolwolverine",
-    "title": "Deadpool & Wolverine",
-    "details": "2024 / Vacío — Conecta Fox con MCU. Narrativamente va aquí",
-    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
     "streaming": "🔵 D+"
   },
   {
@@ -840,7 +840,7 @@ const marathonData = [
     "title": "What If...? — Temporada 2",
     "details": "Multiverso — Animada",
     "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-agathaallalong",
@@ -854,14 +854,14 @@ const marathonData = [
     "title": "What If...? — Temporada 3",
     "details": "Multiverso — Animada. Temporada final",
     "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-daredevilbornagaintemporada1",
     "title": "Daredevil: Born Again — Temporada 1",
     "details": "Finales 2026 – Inicios 2027 — Fisk como alcalde de NYC",
     "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-wonderman",
@@ -889,7 +889,7 @@ const marathonData = [
     "title": "Daredevil: Born Again — Temporada 2",
     "details": "~Mediados 2027 — 6 meses post-T1. + Especial Punisher",
     "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "marathon-thefantasticfourfirststeps",
@@ -927,7 +927,7 @@ const marathonData = [
     "title": "Inhumans — Temporada 1",
     "details": "~2016 — No canónica",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "No canónico (Marvel Television)"
   },
   {
@@ -935,7 +935,7 @@ const marathonData = [
     "title": "Runaways — Temporadas 1-3",
     "details": "2017–2019 — No canónica. Ignora el Chasquido",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "No canónico (Marvel Television)"
   },
   {
@@ -943,7 +943,7 @@ const marathonData = [
     "title": "Cloak & Dagger — Temporadas 1-2",
     "details": "2017 — No canónica",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
-    "streaming": "",
+    "streaming": "🔵 D+",
     "subcategory": "No canónico (Marvel Television)"
   },
   {
@@ -951,7 +951,7 @@ const marathonData = [
     "title": "Helstrom — Temporada 1",
     "details": "~2020 — No canónica. Separada del MCU",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
-    "streaming": "",
+    "streaming": "❓ (retirada de algunas regiones)",
     "subcategory": "No canónico (Marvel Television)"
   }
 ];
@@ -1146,7 +1146,7 @@ const fastTrackData = [
     "duration": "1h 44m",
     "description": "",
     "level": "🟢 NIVEL 3: IDEAL (+ 6 películas = 23 total)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   },
   {
     "id": "fast-xmen22003",
@@ -1154,6 +1154,6 @@ const fastTrackData = [
     "duration": "2h 14m",
     "description": "",
     "level": "🟢 NIVEL 3: IDEAL (+ 6 películas = 23 total)",
-    "streaming": ""
+    "streaming": "🔵 D+"
   }
 ];
