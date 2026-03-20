@@ -3,23 +3,24 @@ const STORAGE_KEY = 'mcu_tracker_watched';
 let watchedItems = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []);
 let currentMode = 'fast'; // default to fast track
 
+// Owner progress (loaded from owner_progress.js)
+const ownerWatched = new Set(typeof ownerProgress !== 'undefined' ? ownerProgress : []);
+
 // DOM Elements
 const contentArea = document.getElementById('contentArea');
 const progressCircle = document.getElementById('progressCircle');
 const progressPercent = document.getElementById('progressPercent');
 const tabBtns = document.querySelectorAll('.tab-btn');
 const clearBtn = document.getElementById('clearProgressBtn');
+const exportBtn = document.getElementById('exportProgressBtn');
 
 // Initialize Application
 function init() {
   // Tab Listeners
   tabBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
-      // Remove active class
       tabBtns.forEach(b => b.classList.remove('active'));
-      // Add active class
       e.target.classList.add('active');
-      // Set Mode
       currentMode = e.target.getAttribute('data-tab');
       render();
     });
@@ -32,6 +33,25 @@ function init() {
       saveProgress();
       render();
     }
+  });
+
+  // Export Button Listener
+  exportBtn.addEventListener('click', () => {
+    const allWatched = Array.from(watchedItems);
+    const jsContent = `// Avance del dueño - Última actualización: ${new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}\n// Para actualizar: haz clic en "Exportar Mi Avance" y reemplaza este archivo\nconst ownerProgress = ${JSON.stringify(allWatched, null, 2)};\n`;
+    
+    // Create a downloadable file
+    const blob = new Blob([jsContent], { type: 'application/javascript' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'owner_progress.js';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    alert("✅ Archivo descargado.\n\nReemplaza el archivo 'owner_progress.js' en tu repositorio con el archivo descargado y haz commit + push para que los visitantes vean tu avance.");
   });
 
   // Initial Render
@@ -54,18 +74,49 @@ function groupData(data, key) {
   }, {});
 }
 
+// Get the active watched set depending on mode
+function getActiveWatchedSet() {
+  return currentMode === 'owner' ? ownerWatched : watchedItems;
+}
+
 // Render Content
 function render() {
   contentArea.innerHTML = '';
   
-  const data = currentMode === 'fast' ? fastTrackData : marathonData;
-  const groupKey = currentMode === 'fast' ? 'level' : 'phase';
+  const isOwnerMode = currentMode === 'owner';
+  const activeSet = getActiveWatchedSet();
+  
+  // Owner mode shows the marathon data with owner's progress (read-only)
+  let data, groupKey;
+  if (currentMode === 'fast') {
+    data = fastTrackData;
+    groupKey = 'level';
+  } else {
+    // Both 'marathon' and 'owner' use marathon data
+    data = marathonData;
+    groupKey = 'phase';
+  }
+  
   const groupedData = groupData(data, groupKey);
   
   // Calculate progress for current mode
   let totalItems = data.length;
-  let watchedInMode = data.filter(item => watchedItems.has(item.id)).length;
+  let watchedInMode = data.filter(item => activeSet.has(item.id)).length;
   updateProgress(watchedInMode, totalItems);
+
+  // Show owner banner if in owner mode
+  if (isOwnerMode) {
+    const banner = document.createElement('div');
+    banner.className = 'owner-banner';
+    banner.innerHTML = `
+      <div class="owner-banner-icon">👤</div>
+      <div class="owner-banner-text">
+        <strong>Avance del Dueño</strong>
+        <span>Este es el progreso del creador de esta página. Modo solo lectura.</span>
+      </div>
+    `;
+    contentArea.appendChild(banner);
+  }
 
   // Render Accordions
   for (const [groupName, items] of Object.entries(groupedData)) {
@@ -74,7 +125,7 @@ function render() {
     
     // Group Stats
     const groupTotal = items.length;
-    const groupWatched = items.filter(i => watchedItems.has(i.id)).length;
+    const groupWatched = items.filter(i => activeSet.has(i.id)).length;
 
     // Subcategory logic
     let itemsHTML = '';
@@ -82,14 +133,14 @@ function render() {
     
     // Process items without subcategory first
     if (subGroups['_none']) {
-      itemsHTML += subGroups['_none'].map(item => createMovieHTML(item)).join('');
+      itemsHTML += subGroups['_none'].map(item => createMovieHTML(item, isOwnerMode, activeSet)).join('');
     }
     
     // Process items with subcategories
     for (const [subName, subItems] of Object.entries(subGroups)) {
       if (subName !== '_none') {
         itemsHTML += `<div class="subcategory-header">${subName}</div>`;
-        itemsHTML += subItems.map(item => createMovieHTML(item)).join('');
+        itemsHTML += subItems.map(item => createMovieHTML(item, isOwnerMode, activeSet)).join('');
       }
     }
 
@@ -125,9 +176,10 @@ function render() {
 }
 
 // Create Movie Item HTML
-function createMovieHTML(item) {
-  const isWatched = watchedItems.has(item.id);
+function createMovieHTML(item, readOnly, activeSet) {
+  const isWatched = activeSet.has(item.id);
   const watchedClass = isWatched ? 'watched' : '';
+  const readOnlyClass = readOnly ? 'read-only' : '';
   
   const metaHTML = [];
   if (item.duration) metaHTML.push(`<span>⏳ ${item.duration}</span>`);
@@ -139,8 +191,10 @@ function createMovieHTML(item) {
     ? `<div class="streaming-badge" title="Disponible en: ${item.streaming}">${item.streaming}</div>` 
     : `<div class="streaming-placeholder" title="No hay datos de streaming">📺</div>`;
 
+  const onclickAttr = readOnly ? '' : `onclick="toggleItem('${item.id}')"`;
+
   return `
-    <div class="movie-item ${watchedClass}" id="elem-${item.id}" onclick="toggleItem('${item.id}')">
+    <div class="movie-item ${watchedClass} ${readOnlyClass}" id="elem-${item.id}" ${onclickAttr}>
       <div class="checkbox"></div>
       <div class="movie-info">
         <h3>${item.title}</h3>
@@ -154,6 +208,8 @@ function createMovieHTML(item) {
 
 // Toggle Watch Status
 window.toggleItem = function(id) {
+  if (currentMode === 'owner') return; // No toggling in owner mode
+  
   if (watchedItems.has(id)) {
     watchedItems.delete(id);
   } else {
@@ -162,8 +218,6 @@ window.toggleItem = function(id) {
   
   saveProgress();
   
-  // Re-render to update group counts inside headers and progress bar
-  // Note: a full re-render closes accordions, so we should just do a partial DOM update instead for a better UX.
   const element = document.getElementById(`elem-${id}`);
   if (element) {
     if (watchedItems.has(id)) {
@@ -178,10 +232,6 @@ window.toggleItem = function(id) {
   let totalItems = data.length;
   let watchedInMode = data.filter(item => watchedItems.has(item.id)).length;
   updateProgress(watchedInMode, totalItems);
-  
-  // To avoid full re-render closing accordions, we might need a fancy way to update the header text.
-  // For MVP, full re-render is fine if we want headers to update. But let's stick to partial to keep accordions open.
-  // We can select the header elements and update numbers but for now this is clean enough.
 };
 
 // Update Circular Progress Bar

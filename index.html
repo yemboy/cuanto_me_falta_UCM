@@ -51,6 +51,7 @@
     <nav class="tabs">
       <button class="tab-btn active" data-tab="fast">Fast Track</button>
       <button class="tab-btn" data-tab="marathon">Maratón Completo</button>
+      <button class="tab-btn tab-owner" data-tab="owner">👤 Avance del Dueño</button>
     </nav>
 
     <!-- CONTENT AREA (Accordions injected via JS) -->
@@ -61,12 +62,14 @@
     <!-- FOOTER CONTROLS -->
     <footer class="controls">
       <button id="clearProgressBtn" class="btn-clear">Borrar Progreso</button>
+      <button id="exportProgressBtn" class="btn-export">📤 Exportar Mi Avance</button>
     </footer>
 
   </div>
 
   <!-- Scripts -->
   <script src="data.js"></script>
+  <script src="owner_progress.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
