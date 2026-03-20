@@ -237,29 +237,80 @@ window.toggleItem = function(id) {
   updateProgress(watchedInMode, totalItems);
 };
 
-// Update Tesseract Cube Progress
+// Update Tesseract Cube Progress — energy fills progressively
 function updateProgress(watched, total) {
   const percentage = total === 0 ? 0 : Math.round((watched / total) * 100);
+  const p = percentage / 100; // 0 to 1
 
   // Update text
   progressPercent.innerText = percentage;
 
-  // Fill cube faces proportionally
+  // --- CUBE FACES: fill height + energy intensity ---
   const cubeFaces = tesseractScene.querySelectorAll('.cube-face');
+  const fillAlpha = (0.1 + p * 0.5).toFixed(2);       // fill glow: 0.1 → 0.6
+  const fillAlphaMid = (0.05 + p * 0.3).toFixed(2);   // mid gradient: 0.05 → 0.35
+  const particleAlpha = (p * 0.9).toFixed(2);          // particles: invisible → bright
+  const borderAlpha = (0.4 + p * 0.6).toFixed(2);      // border: dim → full
+
   cubeFaces.forEach(face => {
     face.style.setProperty('--fill-height', percentage + '%');
+    face.style.setProperty('--energy-fill-alpha', fillAlpha);
+    face.style.setProperty('--energy-fill-alpha-mid', fillAlphaMid);
+    face.style.setProperty('--particle-alpha', particleAlpha);
+    face.style.borderColor = `rgba(0, 210, 255, ${borderAlpha})`;
+    face.style.background = `rgba(0, 210, 255, ${(0.02 + p * 0.12).toFixed(2)})`;
+
+    // Progressive inner glow on faces
+    const innerGlow = (p * 20).toFixed(0);
+    const outerGlow = (p * 12).toFixed(0);
+    face.style.boxShadow = `inset 0 0 ${innerGlow}px rgba(0, 210, 255, ${(p * 0.4).toFixed(2)}), 0 0 ${outerGlow}px rgba(0, 210, 255, ${(p * 0.35).toFixed(2)})`;
   });
 
-  // Intensify glow based on progress
-  const glowEl = document.querySelector('.tesseract-glow');
-  if (glowEl) {
-    const intensity = 0.15 + (percentage / 100) * 0.35;
-    glowEl.style.background = `radial-gradient(circle, rgba(0, 210, 255, ${intensity}), transparent 70%)`;
+  // --- CORE: inner energy ball grows with progress ---
+  const coreEl = document.getElementById('tesseractCore');
+  if (coreEl) {
+    const coreSize = 8 + p * 22;  // 8px → 30px
+    const coreAlpha = (0.05 + p * 0.7).toFixed(2);
+    coreEl.style.width = coreSize + 'px';
+    coreEl.style.height = coreSize + 'px';
+    coreEl.style.background = `radial-gradient(circle, rgba(0, 210, 255, ${coreAlpha}), rgba(100, 220, 255, ${(coreAlpha * 0.5).toFixed(2)}), transparent 70%)`;
+    coreEl.style.boxShadow = `0 0 ${(p * 20).toFixed(0)}px rgba(0, 210, 255, ${(p * 0.6).toFixed(2)})`;
   }
 
-  // Speed up spin as progress increases
-  const speed = 10 - (percentage / 100) * 6; // 10s at 0%, 4s at 100%
+  // --- GLOW AURA: expands and intensifies ---
+  const glowEl = document.getElementById('tesseractGlow');
+  if (glowEl) {
+    const glowIntensity = (0.05 + p * 0.4).toFixed(2);
+    const glowSize = 90 + p * 30; // 90px → 120px
+    glowEl.style.width = glowSize + 'px';
+    glowEl.style.height = glowSize + 'px';
+    glowEl.style.background = `radial-gradient(circle, rgba(0, 210, 255, ${glowIntensity}), transparent 70%)`;
+    glowEl.style.filter = `blur(${(10 + p * 8).toFixed(0)}px)`;
+  }
+
+  // --- ELECTRIC ARCS: appear after 50%, intensify toward 100% ---
+  const arcsEl = document.getElementById('tesseractArcs');
+  if (arcsEl) {
+    const arcOpacity = p > 0.5 ? ((p - 0.5) * 2).toFixed(2) : '0'; // 0 until 50%, then 0→1
+    arcsEl.style.setProperty('--arc-opacity', arcOpacity);
+    arcsEl.style.opacity = arcOpacity > 0 ? '1' : '0';
+    const arcGlow = (p * 20).toFixed(0);
+    arcsEl.style.boxShadow = `inset 0 0 ${arcGlow}px rgba(0, 210, 255, 0.3), 0 0 ${arcGlow}px rgba(0, 210, 255, 0.2)`;
+  }
+
+  // --- SPIN SPEED: faster as energy builds ---
+  const speed = 10 - p * 6; // 10s → 4s
   tesseractScene.style.animationDuration = speed + 's';
+
+  // --- FULLY CHARGED STATE at 100% ---
+  const progressText = document.getElementById('progressText');
+  if (percentage >= 100) {
+    tesseractScene.classList.add('fully-charged');
+    if (progressText) progressText.classList.add('full-energy');
+  } else {
+    tesseractScene.classList.remove('fully-charged');
+    if (progressText) progressText.classList.remove('full-energy');
+  }
 }
 
 // Start
