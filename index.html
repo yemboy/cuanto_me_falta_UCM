@@ -9,25 +9,36 @@
 </head>
 <body>
 
-  <!-- Background Overlays for Cinematic Feel -->
+  <!-- Galaxy Background Layers -->
+  <div class="bg-galaxy"></div>
+  <div class="stars"></div>
+  <div class="stars-2"></div>
+  <div class="stars-3"></div>
   <div class="bg-venom"></div>
   <div class="bg-strange"></div>
 
   <div class="app-container">
-    
+
     <!-- HEADER -->
     <header class="header">
       <div class="header-titles">
         <h1>MCU Tracker</h1>
         <p>Tu camino hacia Doomsday</p>
       </div>
-      
-      <!-- Circular Progress Bar (Tesseract Glow) -->
+
+      <!-- Tesseract Cube Progress -->
       <div class="progress-wrapper">
-        <div class="progress-circle" id="progressCircle">
-          <div class="progress-text">
-            <span id="progressPercent">0</span>%
-          </div>
+        <div class="tesseract-glow"></div>
+        <div class="tesseract-scene" id="tesseractScene">
+          <div class="cube-face front"></div>
+          <div class="cube-face back"></div>
+          <div class="cube-face right"></div>
+          <div class="cube-face left"></div>
+          <div class="cube-face top"></div>
+          <div class="cube-face bottom"></div>
+        </div>
+        <div class="progress-text">
+          <span id="progressPercent">0</span>%
         </div>
       </div>
     </header>
@@ -49,7 +60,8 @@
 
     <!-- TAB SELECTOR -->
     <nav class="tabs">
-      <button class="tab-btn active" data-tab="fast">Fast Track</button>
+      <button class="tab-btn tab-quick active" data-tab="quick5">⚡ 5 Rápidas</button>
+      <button class="tab-btn" data-tab="fast">Fast Track</button>
       <button class="tab-btn" data-tab="marathon">Maratón Completo</button>
       <button class="tab-btn tab-owner" data-tab="owner">👤 Avance del Dueño</button>
     </nav>

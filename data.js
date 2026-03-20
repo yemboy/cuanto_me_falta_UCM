@@ -1157,3 +1157,46 @@ const fastTrackData = [
     "streaming": "🔵 D+"
   }
 ];
+
+const quickFiveData = [
+  {
+    "id": "quick5-avengersendgame2019",
+    "title": "Avengers: Endgame (2019)",
+    "duration": "3h 01m",
+    "description": "El evento que definió todo. Tony Stark se sacrifica, Steve Rogers se retira. Sin esta película no entiendes nada de lo que viene.",
+    "level": "⚡ 5 Rápidas para Doomsday",
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "quick5-civilwar2016",
+    "title": "Capitán América: Civil War (2016)",
+    "duration": "2h 28m",
+    "description": "La división que aún importa. Los Avengers se separan, conoces a Black Panther y Spider-Man. Sam Wilson y Bucky tienen roles clave.",
+    "level": "⚡ 5 Rápidas para Doomsday",
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "quick5-thunderbolts2025",
+    "title": "Thunderbolts* (2025)",
+    "duration": "2h 07m",
+    "description": "Conecta directo con Doomsday. La post-créditos muestra la nave de los Fantastic Four llegando a Earth-616. Bucky como líder de los New Avengers.",
+    "level": "⚡ 5 Rápidas para Doomsday",
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "quick5-fantasticfour2025",
+    "title": "The Fantastic Four: First Steps (2025)",
+    "duration": "~2h 20m",
+    "description": "Presenta a los F4 Y a DOCTOR DOOM (Robert Downey Jr.). Sin esta película no entiendes al villano principal de Doomsday.",
+    "level": "⚡ 5 Rápidas para Doomsday",
+    "streaming": "🎬 CINE"
+  },
+  {
+    "id": "quick5-bravenewworld2025",
+    "title": "Captain America: Brave New World (2025)",
+    "duration": "1h 59m",
+    "description": "Sam Wilson como el nuevo Capitán América. Él LIDERA a los Avengers en Doomsday. Presenta el panorama político post-Blip.",
+    "level": "⚡ 5 Rápidas para Doomsday",
+    "streaming": "🔵 D+"
+  }
+];

@@ -1,14 +1,14 @@
 // Global State
 const STORAGE_KEY = 'mcu_tracker_watched';
 let watchedItems = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []);
-let currentMode = 'fast'; // default to fast track
+let currentMode = 'quick5'; // default to quick 5
 
 // Owner progress (loaded from owner_progress.js)
 const ownerWatched = new Set(typeof ownerProgress !== 'undefined' ? ownerProgress : []);
 
 // DOM Elements
 const contentArea = document.getElementById('contentArea');
-const progressCircle = document.getElementById('progressCircle');
+const tesseractScene = document.getElementById('tesseractScene');
 const progressPercent = document.getElementById('progressPercent');
 const tabBtns = document.querySelectorAll('.tab-btn');
 const clearBtn = document.getElementById('clearProgressBtn');
@@ -88,7 +88,10 @@ function render() {
   
   // Owner mode shows the marathon data with owner's progress (read-only)
   let data, groupKey;
-  if (currentMode === 'fast') {
+  if (currentMode === 'quick5') {
+    data = quickFiveData;
+    groupKey = 'level';
+  } else if (currentMode === 'fast') {
     data = fastTrackData;
     groupKey = 'level';
   } else {
@@ -228,22 +231,35 @@ window.toggleItem = function(id) {
   }
 
   // Quick re-calc progress globally
-  const data = currentMode === 'fast' ? fastTrackData : marathonData;
+  const data = currentMode === 'quick5' ? quickFiveData : currentMode === 'fast' ? fastTrackData : marathonData;
   let totalItems = data.length;
   let watchedInMode = data.filter(item => watchedItems.has(item.id)).length;
   updateProgress(watchedInMode, totalItems);
 };
 
-// Update Circular Progress Bar
+// Update Tesseract Cube Progress
 function updateProgress(watched, total) {
   const percentage = total === 0 ? 0 : Math.round((watched / total) * 100);
-  
+
   // Update text
   progressPercent.innerText = percentage;
-  
-  // Update conic-gradient
-  const degrees = (percentage / 100) * 360;
-  progressCircle.style.background = `conic-gradient(var(--cyan-tesseract) ${degrees}deg, var(--bg-dark) 0deg)`;
+
+  // Fill cube faces proportionally
+  const cubeFaces = tesseractScene.querySelectorAll('.cube-face');
+  cubeFaces.forEach(face => {
+    face.style.setProperty('--fill-height', percentage + '%');
+  });
+
+  // Intensify glow based on progress
+  const glowEl = document.querySelector('.tesseract-glow');
+  if (glowEl) {
+    const intensity = 0.15 + (percentage / 100) * 0.35;
+    glowEl.style.background = `radial-gradient(circle, rgba(0, 210, 255, ${intensity}), transparent 70%)`;
+  }
+
+  // Speed up spin as progress increases
+  const speed = 10 - (percentage / 100) * 6; // 10s at 0%, 4s at 100%
+  tesseractScene.style.animationDuration = speed + 's';
 }
 
 // Start
