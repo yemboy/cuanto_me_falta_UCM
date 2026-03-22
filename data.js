@@ -668,13 +668,6 @@ const marathonData = [
     "streaming": "🔵 D+"
   },
   {
-    "id": "marathon-deadpoolwolverine",
-    "title": "Deadpool & Wolverine",
-    "details": "2024 / Vacío — Conecta Fox con MCU. Narrativamente va aquí",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
-    "streaming": "🔵 D+"
-  },
-  {
     "id": "marathon-whatiftemporada1",
     "title": "What If...? — Temporada 1",
     "details": "Multiverso — Animada. Líneas temporales alternativas",
@@ -836,6 +829,13 @@ const marathonData = [
     "streaming": "🔵 D+"
   },
   {
+    "id": "marathon-deadpoolwolverine",
+    "title": "Deadpool & Wolverine",
+    "details": "2024 / Vacío — Conecta Fox con MCU. Narrativamente va aquí",
+    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
+    "streaming": "🔵 D+"
+  },
+  {
     "id": "marathon-whatiftemporada2",
     "title": "What If...? — Temporada 2",
     "details": "Multiverso — Animada",
@@ -866,7 +866,7 @@ const marathonData = [
   {
     "id": "marathon-wonderman",
     "title": "Wonder Man",
-    "details": "2025–2027 — Trevor Slattery regresa",
+    "details": "2025–2027 — Trevor Slattery regresa. 8 episodios Disney+",
     "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
     "streaming": "🔵 D+"
   },
@@ -887,7 +887,14 @@ const marathonData = [
   {
     "id": "marathon-daredevilbornagaintemporada2",
     "title": "Daredevil: Born Again — Temporada 2",
-    "details": "~Mediados 2027 — 6 meses post-T1. + Especial Punisher",
+    "details": "~Med 2027 — 6 meses post-T1. Krysten Ritter (Jessica Jones) regresa",
+    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "marathon-thepunisherespecial",
+    "title": "The Punisher — Especial",
+    "details": "~Med 2027 — Presentación Especial Disney+ (60 min). Jon Bernthal. Concurrente con Born Again T2",
     "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
     "streaming": "🔵 D+"
   },
@@ -896,20 +903,57 @@ const marathonData = [
     "title": "The Fantastic Four: First Steps",
     "details": "~1965 (Earth-828) — Universo alternativo retro. Doctor Doom (RDJ)",
     "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "streaming": "🎬 CINE"
+  },
+  {
+    "id": "marathon-spidermanbrandnewday",
+    "title": "Spider-Man: Brand New Day",
+    "details": "2028 (in-universe) — Estreno: 31 julio 2026. Dir: Destin Daniel Cretton. Tom Holland, Zendaya, Jon Bernthal (Punisher), Mark Ruffalo (Hulk)",
+    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "streaming": "🎬 CINE"
+  },
+  {
+    "id": "marathon-visionquest",
+    "title": "VisionQuest",
+    "details": "~2027 (in-universe) — Serie Disney+, 8 episodios. Dir: Terry Matalas. Paul Bettany + James Spader como Ultron",
+    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
     "streaming": "🔵 D+"
   },
   {
+    "id": "marathon-avengersdoomsday",
+    "title": "Avengers: Doomsday",
+    "details": "2028+ (in-universe) — Estreno: 18 dic 2026. Hermanos Russo. RDJ como Doctor Doom. Chris Evans regresa",
+    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "streaming": "🎬 CINE"
+  },
+  {
     "id": "marathon-yourfriendlyneighborhoodspiderman",
-    "title": "Your Friendly Neighborhood Spider-Man",
-    "details": "Línea alternativa — Animada",
+    "title": "Your Friendly Neighborhood Spider-Man — T1",
+    "details": "Línea alternativa — Animada Disney+",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🔵 D+",
     "subcategory": "Canónico pero fuera de Earth-616"
   },
   {
-    "id": "marathon-xmen97",
-    "title": "X-Men '97",
-    "details": "Earth-92131 — Animada. Continuación de los 90s",
+    "id": "marathon-yourfriendlyneighborhoodspidermant2",
+    "title": "Your Friendly Neighborhood Spider-Man — T2",
+    "details": "Otoño 2026 — Animada Disney+",
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "streaming": "🔵 D+",
+    "subcategory": "Canónico pero fuera de Earth-616"
+  },
+  {
+    "id": "marathon-xmen97t1",
+    "title": "X-Men '97 — T1",
+    "details": "Earth-92131 — Animada Disney+. Continuación de los 90s",
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "streaming": "🔵 D+",
+    "subcategory": "Canónico pero fuera de Earth-616"
+  },
+  {
+    "id": "marathon-xmen97t2",
+    "title": "X-Men '97 — T2",
+    "details": "Verano 2026 — Animada Disney+",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🔵 D+",
     "subcategory": "Canónico pero fuera de Earth-616"
@@ -921,6 +965,14 @@ const marathonData = [
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🔵 D+",
     "subcategory": "Canónico pero fuera de Earth-616"
+  },
+  {
+    "id": "marathon-spidernoir",
+    "title": "Spider-Noir",
+    "details": "Mayo 2026 — Serie Prime Video (NO Disney+). 8 episodios. Nicolas Cage. Formato blanco y negro",
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "streaming": "🟡 PV",
+    "subcategory": "No es MCU pero conecta al multiverso"
   },
   {
     "id": "marathon-inhumanstemporada1",
