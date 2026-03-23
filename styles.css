@@ -570,6 +570,16 @@ body {
   gap: 0.5rem;
 }
 
+/* Release date — real world premiere, distinct from timeline */
+.movie-release {
+  font-size: 0.75rem;
+  color: var(--iron-gold);
+  opacity: 0.7;
+  margin-top: 0.2rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
 .movie-desc {
   font-size: 0.85rem;
   color: rgba(255,255,255,0.55);

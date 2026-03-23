@@ -187,11 +187,15 @@ function createMovieHTML(item, readOnly, activeSet) {
   const metaHTML = [];
   if (item.duration) metaHTML.push(`<span>⏳ ${item.duration}</span>`);
   if (item.details) metaHTML.push(`<span>${item.details}</span>`);
-  
+
+  // Release date (real-world) — separate from timeline details
+  const releaseDate = typeof releaseDates !== 'undefined' ? releaseDates[item.id] : null;
+  const releaseHTML = releaseDate ? `<div class="movie-release">📅 Estreno: ${releaseDate}</div>` : '';
+
   const descHTML = item.description ? `<div class="movie-desc">${item.description}</div>` : '';
 
-  const streamingHTML = item.streaming 
-    ? `<div class="streaming-badge" title="Disponible en: ${item.streaming}">${item.streaming}</div>` 
+  const streamingHTML = item.streaming
+    ? `<div class="streaming-badge" title="Disponible en: ${item.streaming}">${item.streaming}</div>`
     : `<div class="streaming-placeholder" title="No hay datos de streaming">📺</div>`;
 
   const onclickAttr = readOnly ? '' : `onclick="toggleItem('${item.id}')"`;
@@ -202,6 +206,7 @@ function createMovieHTML(item, readOnly, activeSet) {
       <div class="movie-info">
         <h3>${item.title}</h3>
         ${metaHTML.length > 0 ? `<div class="movie-meta">${metaHTML.join(' • ')}</div>` : ''}
+        ${releaseHTML}
         ${descHTML}
       </div>
       ${streamingHTML}
