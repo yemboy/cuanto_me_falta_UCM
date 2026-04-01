@@ -414,20 +414,6 @@ const marathonData = [
     "streaming": "🔵 D+"
   },
   {
-    "id": "marathon-yosoygroottemporada1",
-    "title": "Yo Soy Groot — Temporada 1",
-    "details": "2014 — Cortos animados",
-    "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": "🔵 D+"
-  },
-  {
-    "id": "marathon-yosoygroottemporada2",
-    "title": "Yo Soy Groot — Temporada 2",
-    "details": "2014 — Cortos animados",
-    "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
-    "streaming": "🔵 D+"
-  },
-  {
     "id": "marathon-agentsofshieldtemporada2",
     "title": "Agents of S.H.I.E.L.D. — Temporada 2",
     "details": "2014–2015 — Conecta con Age of Ultron",
@@ -925,6 +911,22 @@ const marathonData = [
     "details": "2028+ (in-universe) — Estreno: 18 dic 2026. Hermanos Russo. RDJ como Doctor Doom. Chris Evans regresa",
     "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
     "streaming": "🎬 CINE"
+  },
+  {
+    "id": "marathon-yosoygroottemporada1",
+    "title": "Yo Soy Groot — Temporada 1",
+    "details": "Cortos animados — Sin posición fija en el timeline",
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "streaming": "🔵 D+",
+    "subcategory": "Canónico pero fuera de Earth-616"
+  },
+  {
+    "id": "marathon-yosoygroottemporada2",
+    "title": "Yo Soy Groot — Temporada 2",
+    "details": "Cortos animados — Sin posición fija en el timeline",
+    "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
+    "streaming": "🔵 D+",
+    "subcategory": "Canónico pero fuera de Earth-616"
   },
   {
     "id": "marathon-yourfriendlyneighborhoodspiderman",

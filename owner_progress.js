@@ -46,5 +46,10 @@ const ownerProgress = [
   "marathon-eyesofwakandaep4",
   "marathon-agentsofshieldt1eps816",
   "marathon-capitánaméricaelsoldadodelinvierno",
-  "marathon-deadpool22018"
+  "marathon-deadpool22018",
+  "marathon-agentsofshieldt1eps1722",
+  "marathon-guardianesdelagalaxiavol1",
+  "marathon-guardianesdelagalaxiavol2",
+  "marathon-yosoygroottemporada1",
+  "marathon-yosoygroottemporada2"
 ];
