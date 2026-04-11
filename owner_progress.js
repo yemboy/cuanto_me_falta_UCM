@@ -51,5 +51,6 @@ const ownerProgress = [
   "marathon-guardianesdelagalaxiavol1",
   "marathon-guardianesdelagalaxiavol2",
   "marathon-yosoygroottemporada1",
-  "marathon-yosoygroottemporada2"
+  "marathon-yosoygroottemporada2",
+  "marathon-agentsofshieldtemporada2"
 ];
