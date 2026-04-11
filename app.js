@@ -13,6 +13,14 @@ const progressPercent = document.getElementById('progressPercent');
 const tabBtns = document.querySelectorAll('.tab-btn');
 const clearBtn = document.getElementById('clearProgressBtn');
 const exportBtn = document.getElementById('exportProgressBtn');
+const importBtn = document.getElementById('importProgressBtn');
+const importModal = document.getElementById('importModal');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+const modalExportBtn = document.getElementById('modalExportBtn');
+const browseFileBtn = document.getElementById('browseFileBtn');
+const importFileInput = document.getElementById('importFileInput');
+const dropZone = document.getElementById('dropZone');
+const importResult = document.getElementById('importResult');
 
 // Initialize Application
 function init() {
@@ -35,23 +43,55 @@ function init() {
     }
   });
 
-  // Export Button Listener
-  exportBtn.addEventListener('click', () => {
-    const allWatched = Array.from(watchedItems);
-    const jsContent = `// Avance del dueño - Última actualización: ${new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}\n// Para actualizar: haz clic en "Exportar Mi Avance" y reemplaza este archivo\nconst ownerProgress = ${JSON.stringify(allWatched, null, 2)};\n`;
-    
-    // Create a downloadable file
-    const blob = new Blob([jsContent], { type: 'application/javascript' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'owner_progress.js';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    
-    alert("✅ Archivo descargado.\n\nReemplaza el archivo 'owner_progress.js' en tu repositorio con el archivo descargado y haz commit + push para que los visitantes vean tu avance.");
+  // Export Button Listener (opens modal)
+  exportBtn.addEventListener('click', openModal);
+
+  // Import Button Listener (opens modal)
+  importBtn.addEventListener('click', openModal);
+
+  // Modal Close
+  modalCloseBtn.addEventListener('click', closeModal);
+  importModal.addEventListener('click', (e) => {
+    if (e.target === importModal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && importModal.classList.contains('active')) closeModal();
+  });
+
+  // Modal Export Button (JSON for anyone)
+  modalExportBtn.addEventListener('click', exportProgressAsJSON);
+
+  // Browse File Button
+  browseFileBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    importFileInput.click();
+  });
+
+  // File Input Change
+  importFileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+      handleImportFile(e.target.files[0]);
+    }
+  });
+
+  // Drop Zone Events
+  dropZone.addEventListener('click', () => importFileInput.click());
+
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+
+  dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('drag-over');
+  });
+
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    if (e.dataTransfer.files.length > 0) {
+      handleImportFile(e.dataTransfer.files[0]);
+    }
   });
 
   // Initial Render
@@ -316,6 +356,148 @@ function updateProgress(watched, total) {
     tesseractScene.classList.remove('fully-charged');
     if (progressText) progressText.classList.remove('full-energy');
   }
+}
+
+// ===== MODAL FUNCTIONS =====
+function openModal() {
+  importModal.classList.add('active');
+  importResult.classList.remove('visible');
+  importResult.innerHTML = '';
+  importFileInput.value = '';
+}
+
+function closeModal() {
+  importModal.classList.remove('active');
+}
+
+// ===== EXPORT PROGRESS AS JSON =====
+function exportProgressAsJSON() {
+  const allWatched = Array.from(watchedItems);
+  
+  if (allWatched.length === 0) {
+    showImportResult('error', 'Sin progreso', 'No tienes ningún elemento marcado para exportar.');
+    return;
+  }
+
+  const exportData = {
+    version: 1,
+    exportDate: new Date().toISOString(),
+    exportDateReadable: new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }),
+    totalItems: allWatched.length,
+    watchedItems: allWatched
+  };
+
+  const jsonContent = JSON.stringify(exportData, null, 2);
+  const blob = new Blob([jsonContent], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `mcu_tracker_progress_${new Date().toISOString().split('T')[0]}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  showImportResult('success', '¡Archivo descargado!', `Se exportaron ${allWatched.length} elementos. Guárdalo para respaldarlo o subirlo en otro dispositivo.`);
+}
+
+// ===== IMPORT FILE HANDLER =====
+function handleImportFile(file) {
+  // Validate file type
+  if (!file.name.endsWith('.json')) {
+    showImportResult('error', 'Formato inválido', 'Por favor selecciona un archivo .json exportado desde este tracker.');
+    return;
+  }
+
+  const reader = new FileReader();
+  
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      
+      // Validate structure
+      if (!data.watchedItems || !Array.isArray(data.watchedItems)) {
+        showImportResult('error', 'Archivo inválido', 'El archivo no tiene el formato correcto. Asegúrate de usar un archivo exportado desde este tracker.');
+        return;
+      }
+
+      // Validate items are strings
+      const validItems = data.watchedItems.filter(item => typeof item === 'string');
+      
+      if (validItems.length === 0) {
+        showImportResult('error', 'Sin datos', 'El archivo no contiene elementos de progreso válidos.');
+        return;
+      }
+
+      // Ask user: merge or replace?
+      const currentCount = watchedItems.size;
+      const importCount = validItems.length;
+      
+      let mode = 'replace';
+      if (currentCount > 0) {
+        const mergeChoice = confirm(
+          `📥 Importar ${importCount} elementos.\n\n` +
+          `Actualmente tienes ${currentCount} elementos marcados.\n\n` +
+          `¿Quieres COMBINAR ambos progresos?\n\n` +
+          `• Aceptar = Combinar (mantiene tu progreso actual + agrega los importados)\n` +
+          `• Cancelar = Reemplazar (borra tu progreso actual y usa solo los importados)`
+        );
+        mode = mergeChoice ? 'merge' : 'replace';
+        
+        if (mode === 'replace') {
+          const confirmReplace = confirm('⚠️ ¿Estás seguro? Se borrará todo tu progreso actual y se reemplazará con el archivo importado.');
+          if (!confirmReplace) return;
+        }
+      }
+
+      // Apply import
+      if (mode === 'replace') {
+        watchedItems.clear();
+      }
+      
+      let newItemsAdded = 0;
+      validItems.forEach(item => {
+        if (!watchedItems.has(item)) {
+          newItemsAdded++;
+        }
+        watchedItems.add(item);
+      });
+
+      saveProgress();
+      render();
+
+      const dateInfo = data.exportDateReadable ? ` (exportado el ${data.exportDateReadable})` : '';
+      const modeText = mode === 'merge' ? 'combinados' : 'importados';
+      showImportResult(
+        'success',
+        '¡Progreso restaurado!',
+        `${newItemsAdded} nuevos elementos ${modeText}. Total actual: ${watchedItems.size} elementos${dateInfo}.`
+      );
+
+    } catch (err) {
+      showImportResult('error', 'Error al leer', 'El archivo no es un JSON válido. Asegúrate de no haberlo modificado manualmente.');
+    }
+  };
+
+  reader.onerror = function() {
+    showImportResult('error', 'Error de lectura', 'No se pudo leer el archivo. Intenta de nuevo.');
+  };
+
+  reader.readAsText(file);
+}
+
+// ===== SHOW IMPORT RESULT =====
+function showImportResult(type, title, message) {
+  importResult.innerHTML = `
+    <div class="import-result-card ${type}">
+      <div class="import-result-icon">${type === 'success' ? '✅' : '❌'}</div>
+      <div class="import-result-text">
+        <strong>${title}</strong>
+        <span>${message}</span>
+      </div>
+    </div>
+  `;
+  importResult.classList.add('visible');
 }
 
 // Start

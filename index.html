@@ -73,7 +73,50 @@
     <footer class="controls">
       <button id="clearProgressBtn" class="btn-clear">Borrar Progreso</button>
       <button id="exportProgressBtn" class="btn-export">📤 Exportar Mi Avance</button>
+      <button id="importProgressBtn" class="btn-import">📥 Importar Avance</button>
     </footer>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="importFileInput" accept=".json" style="display: none;">
+
+    <!-- Import Modal -->
+    <div class="modal-overlay" id="importModal">
+      <div class="modal-content">
+        <button class="modal-close" id="modalCloseBtn">&times;</button>
+        <h2 class="modal-title">📥 Importar / Exportar Avance</h2>
+        <p class="modal-subtitle">Guarda tu progreso para no perderlo, o restaura uno previo.</p>
+
+        <div class="modal-actions">
+          <!-- Export Section -->
+          <div class="modal-section">
+            <div class="modal-section-icon">📤</div>
+            <h3>Exportar</h3>
+            <p>Descarga tu progreso actual como archivo JSON.</p>
+            <button id="modalExportBtn" class="modal-btn modal-btn-export">Descargar Progreso</button>
+          </div>
+
+          <div class="modal-divider"></div>
+
+          <!-- Import Section -->
+          <div class="modal-section">
+            <div class="modal-section-icon">📥</div>
+            <h3>Importar</h3>
+            <p>Sube un archivo de progreso previamente exportado.</p>
+            <div class="drop-zone" id="dropZone">
+              <div class="drop-zone-icon">🎯</div>
+              <p>Arrastra tu archivo aquí</p>
+              <span>o</span>
+              <button id="browseFileBtn" class="modal-btn modal-btn-browse">Seleccionar Archivo</button>
+            </div>
+            <div class="import-result" id="importResult"></div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <p>💡 Tu progreso se guarda localmente en este navegador. Exporta para tener un respaldo o para moverlo a otro dispositivo.</p>
+        </div>
+      </div>
+    </div>
 
   </div>
 
