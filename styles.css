@@ -83,6 +83,36 @@ body {
   padding: 2rem 1.5rem;
 }
 
+/* ========== NOSCRIPT SEO FALLBACK ========== */
+.seo-fallback {
+  padding: 2rem;
+  background: var(--bg-panel);
+  border-radius: var(--br);
+  border: 1px solid rgba(255,255,255,0.08);
+  line-height: 1.7;
+}
+
+.seo-fallback h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--iron-gold);
+}
+
+.seo-fallback p {
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.seo-fallback ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.seo-fallback li {
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
 /* ========== HEADER ========== */
 .header {
   display: flex;

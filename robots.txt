@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://losfiebruos.lat/sitemap.xml
+
+# Archivos de datos (no indexar)
+Disallow: /*.txt$
+Disallow: /owner_progress.js

@@ -3,7 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tracker UCM</title>
+
+  <!-- SEO: Title & Description -->
+  <title>MCU Tracker — ¿Cuánto te falta para Doomsday? | Checklist Marvel completa</title>
+  <meta name="description" content="Lleva el control de todas las películas y series del Universo Cinematográfico de Marvel que has visto. Checklist interactivo con orden cronológico, Fast Track y maratón completo para llegar preparado a Avengers: Doomsday.">
+  <meta name="keywords" content="MCU, Marvel, tracker, checklist, películas Marvel, series Marvel, orden cronológico MCU, Avengers Doomsday, maratón Marvel, UCM, Disney Plus, cuánto me falta">
+  <meta name="author" content="LosFiebruos">
+  <meta name="robots" content="index, follow">
+
+  <!-- SEO: Canonical URL -->
+  <link rel="canonical" href="https://losfiebruos.lat/">
+
+  <!-- SEO: Open Graph (Facebook, WhatsApp, iMessage) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://losfiebruos.lat/">
+  <meta property="og:title" content="MCU Tracker — ¿Cuánto te falta para Doomsday?">
+  <meta property="og:description" content="Checklist interactivo de todas las películas y series Marvel. Marca lo que ya viste y descubre cuánto te falta para llegar a Avengers: Doomsday.">
+  <meta property="og:image" content="https://losfiebruos.lat/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="MCU Tracker — LosFiebruos">
+
+  <!-- SEO: Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MCU Tracker — ¿Cuánto te falta para Doomsday?">
+  <meta name="twitter:description" content="Checklist interactivo de todas las películas y series Marvel en orden cronológico. ¡Marca tu progreso!">
+  <meta name="twitter:image" content="https://losfiebruos.lat/og-image.png">
+
+  <!-- SEO: Theme & Favicon -->
+  <meta name="theme-color" content="#050510">
+  <meta name="msapplication-TileColor" content="#050510">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+
+  <!-- SEO: Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "MCU Tracker",
+    "alternateName": "¿Cuánto me falta para Doomsday?",
+    "url": "https://losfiebruos.lat/",
+    "description": "Checklist interactivo para llevar el control de todas las películas y series del Universo Cinematográfico de Marvel (UCM). Incluye orden cronológico, Fast Track y maratón completo.",
+    "applicationCategory": "EntertainmentApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "inLanguage": "es",
+    "about": {
+      "@type": "Thing",
+      "name": "Marvel Cinematic Universe",
+      "sameAs": "https://es.wikipedia.org/wiki/Universo_cinematográfico_de_Marvel"
+    }
+  }
+  </script>
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -42,7 +102,7 @@
     </header>
 
     <!-- LEGEND -->
-    <div class="legend-container">
+    <section class="legend-container" aria-label="Plataformas de streaming">
       <h3 class="legend-title">Plataformas de streaming donde ver (LATAM)</h3>
       <div class="legend-box">
         <span>🔵 D+ = Disney+</span>
@@ -54,10 +114,10 @@
         <span>🎬 CINE = En cines</span>
         <span>❓ = Verificar</span>
       </div>
-    </div>
+    </section>
 
     <!-- TAB SELECTOR -->
-    <nav class="tabs">
+    <nav class="tabs" aria-label="Modos de tracker">
       <button class="tab-btn tab-quick active" data-tab="quick5">⚡ 5 Rápidas</button>
       <button class="tab-btn" data-tab="fast">Fast Track</button>
       <button class="tab-btn" data-tab="marathon">Maratón Completo</button>
@@ -66,7 +126,20 @@
 
     <!-- CONTENT AREA (Accordions injected via JS) -->
     <main class="content-area" id="contentArea">
-      <!-- Data will be loaded here -->
+      <!-- SEO: Crawlable text for search engines (hidden when JS renders content) -->
+      <noscript>
+        <section class="seo-fallback">
+          <h2>Tracker del Universo Cinematográfico de Marvel (UCM/MCU)</h2>
+          <p>Bienvenido al tracker interactivo de Marvel más completo en español. Lleva el control de todas las películas y series del MCU que has visto, desde Iron Man (2008) hasta Avengers: Doomsday. Incluye:</p>
+          <ul>
+            <li><strong>5 Rápidas para Doomsday</strong> — Las 5 películas mínimas imprescindibles</li>
+            <li><strong>Fast Track</strong> — Ruta rápida con lo esencial</li>
+            <li><strong>Maratón Completo</strong> — Todas las películas, series, One-Shots y especiales en orden cronológico</li>
+          </ul>
+          <p>Incluye contenido Pre-UCM (X-Men, Spider-Man de Tobey Maguire, Blade), las 6 fases del MCU, plataformas de streaming en LATAM (Disney+, Netflix, Prime Video, Max, ViX), y funciones para exportar e importar tu progreso.</p>
+          <p>Activa JavaScript para usar el tracker interactivo.</p>
+        </section>
+      </noscript>
     </main>
 
     <!-- FOOTER CONTROLS -->
