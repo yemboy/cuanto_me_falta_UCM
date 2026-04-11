@@ -1,0 +1,244 @@
+# MCU Tracker — Lista Completa de Contenido (losfiebruos.lat)
+
+> Este archivo contiene la lista completa de todas las películas y series del MCU incluidas en el tracker interactivo de losfiebruos.lat, organizadas por fase y en orden cronológico. Es la guía de maratón de Marvel más completa en español.
+
+URL: https://losfiebruos.lat/
+Idioma: Español (audiencia LATAM)
+Licencia: GPLv3 — Código abierto
+Tecnología: HTML, CSS, JavaScript vanilla. Hospedado en GitHub Pages.
+Repositorio: https://github.com/yemboy/cuanto_me_falta_UCM
+
+## Modo: ⚡ 5 Rápidas para Doomsday
+
+Las 5 películas mínimas imprescindibles si no tienes tiempo:
+
+1. Avengers: Endgame (2019) — 3h 01m — El evento que definió todo. Tony Stark se sacrifica, Steve Rogers se retira.
+2. Capitán América: Civil War (2016) — 2h 28m — Los Avengers se dividen. Introduces Black Panther y Spider-Man.
+3. Thunderbolts* (2025) — 2h 07m — Conecta directo con Doomsday. Post-créditos: nave de los F4 llega a Earth-616.
+4. The Fantastic Four: First Steps (2025) — ~2h 20m — Presenta a los F4 y a Doctor Doom (Robert Downey Jr.).
+5. Captain America: Brave New World (2025) — 1h 59m — Sam Wilson como nuevo Capitán América, lidera Avengers en Doomsday.
+
+## Modo: Fast Track (23 títulos esenciales)
+
+### 🔴 NIVEL 1: El Mínimo Absoluto (10 películas)
+
+- Iron Man (2008) — 2h 06m — Tony Stark. El mismo actor (RDJ) ahora es Doctor Doom.
+- Los Vengadores (2012) — 2h 23m — Primera vez que el equipo se forma.
+- Capitán América: Civil War (2016) — 2h 28m — Los Avengers se dividen.
+- Black Panther (2018) — 2h 14m — Wakanda es facción clave en Doomsday.
+- Avengers: Infinity War (2018) — 2h 29m — Thanos gana. La mitad del universo desaparece.
+- Avengers: Endgame (2019) — 3h 01m — Tony muere, Steve se retira.
+- Doctor Strange en el Multiverso de la Locura — 2h 06m — Explica el multiverso e incursiones.
+- Captain America: Brave New World (2025) — 1h 59m — Sam Wilson como nuevo Cap.
+- Thunderbolts* (2025) — 2h 07m — Post-créditos conecta con F4.
+- The Fantastic Four: First Steps (2025) — ~2h 20m — Doctor Doom (RDJ).
+
+### 🟡 NIVEL 2: Recomendado (+7 películas = 17 total)
+
+- Capitán América: El Primer Vengador (2011) — 2h 04m — Origen de Steve Rogers y Bucky.
+- Capitán América: El Soldado del Invierno — 2h 16m — Bucky como Winter Soldier.
+- Spider-Man: No Way Home (2021) — 2h 28m — Multiverso en acción, tres Spider-Man.
+- Black Panther: Wakanda Forever (2022) — 2h 41m — Shuri es nueva Black Panther, introduce Namor.
+- Deadpool & Wolverine (2024) — 2h 08m — Conecta universo X-Men de Fox con MCU.
+- Shang-Chi y la Leyenda de los Diez Anillos — 2h 12m — Simu Liu confirmado en Doomsday.
+- Ant-Man and the Wasp: Quantumania (2023) — 2h 05m — Reino Cuántico.
+
+### 🟢 NIVEL 3: Ideal (+6 películas = 23 total)
+
+- Thor: Ragnarok (2017) — 2h 10m
+- Avengers: Era de Ultrón (2015) — 2h 21m — Vision, Wanda, IA como amenaza.
+- Guardianes de la Galaxia Vol. 3 (2023) — 2h 30m
+- Thor: Love and Thunder (2022) — 1h 58m
+- The Marvels (2023) — 1h 45m — Incursiones entre universos.
+- Black Widow (2021) — 2h 14m — Yelena Belova y Red Guardian.
+- X-Men (2000) — 1h 44m
+- X-Men 2 (2003) — 2h 14m
+
+## Maratón Completo — Orden Cronológico
+
+### 🌀 PRE-UCM: Los Universos Legacy (El Multiverso)
+
+#### Universo Blade
+- Blade (1998) — D+
+- Blade II (2002) — D+
+- Blade: Trinity (2004) — D+
+
+#### Universo X-Men (Fox — Tierra-10005)
+- X-Men (2000) — D+
+- X2: X-Men United (2003) — D+
+- X-Men: La Batalla Final (2006) — D+
+- X-Men Orígenes: Wolverine (2009) — D+
+- X-Men: Primera Generación (2011) — D+
+- Wolverine Inmortal (2013) — D+
+- X-Men: Días del Futuro Pasado (2014) — D+
+- Deadpool (2016) — D+
+- X-Men: Apocalipsis (2016) — D+
+- Logan (2017) — D+
+- Deadpool 2 (2018) — D+
+- X-Men: Dark Phoenix (2019) — D+
+- Los Nuevos Mutantes (2020) — D+
+
+#### Universo Spider-Man (Tobey Maguire — Tierra-96283)
+- Spider-Man (2002) — NF
+- Spider-Man 2 (2004) — NF
+- Spider-Man 3 (2007) — NF
+
+#### Universo Daredevil / Elektra (Fox)
+- Daredevil (2003) — D+
+- Elektra (2005) — D+
+
+#### Universo Los 4 Fantásticos (Fox)
+- Los Cuatro Fantásticos (2005) — D+
+- Los 4 Fantásticos y Silver Surfer (2007) — D+
+
+#### Universo Amazing Spider-Man (Andrew Garfield — Tierra-120703)
+- The Amazing Spider-Man (2012) — NF
+- The Amazing Spider-Man 2 (2014) — NF
+
+#### Universo Sony SSU (Tierra-688B)
+- Venom (2018) — NF
+- Venom: Let There Be Carnage (2021) — NF
+- Morbius (2022) — NF
+- Venom: The Last Dance (2024) — NF
+
+### ⚱️ Era Antigua: Wakanda a Través de los Milenios
+- Eyes of Wakanda — Ep. 1 (1260 a.C.) — D+
+- Eyes of Wakanda — Ep. 2 (1200 a.C.) — D+
+- Eyes of Wakanda — Ep. 3 (1400 d.C.) — D+
+- Eyes of Wakanda — Ep. 4 (1896) — D+
+
+### 🛡️ Fase 1: La Iniciativa Vengadores (1943–2012)
+- Capitán América: El Primer Vengador (1943–1945) — D+
+- Agent Carter (One-Shot, 1946) — D+
+- Agent Carter — Temporada 1 (1946, 8 episodios) — D+
+- Agent Carter — Temporada 2 (1947, 10 episodios) — D+
+- Capitana Marvel (1995) — D+
+- Iron Man (2008) — D+
+- Iron Man 2 (2010) — D+
+- A Funny Thing Happened on the Way to Thor's Hammer (One-Shot) — D+
+- El Increíble Hulk (2010) — D+
+- Thor (2010) — D+
+- The Consultant (One-Shot, 2010–2011) — D+
+- Los Vengadores (2012) — D+
+- Item 47 (One-Shot, 2012) — D+
+
+### 🚀 Fase 2: Las Consecuencias y el Cosmos (2012–2015)
+- Iron Man 3 (Dic 2012) — D+
+- Agents of S.H.I.E.L.D. — T1, Eps. 1–7 (Finales 2013) — D+
+- Thor: Un Mundo Oscuro (2013) — D+
+- All Hail the King (One-Shot, 2013) — D+
+- Agents of S.H.I.E.L.D. — T1, Eps. 8–16 (Inicios 2014) — D+
+- Capitán América: El Soldado del Invierno (2014) — D+
+- Agents of S.H.I.E.L.D. — T1, Eps. 17–22 (2014) — D+
+- Guardianes de la Galaxia Vol. 1 (2014) — D+
+- Guardianes de la Galaxia Vol. 2 (2014) — D+
+- Agents of S.H.I.E.L.D. — Temporada 2 (2014–2015) — D+
+- Daredevil — Temporada 1 (Ene–Feb 2015, Netflix) — D+
+- Jessica Jones — Temporada 1 (Mar–Abr 2015, Netflix) — D+
+- Avengers: Era de Ultrón (2015) — D+
+- Ant-Man (2015) — D+
+- Daredevil — Temporada 2 (Oct–Nov 2015, Netflix) — D+
+- Luke Cage — Temporada 1 (Nov–Dic 2015, Netflix) — D+
+
+### ♾️ Fase 3: La División y la Guerra del Infinito (2016–2023)
+- Agents of S.H.I.E.L.D. — Temporada 3 (2015–2016) — D+
+- Iron Fist — Temporada 1 (Feb 2016, Netflix) — D+
+- The Defenders (Mayo 2016, Netflix) — D+
+- Capitán América: Civil War (2016) — D+
+- Black Widow (Post-Civil War) — D+
+- Black Panther (2016) — D+
+- Spider-Man: Homecoming (Otoño 2016) — NF/VIX
+- The Punisher — Temporada 1 (Nov–Dic 2016, Netflix) — D+
+- Doctor Strange (2016–2017) — D+
+- Agents of S.H.I.E.L.D. — Temporada 4 (2017) — D+
+- Jessica Jones — Temporada 2 (Abr–Jun 2017, Netflix) — D+
+- Luke Cage — Temporada 2 (Ago–Sep 2017, Netflix) — D+
+- Iron Fist — Temporada 2 (2017, Netflix) — D+
+- Thor: Ragnarok (2017) — D+
+- Daredevil — Temporada 3 (Finales 2017, Netflix) — D+
+- The Punisher — Temporada 2 (2017–2018, Netflix) — D+
+- Jessica Jones — Temporada 3 (2018, Netflix) — D+
+- Agents of S.H.I.E.L.D. — Temporada 5 (2017–2018) — D+
+- Ant-Man and the Wasp (2018) — D+
+- Avengers: Infinity War (2018) — D+
+- Agents of S.H.I.E.L.D. — Temporada 6 (2019, timeline alternativo) — D+
+- Agents of S.H.I.E.L.D. — Temporada 7 (viajes en el tiempo) — D+
+- Avengers: Endgame (2018→Oct 2023) — D+
+
+### 🌌 Fase 4: La Saga del Multiverso — Inicio (2023–2025)
+- Loki — Temporada 1 (TVA, fuera del tiempo) — D+
+- What If...? — Temporada 1 (Multiverso, animada) — D+
+- WandaVision (Finales 2023) — D+
+- The Falcon and the Winter Soldier (Principios 2024) — D+
+- Shang-Chi y la Leyenda de los Diez Anillos (Abril 2024) — D+
+- Spider-Man: Far From Home (Verano 2024) — NF/D+
+- Eternals (Otoño 2024) — D+
+- Spider-Man: No Way Home (Otoño–Invierno 2024) — NF
+- Doctor Strange en el Multiverso de la Locura (Finales 2024) — D+
+- Hawkeye (Navidad 2024) — D+
+- Moon Knight (Principios 2025) — D+
+- Echo (Mayo 2025) — D+
+- She-Hulk: Defensora de Héroes (2024–2025) — D+
+- Ms. Marvel (2025) — D+
+- Thor: Love and Thunder (~2025) — D+
+- Werewolf by Night (~2025) — D+
+- Black Panther: Wakanda Forever (~2025) — D+
+- Guardianes de la Galaxia: Especial Navideño (~2025) — D+
+- Ironheart (~Oct 2025) — D+
+
+### ⚡ Fase 5: La Saga del Multiverso — Escalada (2026)
+- Ant-Man and the Wasp: Quantumania (2026) — D+
+- Guardianes de la Galaxia Vol. 3 (2026) — D+
+- Secret Invasion (2026) — D+
+- The Marvels (2026) — D+
+- Loki — Temporada 2 (TVA) — D+
+- Deadpool & Wolverine (2024/Vacío) — D+
+- What If...? — Temporada 2 (Multiverso, animada) — D+
+- Agatha All Along (2026) — D+
+- What If...? — Temporada 3 (Multiverso, animada, final) — D+
+
+### 🔥 Fase 6: El Camino a Doomsday (2026–2027+)
+- Daredevil: Born Again — Temporada 1 — D+
+- Wonder Man — D+
+- Captain America: Brave New World — D+
+- Thunderbolts* — D+
+- Daredevil: Born Again — Temporada 2 — D+
+- The Punisher — Especial (60 min, Jon Bernthal) — D+
+- The Fantastic Four: First Steps (Earth-828, Doctor Doom/RDJ) — CINE
+- Spider-Man: Brand New Day (Tom Holland, Jon Bernthal, Mark Ruffalo) — CINE
+- VisionQuest (Paul Bettany, James Spader como Ultron) — D+
+- Avengers: Doomsday (Estreno: 18 dic 2026, Hermanos Russo, RDJ como Doom, Chris Evans regresa) — CINE
+
+### 🌐 Fuera de la Línea Temporal Sagrada
+- Yo Soy Groot — Temporadas 1 y 2 (Cortos animados) — D+
+- Your Friendly Neighborhood Spider-Man — T1 y T2 (Animada) — D+
+- X-Men '97 — T1 y T2 (Animada, continuación de los 90s) — D+
+- Marvel Zombies (Animada, spin-off What If) — D+
+- Spider-Noir (Nicolas Cage, blanco y negro) — Prime Video
+- Inhumans — T1 (No canónica) — D+
+- Runaways — T1-3 (No canónica) — D+
+- Cloak & Dagger — T1-2 (No canónica) — D+
+- Helstrom — T1 (No canónica) — ❓
+
+## Plataformas de Streaming (LATAM)
+
+- D+ = Disney+
+- NF = Netflix
+- PV = Prime Video
+- MAX = Max (HBO)
+- VIX = ViX
+- R/C = Renta/Compra digital
+- CINE = En cines
+
+## Funcionalidades del Tracker
+
+- Checklist interactivo con progreso guardado en localStorage
+- Tres modos: 5 Rápidas, Fast Track (23 títulos), Maratón Completo (+120 títulos)
+- Exportar/importar progreso como archivo JSON para respaldar o mover entre dispositivos
+- Tesseract 3D animado como indicador visual de progreso
+- Modo "Avance del Dueño" para ver el progreso del creador de la página
+- Información de streaming por plataforma para Latinoamérica
+- Fechas de estreno reales de cada título
+- Totalmente gratuito, sin registro, sin ads
+- Código abierto bajo licencia GPLv3
+- URL: https://losfiebruos.lat/

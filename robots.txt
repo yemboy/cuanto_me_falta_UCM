@@ -3,6 +3,15 @@ Allow: /
 
 Sitemap: https://losfiebruos.lat/sitemap.xml
 
-# Archivos de datos (no indexar)
+# LLMs.txt — Contexto para modelos de IA
+# https://llmstxt.org/
+# llms.txt: resumen conciso del sitio
+# llms-full.txt: contexto completo con lista de +120 títulos
+
+# Archivos de datos internos (no indexar)
 Disallow: /*.txt$
 Disallow: /owner_progress.js
+
+# Permitir explícitamente archivos para IA
+Allow: /llms.txt
+Allow: /llms-full.txt
