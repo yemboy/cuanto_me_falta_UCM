@@ -1143,3 +1143,8 @@ body {
     font-size: 1.25rem;
   }
 }
+
+/* Hidden input for file import (Moved from inline style for CSP compliance) */
+#importFileInput {
+  display: none;
+}
