@@ -94,6 +94,14 @@ function init() {
     }
   });
 
+  // CSP fix: event delegation en lugar de onclick inline
+  contentArea.addEventListener('click', (e) => {
+    const target = e.target.closest('[data-toggle-id]');
+    if (target && currentMode !== 'owner') {
+      window.toggleItem(target.dataset.toggleId);
+    }
+  });
+
   // Initial Render
   render();
 }
@@ -189,7 +197,7 @@ function render() {
 
     accordion.innerHTML = `
       <div class="accordion-header">
-        <span class="accordion-title">${groupName} <small style="color:var(--text-muted); font-size: 0.8em; margin-left: 10px;">(${groupWatched}/${groupTotal})</small></span>
+        <span class="accordion-title">${groupName} <small class="accordion-count">(${groupWatched}/${groupTotal})</small></span>
         <span class="accordion-icon">▼</span>
       </div>
       <div class="accordion-content">
@@ -238,10 +246,10 @@ function createMovieHTML(item, readOnly, activeSet) {
     ? `<div class="streaming-badge" title="Disponible en: ${item.streaming}">${item.streaming}</div>`
     : `<div class="streaming-placeholder" title="No hay datos de streaming">📺</div>`;
 
-  const onclickAttr = readOnly ? '' : `onclick="toggleItem('${item.id}')"`;
+  const dataAttr = readOnly ? '' : `data-toggle-id="${item.id}"`;
 
   return `
-    <div class="movie-item ${watchedClass} ${readOnlyClass}" id="elem-${item.id}" ${onclickAttr}>
+    <div class="movie-item ${watchedClass} ${readOnlyClass}" id="elem-${item.id}" ${dataAttr}>
       <div class="checkbox"></div>
       <div class="movie-info">
         <h3>${item.title}</h3>

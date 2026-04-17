@@ -1148,3 +1148,10 @@ body {
 #importFileInput {
   display: none;
 }
+
+/* Accordion item count — moved from inline style for CSP compliance */
+.accordion-count {
+  color: var(--text-muted);
+  font-size: 0.8em;
+  margin-left: 10px;
+}
