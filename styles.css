@@ -149,6 +149,59 @@ body {
   font-weight: 600;
 }
 
+/* Time watched (left of the tesseract) */
+.time-watched {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.85rem;
+  background: rgba(0, 210, 255, 0.06);
+  border: 1px solid rgba(0, 210, 255, 0.18);
+  border-radius: 999px;
+  color: var(--cyan-tesseract);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: inset 0 0 12px rgba(0, 210, 255, 0.05);
+  transition: var(--transition);
+}
+
+.time-watched-icon {
+  font-size: 0.9rem;
+}
+
+.time-watched-value {
+  font-variant-numeric: tabular-nums;
+}
+
+.time-watched-sep {
+  opacity: 0.45;
+  margin: 0 0.1rem;
+}
+
+#timeWatchedCurrent {
+  color: var(--cyan-tesseract);
+  text-shadow: 0 0 8px var(--cyan-tesseract-glow);
+}
+
+#timeWatchedTotal {
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 600;
+}
+
+/* Owner-mode accent: green */
+body.owner-mode .time-watched {
+  background: rgba(0, 255, 115, 0.06);
+  border-color: rgba(0, 255, 115, 0.2);
+  color: var(--time-green);
+}
+
+body.owner-mode #timeWatchedCurrent {
+  color: var(--time-green);
+  text-shadow: 0 0 8px var(--time-green-glow);
+}
+
 /* ========== TESSERACT CUBE PROGRESS ========== */
 .progress-wrapper {
   position: relative;

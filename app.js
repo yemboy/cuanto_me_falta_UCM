@@ -430,6 +430,23 @@ function updateProgress(watched, total) {
   // Update text
   progressPercent.innerText = percentage;
 
+  // --- WATCHED TIME display (left of tesseract) ---
+  const data = currentMode === 'quick5' ? quickFiveData : currentMode === 'fast' ? fastTrackData : marathonData;
+  const activeSet = getActiveWatchedSet();
+  let watchedMin = 0;
+  let totalMin = 0;
+  for (const it of data) {
+    const d = parseDuration(it.duration);
+    totalMin += d;
+    if (activeSet.has(it.id)) watchedMin += d;
+  }
+  const twCurrent = document.getElementById('timeWatchedCurrent');
+  const twTotal = document.getElementById('timeWatchedTotal');
+  if (twCurrent) twCurrent.textContent = formatMinutes(watchedMin) || '0m';
+  if (twTotal) twTotal.textContent = formatMinutes(totalMin) || '0m';
+  // Owner-mode CSS hook
+  document.body.classList.toggle('owner-mode', currentMode === 'owner');
+
   // --- CUBE FACES: fill height + energy intensity ---
   const cubeFaces = tesseractScene.querySelectorAll('.cube-face');
   const fillAlpha = (0.1 + p * 0.5).toFixed(2);       // fill glow: 0.1 → 0.6
