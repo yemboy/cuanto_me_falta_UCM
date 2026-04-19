@@ -878,6 +878,13 @@ const marathonData = [
     "streaming": "🔵 D+"
   },
   {
+    "id": "marathon-daredevilbornagaintemporada3",
+    "title": "Daredevil: Born Again — Temporada 3",
+    "details": "Marzo 2027 — Ya en rodaje. Continúa la historia de Fisk y Matt Murdock",
+    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "streaming": "🔵 D+"
+  },
+  {
     "id": "marathon-thepunisherespecial",
     "title": "The Punisher — Especial",
     "details": "~Med 2027 — Presentación Especial Disney+ (60 min). Jon Bernthal. Concurrente con Born Again T2",
@@ -909,6 +916,13 @@ const marathonData = [
     "id": "marathon-avengersdoomsday",
     "title": "Avengers: Doomsday",
     "details": "2028+ (in-universe) — Estreno: 18 dic 2026. Hermanos Russo. RDJ como Doctor Doom. Chris Evans regresa",
+    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "streaming": "🎬 CINE"
+  },
+  {
+    "id": "marathon-avengerssecretwars",
+    "title": "Avengers: Secret Wars",
+    "details": "Estreno: 17 dic 2027. Finale de la Saga del Multiverso. El 'reset' del MCU a una línea temporal singular. Hermanos Russo. RDJ regresa como Doom",
     "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
     "streaming": "🎬 CINE"
   },
