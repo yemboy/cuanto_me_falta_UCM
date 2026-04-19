@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m http.server 8765)",
+      "Bash(echo \"Server started. PID: $!\")",
+      "Bash(curl -s http://localhost:8765/)",
+      "Bash(git stash *)",
+      "Bash(open \"http://localhost:8765/\")",
+      "Bash(node -c /Users/yemboy/Documents/GitHub/cuanto_me_falta_UCM/app.js)",
+      "Bash(curl -s http://localhost:8765/app.js)"
+    ]
+  }
+}

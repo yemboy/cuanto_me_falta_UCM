@@ -676,8 +676,8 @@ body {
 
 .episode-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 0.6rem;
   padding: 0.4rem 0.75rem;
   border-radius: 6px;
   background: rgba(5, 5, 16, 0.6);
@@ -686,9 +686,73 @@ body {
   transition: var(--transition);
 }
 
-.episode-item:hover {
-  background: rgba(120, 0, 255, 0.06);
-  border-color: rgba(120, 0, 255, 0.12);
+.episode-item[data-toggle-id] {
+  cursor: pointer;
+}
+
+.episode-item[data-toggle-id]:hover {
+  background: rgba(0, 210, 255, 0.06);
+  border-color: rgba(0, 210, 255, 0.15);
+}
+
+.episode-item.read-only {
+  cursor: default;
+}
+
+/* Episode checkbox */
+.episode-checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+  position: relative;
+  transition: var(--transition);
+}
+
+.episode-item.watched .episode-checkbox {
+  background: var(--cyan-tesseract);
+  border-color: var(--cyan-tesseract);
+  box-shadow: 0 0 8px var(--cyan-tesseract-glow);
+}
+
+.episode-item.watched .episode-checkbox::after {
+  content: "✓";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.episode-item.watched {
+  background: rgba(0, 210, 255, 0.05);
+  border-color: rgba(0, 210, 255, 0.15);
+}
+
+.episode-item.watched .episode-name {
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: line-through;
+  text-decoration-color: rgba(0, 210, 255, 0.5);
+}
+
+/* Owner/read-only variant: green accent */
+.episode-item.read-only.watched {
+  background: rgba(0, 255, 115, 0.04);
+  border-color: rgba(0, 255, 115, 0.18);
+}
+
+.episode-item.read-only.watched .episode-checkbox {
+  background: var(--time-green);
+  border-color: var(--time-green);
+  box-shadow: 0 0 8px var(--time-green-glow);
+}
+
+.episode-item.read-only.watched .episode-name {
+  text-decoration-color: rgba(0, 255, 115, 0.5);
 }
 
 .episode-name {

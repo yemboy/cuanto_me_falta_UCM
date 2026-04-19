@@ -6,6 +6,28 @@ let currentMode = 'quick5'; // default to quick 5
 // Owner progress (loaded from owner_progress.js)
 const ownerWatched = new Set(typeof ownerProgress !== 'undefined' ? ownerProgress : []);
 
+// Series-with-episodes lookup: seriesId -> item
+const seriesMap = new Map();
+(function buildSeriesMap() {
+  if (typeof marathonData === 'undefined') return;
+  marathonData.forEach(item => {
+    if (item.episodes && item.episodes.length > 0) seriesMap.set(item.id, item);
+  });
+})();
+
+// Episode ID helpers
+const EP_SEP = '--ep';
+function getEpisodeId(seriesId, idx) { return `${seriesId}${EP_SEP}${idx + 1}`; }
+function isEpisodeId(id) { return typeof id === 'string' && id.includes(EP_SEP); }
+function getSeriesIdFromEpisodeId(epId) { return epId.split(EP_SEP)[0]; }
+function getEpisodeIdsForSeries(series) {
+  return series.episodes.map((_, idx) => getEpisodeId(series.id, idx));
+}
+function setWatchedClass(id, watched) {
+  const el = document.getElementById(`elem-${id}`);
+  if (el) el.classList.toggle('watched', watched);
+}
+
 // DOM Elements
 const contentArea = document.getElementById('contentArea');
 const tesseractScene = document.getElementById('tesseractScene');
@@ -120,9 +142,22 @@ function init() {
       return;
     }
 
-    const target = e.target.closest('[data-toggle-id]');
-    if (target && currentMode !== 'owner') {
-      window.toggleItem(target.dataset.toggleId);
+    if (currentMode === 'owner') return;
+
+    // Episode row click (mark/unmark specific episode)
+    const epItem = e.target.closest('.episode-item[data-toggle-id]');
+    if (epItem) {
+      window.toggleItem(epItem.dataset.toggleId);
+      return;
+    }
+
+    // Ignore blank-area clicks inside .episodes-list so they don't toggle the parent series
+    if (e.target.closest('.episodes-list')) return;
+
+    // Top-level series/movie click
+    const movieItem = e.target.closest('.movie-item[data-toggle-id]');
+    if (movieItem) {
+      window.toggleItem(movieItem.dataset.toggleId);
     }
   });
 
@@ -304,9 +339,18 @@ function createMovieHTML(item, readOnly, activeSet) {
   // Episodes dropdown (for series with episode data)
   let episodesHTML = '';
   if (item.episodes && item.episodes.length > 0) {
-    const epListHTML = item.episodes.map(ep =>
-      `<div class="episode-item"><span class="episode-name">${ep.name}</span><span class="episode-duration">${ep.duration}</span></div>`
-    ).join('');
+    // In owner mode, episodes inherit the series' watched state (owner_progress.js only tracks top-level)
+    const inheritFromSeries = readOnly && activeSet.has(item.id);
+    const epListHTML = item.episodes.map((ep, idx) => {
+      const epId = getEpisodeId(item.id, idx);
+      const epWatched = readOnly ? inheritFromSeries : activeSet.has(epId);
+      const epDataAttr = readOnly ? '' : `data-toggle-id="${epId}"`;
+      return `<div class="episode-item ${epWatched ? 'watched' : ''} ${readOnly ? 'read-only' : ''}" id="elem-${epId}" ${epDataAttr}>
+        <div class="episode-checkbox"></div>
+        <span class="episode-name">${ep.name}</span>
+        <span class="episode-duration">${ep.duration}</span>
+      </div>`;
+    }).join('');
     episodesHTML = `
       <div class="episodes-section">
         <button class="episodes-toggle" data-episodes-toggle="${item.id}">
@@ -335,32 +379,47 @@ function createMovieHTML(item, readOnly, activeSet) {
   `;
 }
 
-// Toggle Watch Status
+// Toggle Watch Status — handles episode↔series cascade
 window.toggleItem = function(id) {
   if (currentMode === 'owner') return; // No toggling in owner mode
-  
-  if (watchedItems.has(id)) {
-    watchedItems.delete(id);
+
+  if (isEpisodeId(id)) {
+    // --- Episode toggle: update self, then recompute parent series state ---
+    const nowWatched = !watchedItems.has(id);
+    if (nowWatched) watchedItems.add(id); else watchedItems.delete(id);
+    setWatchedClass(id, nowWatched);
+
+    const parentId = getSeriesIdFromEpisodeId(id);
+    const parent = seriesMap.get(parentId);
+    if (parent) {
+      const epIds = getEpisodeIdsForSeries(parent);
+      const allWatched = epIds.every(e => watchedItems.has(e));
+      if (allWatched) watchedItems.add(parentId);
+      else watchedItems.delete(parentId);
+      setWatchedClass(parentId, allWatched);
+    }
   } else {
-    watchedItems.add(id);
-  }
-  
-  saveProgress();
-  
-  const element = document.getElementById(`elem-${id}`);
-  if (element) {
-    if (watchedItems.has(id)) {
-      element.classList.add('watched');
-    } else {
-      element.classList.remove('watched');
+    // --- Top-level toggle: if series-with-episodes, cascade to all episodes ---
+    const nowWatched = !watchedItems.has(id);
+    if (nowWatched) watchedItems.add(id); else watchedItems.delete(id);
+    setWatchedClass(id, nowWatched);
+
+    const series = seriesMap.get(id);
+    if (series) {
+      getEpisodeIdsForSeries(series).forEach(epId => {
+        if (nowWatched) watchedItems.add(epId);
+        else watchedItems.delete(epId);
+        setWatchedClass(epId, nowWatched);
+      });
     }
   }
 
-  // Quick re-calc progress globally
+  saveProgress();
+
+  // Quick re-calc progress globally (only top-level items count toward totals)
   const data = currentMode === 'quick5' ? quickFiveData : currentMode === 'fast' ? fastTrackData : marathonData;
-  let totalItems = data.length;
-  let watchedInMode = data.filter(item => watchedItems.has(item.id)).length;
-  updateProgress(watchedInMode, totalItems);
+  const watchedInMode = data.filter(item => watchedItems.has(item.id)).length;
+  updateProgress(watchedInMode, data.length);
 };
 
 // Update Tesseract Cube Progress — energy fills progressively

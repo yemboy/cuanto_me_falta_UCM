@@ -25,10 +25,10 @@
 
 ```
 cuanto_me_falta_UCM/
-├── index.html            ← Página única (SPA). Todo el HTML, meta SEO, JSON-LD, modales
-├── styles.css            ← Todo el CSS del proyecto (~1150 líneas). Design system completo
-├── app.js                ← Lógica principal (~505 líneas). Estado, renderizado, import/export
-├── data.js               ← Datos de contenido (~1257 líneas). Tres arrays de datos
+├── index.html            ← Página única (SPA). HTML, meta SEO, JSON-LD, modales, CSP estricta
+├── styles.css            ← Todo el CSS del proyecto. Design system completo
+├── app.js                ← Lógica principal. Estado, renderizado, import/export, event delegation
+├── data.js               ← Datos de contenido. Tres arrays (duration + episodes para series)
 ├── releases.js           ← Fechas de estreno reales. Objeto clave-valor por ID de maratón
 ├── galaxy.js             ← Fondo animado canvas. Campo de estrellas, nebulosas, estrellas fugaces
 ├── owner_progress.js     ← Progreso del dueño. Array de IDs marcados como vistos
@@ -40,13 +40,19 @@ cuanto_me_falta_UCM/
 ├── og-image.png          ← Imagen Open Graph para redes sociales (1200x630)
 ├── LICENSE               ← Texto completo GPLv3
 ├── README.md             ← Readme del repo (mínimo)
-├── *.txt                 ← Archivos de referencia/investigación (no son parte del app)
+├── context_AI.md         ← Este archivo. Contexto completo para LLMs
+├── docs/                 ← Archivos de referencia/investigación (no son parte del app)
 │   ├── MCU_Marathon_Tracker.txt
 │   ├── MCU_Marathon_Tracker-2.txt
 │   ├── MCU_Marathon_Tracker_modificada.txt
 │   ├── MCU_Marathon_Tracker_Streaming_LATAM.txt
 │   ├── MCU_Fast_Track_Doomsday.txt
-│   └── Date_release_MUC.txt
+│   ├── Date_release_MUC.txt
+│   ├── duracion_movies.md       ← Duraciones de películas investigadas
+│   ├── duracion_series.md       ← Duraciones y episodios de series
+│   └── duracion_cortos.md       ← Duraciones de cortos/One-Shots
+├── .claude/              ← Config local de Claude Code
+├── .gemini/              ← Config local de Gemini
 └── .git/
 ```
 
@@ -81,12 +87,19 @@ index.html carga → galaxy.js (fondo) → data.js (datos) → releases.js (fech
 {
   id: "marathon-ironman",           // ID único, prefijo "marathon-"
   title: "Iron Man",                // Nombre para mostrar
+  duration: "2h 06m",               // Duración (películas y series completas)
   details: "2008",                  // Contexto cronológico in-universe
   phase: "🛡️ FASE 1: ...",         // Grupo/fase (usado como key de agrupación)
   streaming: "🔵 D+",              // Badge de plataforma LATAM
-  subcategory: "Universo X-Men..." // (Opcional) subgrupo dentro de la fase
+  subcategory: "Universo X-Men...", // (Opcional) subgrupo dentro de la fase
+  episodes: [                       // (Opcional, solo series) lista de episodios
+    { name: "Ep. 1: Into the Ring", duration: "53m" },
+    // ...
+  ]
 }
 ```
+> Las series incluyen el array `episodes[]` que se renderiza como dropdown colapsable.
+> El `duration` del objeto padre es el total de la temporada.
 
 #### 2. `fastTrackData` — Fast Track (25 items)
 ```js
@@ -135,6 +148,13 @@ const ownerProgress = [
 - **Key:** `mcu_tracker_watched` en `localStorage`
 - **Formato:** JSON array de strings (IDs)
 - **Set en memoria:** `watchedItems = new Set(...)` en `app.js`
+- Incluye tanto IDs de items top-level (películas/series) como IDs de episodios
+
+### IDs de Episodios
+- Patrón: `${seriesId}--ep${N}` (N empieza en 1, por orden en `episodes[]`)
+- Ejemplo: `marathon-daredeviltemporada1--ep1`
+- El separador `--ep` no aparece en IDs top-level, permite detectarlos con `isEpisodeId(id)`
+- Construidos on-the-fly con `getEpisodeId(seriesId, idx)` — no están hard-coded en los datos
 
 ---
 
@@ -195,15 +215,17 @@ const ownerProgress = [
 
 ### 4. Accordions (Fases/Niveles)
 - Un accordion por cada fase (marathon) o nivel (fast track)
-- Header clickeable con conteo `(vistas/total)`
+- Header clickeable con conteo `(vistas/total · ⏳ tiempo total)` — duración acumulada del grupo
 - `max-height` animado para abrir/cerrar
 - Subcategorías opcionales con header separador
 
 ### 5. Movie Items (Elementos de la lista)
 - Checkbox visual (no `<input>`, es un `<div>` con CSS)
 - Título, meta (duración + detalles), fecha de estreno, descripción, badge streaming
-- Click → toggle `watched` clase + actualiza `localStorage` + recalcula progreso
+- Click (delegado) → toggle `watched` clase + actualiza `localStorage` + recalcula progreso
 - En modo Owner: `read-only` class, click deshabilitado, color verde en vez de cyan
+- **Series:** incluye dropdown de episodios (botón `.episodes-toggle` con lista `.episodes-list`)
+- **Episodios clickeables:** cada `.episode-item` tiene su propio `.episode-checkbox` y `data-toggle-id`. Cascada bidireccional con la serie padre (ver "Flujo de Toggle")
 
 ### 6. Modal Import/Export
 - Overlay con backdrop blur
@@ -231,12 +253,18 @@ const ownerWatched = new Set(...); // Progreso del dueño (read-only)
 
 | Función | Descripción |
 |---|---|
-| `init()` | Inicializa event listeners y primer render |
+| `init()` | Inicializa event listeners (delegados en `#contentArea`) y primer render |
 | `render()` | Re-renderiza todo el contenido según `currentMode`. Limpia `#contentArea`, agrupa datos, crea accordions |
 | `groupData(data, key)` | Agrupa array de objetos por un campo (phase/level). Maneja `undefined` como `'_none'` |
-| `createMovieHTML(item, readOnly, activeSet)` | Genera HTML de un item individual con checkbox, meta, release date, streaming badge |
+| `getActiveWatchedSet()` | Devuelve `ownerWatched` en modo owner, `watchedItems` en los demás |
+| `getEpisodeId(sId, idx)` / `isEpisodeId(id)` / `getSeriesIdFromEpisodeId(id)` / `getEpisodeIdsForSeries(s)` | Helpers de IDs de episodio |
+| `setWatchedClass(id, watched)` | Toggle `.watched` in-place por `elem-${id}` |
+| `parseDuration(str)` | Parsea strings como `"2h 06m"` o `"53m"` a minutos totales (int) |
+| `calcGroupDuration(items)` | Suma duraciones de un array de items en minutos |
+| `formatMinutes(min)` | Formatea minutos a `"Xh YYm"` o `"Ym"` para display |
+| `createMovieHTML(item, readOnly, activeSet)` | Genera HTML del item: checkbox, meta, release date, streaming badge, episodios (si hay) |
 | `toggleItem(id)` | Toggle watched status. Actualiza DOM in-place (sin re-render completo), recalcula progreso |
-| `updateProgress(watched, total)` | Actualiza el Tesseract 3D: fill height, core size, glow, arcs, spin speed. Valores calculados como funciones lineales de `p = watched/total` |
+| `updateProgress(watched, total)` | Actualiza el Tesseract 3D: fill height, core size, glow, arcs, spin speed. Valores como funciones lineales de `p = watched/total` |
 | `saveProgress()` | Serializa `watchedItems` a `localStorage` |
 | `exportProgressAsJSON()` | Genera y descarga archivo JSON con metadata |
 | `handleImportFile(file)` | Lee JSON, valida estructura, permite merge o replace |
@@ -247,16 +275,33 @@ const ownerWatched = new Set(...); // Progreso del dueño (read-only)
 2. Agrupa por `phase` (marathon/owner) o `level` (fast/quick5)
 3. Calcula progreso global del modo actual
 4. Si es owner mode, muestra banner informativo
-5. Para cada grupo, crea un accordion con header + items
-6. Dentro de cada grupo, separa por `subcategory` si existe
-7. Attach click listener en cada accordion header
+5. Para cada grupo, calcula duración total con `calcGroupDuration` + `formatMinutes`
+6. Para cada grupo, crea un accordion con header `(vistas/total · ⏳ tiempo)` + items
+7. Dentro de cada grupo, separa por `subcategory` si existe
+8. Attach click listener en cada accordion header
 
-### Flujo de Toggle
-1. Usuario hace click en un `movie-item`
-2. `toggleItem(id)` agrega/elimina del Set
-3. Actualiza `localStorage`
-4. Actualiza clase `watched` in-place en el DOM (sin re-render)
-5. Recalcula progreso y actualiza Tesseract
+### Flujo de Toggle (event delegation)
+El listener en `#contentArea` prioriza en este orden:
+1. **Botón abrir/cerrar episodios** (`[data-episodes-toggle]`) → solo toggle de visibilidad
+2. **Episodio** (`.episode-item[data-toggle-id]`) → `toggleItem(epId)` con cascada hacia la serie
+3. **Click en espacio en blanco dentro de `.episodes-list`** → ignorado (no cae a la serie)
+4. **Serie/película top-level** (`.movie-item[data-toggle-id]`) → `toggleItem(id)`; si es serie-con-episodios, cascada hacia todos los episodios
+
+### Cascada Episodio ↔ Serie (`toggleItem`)
+- **Click en episodio:** agrega/elimina el `epId` del Set. Después recomputa la serie padre: si todos los episodios están marcados → serie marcada; si alguno no → serie desmarcada.
+- **Click en serie con episodios:** marca/desmarca la serie Y todos sus episodios al mismo tiempo.
+- **Click en película/serie sin episodios:** comportamiento simple (agregar/eliminar del Set).
+- El progreso global sigue contando solo items top-level — los episodios no inflan el total, pero habilitan tracking granular.
+
+### Flujo de abrir/cerrar lista de episodios
+1. Click en `.episodes-toggle` dispara el listener delegado (`[data-episodes-toggle]`)
+2. `e.stopPropagation()` evita que se marque la serie como vista
+3. Se abre/cierra la `.episodes-list` animando `max-height`
+4. Se ajusta también el `max-height` del accordion padre para no recortar
+
+### Modo Owner y episodios
+- `owner_progress.js` solo lista IDs top-level
+- En owner mode, los episodios **heredan** el estado de la serie padre: si la serie está en `ownerWatched`, todos sus episodios se muestran como vistos (read-only, color verde)
 
 ---
 
@@ -328,8 +373,8 @@ IIFE auto-ejecutable que maneja un `<canvas>` a pantalla completa:
 
 ### Patrones
 - **No hay frameworks** — DOM manipulation directa con `innerHTML` y `document.createElement`
-- **Events:** `addEventListener` en `init()`, `onclick` attribute inline para items dinámicos
-- **`window.toggleItem`** — Función global para que el onclick inline del HTML generado pueda accederla
+- **Events (CSP-safe):** `addEventListener` en `init()` + **event delegation** sobre `#contentArea`. Los items dinámicos usan `data-toggle-id` y `data-episodes-toggle` (NO `onclick` inline, NO `style` inline — prohibido por la CSP estricta del `<meta>` en `index.html`)
+- **`window.toggleItem`** — Función global expuesta para invocación desde el listener delegado
 - **Datos inmutables:** Los arrays de datos nunca se modifican en runtime
 - **Set para lookup O(1):** `watchedItems` y `ownerWatched` son Sets para `.has()` rápido
 
@@ -354,9 +399,11 @@ IIFE auto-ejecutable que maneja un `<canvas>` a pantalla completa:
 ## 📌 Tareas Comunes para la IA
 
 ### Agregar un nuevo título al maratón
-1. Agregar objeto a `marathonData` en `data.js` con la estructura correcta
-2. Agregar fecha de estreno en `releases.js` con la misma key de ID
-3. Si aplica al Fast Track, agregar también a `fastTrackData` con ID `fast-*`
+1. Agregar objeto a `marathonData` en `data.js` con la estructura correcta (incluye `duration`)
+2. Si es serie, agregar el array `episodes[]` con nombre y duración de cada episodio
+3. Agregar fecha de estreno en `releases.js` con la misma key de ID
+4. Si aplica al Fast Track, agregar también a `fastTrackData` con ID `fast-*`
+5. Referencia de duraciones: consultar `docs/duracion_movies.md`, `docs/duracion_series.md` y `docs/duracion_cortos.md`
 
 ### Actualizar progreso del dueño
 1. Agregar IDs al array `ownerProgress` en `owner_progress.js`
@@ -369,3 +416,4 @@ IIFE auto-ejecutable que maneja un `<canvas>` a pantalla completa:
 1. La lógica va en `app.js`
 2. Nuevos elementos HTML van en `index.html`
 3. No introducir dependencias externas salvo que sea estrictamente necesario
+4. **Respetar la CSP:** nada de `onclick=""` ni `style=""` inline en HTML generado. Usar `data-*` + event delegation. Los estilos dinámicos vía `element.style.setProperty(...)` desde JS están OK (solo se bloquea el atributo `style` en el HTML generado por `innerHTML`)
