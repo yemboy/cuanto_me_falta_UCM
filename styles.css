@@ -619,6 +619,97 @@ body {
   padding-left: 0.75rem;
 }
 
+/* ========== EPISODES DROPDOWN ========== */
+.episodes-section {
+  margin-top: 0.6rem;
+}
+
+.episodes-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(120, 0, 255, 0.08);
+  border: 1px solid rgba(120, 0, 255, 0.2);
+  color: var(--text-muted);
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  z-index: 2;
+}
+
+.episodes-toggle:hover {
+  background: rgba(120, 0, 255, 0.15);
+  border-color: rgba(120, 0, 255, 0.35);
+  color: #fff;
+}
+
+.episodes-toggle.open {
+  background: rgba(120, 0, 255, 0.15);
+  border-color: rgba(120, 0, 255, 0.35);
+  color: #fff;
+}
+
+.episodes-arrow {
+  font-size: 0.6rem;
+  transition: transform 0.3s ease;
+}
+
+.episodes-toggle.open .episodes-arrow {
+  transform: rotate(180deg);
+}
+
+.episodes-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease-out;
+  margin-top: 0;
+}
+
+.episodes-list.open {
+  margin-top: 0.5rem;
+}
+
+.episode-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  background: rgba(5, 5, 16, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  margin-bottom: 0.25rem;
+  transition: var(--transition);
+}
+
+.episode-item:hover {
+  background: rgba(120, 0, 255, 0.06);
+  border-color: rgba(120, 0, 255, 0.12);
+}
+
+.episode-name {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.episode-duration {
+  font-size: 0.72rem;
+  color: var(--cyan-tesseract);
+  font-weight: 600;
+  margin-left: 0.75rem;
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
 /* ========== STREAMING BADGES ========== */
 .streaming-placeholder {
   width: 30px;

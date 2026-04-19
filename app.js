@@ -96,6 +96,30 @@ function init() {
 
   // CSP fix: event delegation en lugar de onclick inline
   contentArea.addEventListener('click', (e) => {
+    // Episode toggle handler — must come before the watched toggle
+    const epToggle = e.target.closest('[data-episodes-toggle]');
+    if (epToggle) {
+      e.stopPropagation();
+      const id = epToggle.dataset.episodesToggle;
+      const list = document.getElementById(`episodes-${id}`);
+      if (list) {
+        const isOpen = list.classList.contains('open');
+        list.classList.toggle('open');
+        epToggle.classList.toggle('open');
+        if (!isOpen) {
+          list.style.maxHeight = list.scrollHeight + 'px';
+          // Update parent accordion max-height so it doesn't clip
+          const accordion = list.closest('.accordion-content');
+          if (accordion) accordion.style.maxHeight = accordion.scrollHeight + list.scrollHeight + 'px';
+        } else {
+          list.style.maxHeight = null;
+          const accordion = list.closest('.accordion-content');
+          if (accordion) accordion.style.maxHeight = accordion.scrollHeight - list.scrollHeight + 'px';
+        }
+      }
+      return;
+    }
+
     const target = e.target.closest('[data-toggle-id]');
     if (target && currentMode !== 'owner') {
       window.toggleItem(target.dataset.toggleId);
@@ -125,6 +149,31 @@ function groupData(data, key) {
 // Get the active watched set depending on mode
 function getActiveWatchedSet() {
   return currentMode === 'owner' ? ownerWatched : watchedItems;
+}
+
+// Parse a duration string like "2h 06m", "53m", "1h 55m" into total minutes
+function parseDuration(str) {
+  if (!str) return 0;
+  let minutes = 0;
+  const hMatch = str.match(/(\d+)\s*h/);
+  const mMatch = str.match(/(\d+)\s*m/);
+  if (hMatch) minutes += parseInt(hMatch[1]) * 60;
+  if (mMatch) minutes += parseInt(mMatch[1]);
+  return minutes;
+}
+
+// Calculate total duration in minutes for a group of items
+function calcGroupDuration(items) {
+  return items.reduce((sum, item) => sum + parseDuration(item.duration), 0);
+}
+
+// Format total minutes into a readable string like "45h 32m"
+function formatMinutes(totalMin) {
+  if (totalMin <= 0) return '';
+  const h = Math.floor(totalMin / 60);
+  const m = totalMin % 60;
+  if (h === 0) return `${m}m`;
+  return `${h}h ${String(m).padStart(2, '0')}m`;
 }
 
 // Render Content
@@ -178,6 +227,10 @@ function render() {
     const groupTotal = items.length;
     const groupWatched = items.filter(i => activeSet.has(i.id)).length;
 
+    // Calculate total duration for this group
+    const groupDuration = calcGroupDuration(items);
+    const durationLabel = groupDuration > 0 ? ` · ⏳ ${formatMinutes(groupDuration)}` : '';
+
     // Subcategory logic
     let itemsHTML = '';
     const subGroups = groupData(items, 'subcategory');
@@ -197,7 +250,7 @@ function render() {
 
     accordion.innerHTML = `
       <div class="accordion-header">
-        <span class="accordion-title">${groupName} <small class="accordion-count">(${groupWatched}/${groupTotal})</small></span>
+        <span class="accordion-title">${groupName} <small class="accordion-count">(${groupWatched}/${groupTotal}${durationLabel})</small></span>
         <span class="accordion-icon">▼</span>
       </div>
       <div class="accordion-content">
@@ -248,6 +301,25 @@ function createMovieHTML(item, readOnly, activeSet) {
 
   const dataAttr = readOnly ? '' : `data-toggle-id="${item.id}"`;
 
+  // Episodes dropdown (for series with episode data)
+  let episodesHTML = '';
+  if (item.episodes && item.episodes.length > 0) {
+    const epListHTML = item.episodes.map(ep =>
+      `<div class="episode-item"><span class="episode-name">${ep.name}</span><span class="episode-duration">${ep.duration}</span></div>`
+    ).join('');
+    episodesHTML = `
+      <div class="episodes-section">
+        <button class="episodes-toggle" data-episodes-toggle="${item.id}">
+          <span>📺 ${item.episodes.length} episodios</span>
+          <span class="episodes-arrow">▼</span>
+        </button>
+        <div class="episodes-list" id="episodes-${item.id}">
+          ${epListHTML}
+        </div>
+      </div>
+    `;
+  }
+
   return `
     <div class="movie-item ${watchedClass} ${readOnlyClass}" id="elem-${item.id}" ${dataAttr}>
       <div class="checkbox"></div>
@@ -256,6 +328,7 @@ function createMovieHTML(item, readOnly, activeSet) {
         ${metaHTML.length > 0 ? `<div class="movie-meta">${metaHTML.join(' • ')}</div>` : ''}
         ${releaseHTML}
         ${descHTML}
+        ${episodesHTML}
       </div>
       ${streamingHTML}
     </div>
