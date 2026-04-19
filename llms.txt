@@ -1,10 +1,10 @@
 # MCU Tracker — LosFiebruos
 
-> MCU Tracker (losfiebruos.lat) es una aplicación web interactiva y gratuita en español para llevar el control de todas las películas y series del Universo Cinematográfico de Marvel (UCM/MCU). Permite marcar lo que ya viste y descubrir cuánto te falta para llegar preparado a Avengers: Doomsday (estreno 18 dic 2026).
+> MCU Tracker (losfiebruos.lat) es una aplicación web interactiva y gratuita en español para llevar el control de todas las películas y series del Universo Cinematográfico de Marvel (UCM/MCU). Permite marcar lo que ya viste y descubrir cuánto te falta antes del gran reset del MCU en Avengers: Secret Wars (estreno 17 dic 2027).
 
 La herramienta ofrece tres modos de seguimiento con diferentes niveles de profundidad:
 
-- **5 Rápidas para Doomsday**: Las 5 películas mínimas imprescindibles si no tienes tiempo.
+- **5 Rápidas para el Reset**: Las 5 películas mínimas imprescindibles si no tienes tiempo.
 - **Fast Track**: Ruta optimizada con ~30 títulos esenciales para entender la trama principal.
 - **Maratón Completo**: +120 títulos incluyendo Pre-UCM (X-Men, Spider-Man Tobey, Blade, Fantastic Four), las 6 fases del MCU en orden cronológico, series de Netflix (Daredevil, Jessica Jones, Luke Cage, Iron Fist, Punisher, Defenders), One-Shots, especiales y series animadas (What If?, X-Men '97, Yo Soy Groot).
 
@@ -31,7 +31,7 @@ Características principales:
 - ♾️ Fase 3: La División y la Guerra del Infinito (2016–2023) — Civil War, Infinity War, Endgame, series Netflix
 - 🌌 Fase 4: La Saga del Multiverso — Inicio (2023–2025) — WandaVision, Loki, No Way Home, Multiverse of Madness
 - ⚡ Fase 5: La Saga del Multiverso — Escalada (2026) — Quantumania, Guardians Vol 3, Deadpool & Wolverine
-- 🔥 Fase 6: El Camino a Doomsday (2026–2027+) — Daredevil Born Again, Fantastic Four, Spider-Man 4, Avengers: Doomsday
+- 🔥 Fase 6: El Camino a Doomsday (2026–2027+) — Daredevil Born Again, Fantastic Four, Spider-Man 4, Avengers: Doomsday, Avengers: Secret Wars (el reset del MCU)
 
 ## Datos técnicos
 

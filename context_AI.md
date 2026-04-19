@@ -8,7 +8,7 @@
 
 | Campo | Valor |
 |---|---|
-| **Nombre** | MCU Tracker — ¿Cuánto te falta para Doomsday? |
+| **Nombre** | MCU Tracker — ¿Cuánto te falta antes del reset del MCU? |
 | **URL** | https://losfiebruos.lat/ |
 | **Repositorio** | https://github.com/yemboy/cuanto_me_falta_UCM |
 | **Stack** | HTML + CSS + JavaScript vanilla (cero frameworks, cero dependencias) |
@@ -17,7 +17,7 @@
 | **Idioma UI** | Español (audiencia LATAM) |
 | **Tipo** | Single Page Application (SPA) estática, sin backend, sin build step |
 
-**¿Qué hace?** Es un checklist interactivo donde los usuarios marcan las películas y series de Marvel que ya vieron. Calcula cuánto les falta para llegar preparados a *Avengers: Doomsday* (estreno 18 dic 2026). Incluye +120 títulos organizados en orden cronológico.
+**¿Qué hace?** Es un checklist interactivo donde los usuarios marcan las películas y series de Marvel que ya vieron. Calcula cuánto les falta antes del gran reset del MCU en *Avengers: Secret Wars* (estreno 17 dic 2027). Incluye +120 títulos organizados en orden cronológico.
 
 ---
 
@@ -107,7 +107,7 @@ index.html carga → galaxy.js (fondo) → data.js (datos) → releases.js (fech
   title: "Avengers: Endgame (2019)",
   duration: "3h 01m",
   description: "El evento que...",
-  level: "⚡ 5 Rápidas para Doomsday", // Todos en el mismo grupo
+  level: "⚡ 5 Rápidas para el Reset", // Todos en el mismo grupo
   streaming: "🔵 D+"
 }
 ```

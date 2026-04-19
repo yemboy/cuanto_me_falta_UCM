@@ -8,15 +8,15 @@ Licencia: GPLv3 — Código abierto
 Tecnología: HTML, CSS, JavaScript vanilla. Hospedado en GitHub Pages.
 Repositorio: https://github.com/yemboy/cuanto_me_falta_UCM
 
-## Modo: ⚡ 5 Rápidas para Doomsday
+## Modo: ⚡ 5 Rápidas para el Reset
 
 Las 5 películas mínimas imprescindibles si no tienes tiempo:
 
 1. Avengers: Endgame (2019) — 3h 01m — El evento que definió todo. Tony Stark se sacrifica, Steve Rogers se retira.
 2. Capitán América: Civil War (2016) — 2h 28m — Los Avengers se dividen. Introduces Black Panther y Spider-Man.
-3. Thunderbolts* (2025) — 2h 07m — Conecta directo con Doomsday. Post-créditos: nave de los F4 llega a Earth-616.
+3. Thunderbolts* (2025) — 2h 07m — Conecta directo con Doomsday y Secret Wars. Post-créditos: nave de los F4 llega a Earth-616.
 4. The Fantastic Four: First Steps (2025) — ~2h 20m — Presenta a los F4 y a Doctor Doom (Robert Downey Jr.).
-5. Captain America: Brave New World (2025) — 1h 59m — Sam Wilson como nuevo Capitán América, lidera Avengers en Doomsday.
+5. Captain America: Brave New World (2025) — 1h 59m — Sam Wilson como nuevo Capitán América, lidera Avengers en Doomsday y Secret Wars.
 
 ## Modo: Fast Track (23 títulos esenciales)
 
@@ -25,7 +25,7 @@ Las 5 películas mínimas imprescindibles si no tienes tiempo:
 - Iron Man (2008) — 2h 06m — Tony Stark. El mismo actor (RDJ) ahora es Doctor Doom.
 - Los Vengadores (2012) — 2h 23m — Primera vez que el equipo se forma.
 - Capitán América: Civil War (2016) — 2h 28m — Los Avengers se dividen.
-- Black Panther (2018) — 2h 14m — Wakanda es facción clave en Doomsday.
+- Black Panther (2018) — 2h 14m — Wakanda es facción clave en Doomsday y Secret Wars.
 - Avengers: Infinity War (2018) — 2h 29m — Thanos gana. La mitad del universo desaparece.
 - Avengers: Endgame (2019) — 3h 01m — Tony muere, Steve se retira.
 - Doctor Strange en el Multiverso de la Locura — 2h 06m — Explica el multiverso e incursiones.
@@ -40,7 +40,7 @@ Las 5 películas mínimas imprescindibles si no tienes tiempo:
 - Spider-Man: No Way Home (2021) — 2h 28m — Multiverso en acción, tres Spider-Man.
 - Black Panther: Wakanda Forever (2022) — 2h 41m — Shuri es nueva Black Panther, introduce Namor.
 - Deadpool & Wolverine (2024) — 2h 08m — Conecta universo X-Men de Fox con MCU.
-- Shang-Chi y la Leyenda de los Diez Anillos — 2h 12m — Simu Liu confirmado en Doomsday.
+- Shang-Chi y la Leyenda de los Diez Anillos — 2h 12m — Simu Liu confirmado en Doomsday y Secret Wars.
 - Ant-Man and the Wasp: Quantumania (2023) — 2h 05m — Reino Cuántico.
 
 ### 🟢 NIVEL 3: Ideal (+6 películas = 23 total)
@@ -203,11 +203,13 @@ Las 5 películas mínimas imprescindibles si no tienes tiempo:
 - Captain America: Brave New World — D+
 - Thunderbolts* — D+
 - Daredevil: Born Again — Temporada 2 — D+
+- Daredevil: Born Again — Temporada 3 (Marzo 2027, en rodaje) — D+
 - The Punisher — Especial (60 min, Jon Bernthal) — D+
 - The Fantastic Four: First Steps (Earth-828, Doctor Doom/RDJ) — CINE
 - Spider-Man: Brand New Day (Tom Holland, Jon Bernthal, Mark Ruffalo) — CINE
 - VisionQuest (Paul Bettany, James Spader como Ultron) — D+
 - Avengers: Doomsday (Estreno: 18 dic 2026, Hermanos Russo, RDJ como Doom, Chris Evans regresa) — CINE
+- Avengers: Secret Wars (Estreno: 17 dic 2027, Finale de la Saga del Multiverso, el reset del MCU, Hermanos Russo, RDJ regresa como Doom) — CINE
 
 ### 🌐 Fuera de la Línea Temporal Sagrada
 - Yo Soy Groot — Temporadas 1 y 2 (Cortos animados) — D+
