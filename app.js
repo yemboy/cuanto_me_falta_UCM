@@ -339,11 +339,11 @@ function createMovieHTML(item, readOnly, activeSet) {
   // Episodes dropdown (for series with episode data)
   let episodesHTML = '';
   if (item.episodes && item.episodes.length > 0) {
-    // In owner mode, episodes inherit the series' watched state (owner_progress.js only tracks top-level)
-    const inheritFromSeries = readOnly && activeSet.has(item.id);
     const epListHTML = item.episodes.map((ep, idx) => {
       const epId = getEpisodeId(item.id, idx);
-      const epWatched = readOnly ? inheritFromSeries : activeSet.has(epId);
+      const epWatched = readOnly
+        ? (activeSet.has(item.id) || activeSet.has(epId))
+        : activeSet.has(epId);
       const epDataAttr = readOnly ? '' : `data-toggle-id="${epId}"`;
       return `<div class="episode-item ${epWatched ? 'watched' : ''} ${readOnly ? 'read-only' : ''}" id="elem-${epId}" ${epDataAttr}>
         <div class="episode-checkbox"></div>
