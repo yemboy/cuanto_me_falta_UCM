@@ -1707,6 +1707,35 @@ body.owner-mode .tw-current { color: var(--hud-green); text-shadow: 0 0 10px var
 
   .data-readout { align-items: center; }
 
+  /* Countdown banner: stack vertically on mobile */
+  .countdown-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    clip-path: none;
+    padding: 1rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .cw-info { width: 100%; }
+
+  .cw-title { font-size: 1rem; white-space: normal; }
+
+  .cw-timer {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.3rem;
+  }
+
+  .cw-unit {
+    flex: 1;
+    min-width: 0;
+    padding: 0.4rem 0.3rem;
+  }
+
+  .cw-digit { font-size: 1.6rem; }
+
+  .cw-colon { display: none; }
+
   .tabs { grid-template-columns: repeat(2, 1fr); }
 
   .controls { flex-direction: column; align-items: center; }
