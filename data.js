@@ -1293,8 +1293,8 @@ const marathonData = [
   },
   {
     "id": "marathon-thepunisherespecial",
-    "title": "The Punisher — Especial",
-    "details": "~Med 2027 — Presentación Especial Disney+ (60 min). Jon Bernthal. Concurrente con Born Again T2",
+    "title": "The Punisher: One Last Kill",
+    "details": "12 de Mayo 2026 — Presentación Especial Disney+ (60 min). Jon Bernthal. Concurrente con Born Again T2",
     "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
     "streaming": "🔵 D+"
   },
@@ -1408,7 +1408,7 @@ const marathonData = [
   {
     "id": "marathon-spidernoir",
     "title": "Spider-Noir",
-    "details": "Mayo 2026 — Serie Prime Video (NO Disney+). 8 episodios. Nicolas Cage. Formato blanco y negro",
+    "details": "27 de Mayo 2026 — Serie Prime Video (NO Disney+). 8 episodios. Nicolas Cage. Formato blanco y negro",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🟡 PV",
     "subcategory": "No es MCU pero conecta al multiverso"

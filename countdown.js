@@ -6,13 +6,13 @@
   };
 
   const UPCOMING = [
-    { id: 'marathon-spidernoir',                          title: 'Spider-Man Noir',            date: new Date(2026, 4, 1),   platform: 'MGM+',  platformColor: '#c0a060' },
-    { id: 'marathon-thepunisherespecial',                 title: 'The Punisher Especial',      date: new Date(2026, 5, 15),  platform: 'D+',    platformColor: '#1a6ef5' },
-    { id: 'marathon-xmen97t2',                            title: "X-Men '97 T2",               date: new Date(2026, 6, 1),   platform: 'D+',    platformColor: '#1a6ef5' },
-    { id: 'marathon-spidermanbrandnewday',                title: 'Spider-Man: Brand New Day',  date: new Date(2026, 6, 31),  platform: 'CINE',  platformColor: '#ff9500' },
-    { id: 'marathon-yourfriendlyneighborhoodspidermant2', title: 'Tu Amig. Vecino S-M T2',     date: new Date(2026, 8, 1),   platform: 'D+',    platformColor: '#1a6ef5' },
-    { id: 'marathon-visionquest',                         title: 'Vision Quest',               date: new Date(2026, 10, 1),  platform: 'D+',    platformColor: '#1a6ef5' },
-    { id: 'marathon-avengersdoomsday',                    title: 'Avengers: Doomsday',         date: new Date(2026, 11, 18), platform: 'CINE',  platformColor: '#e62429' },
+    { id: 'marathon-spidernoir',                          title: 'Spider-Man Noir',              date: new Date(2026, 4, 27),  platform: 'MGM+',  platformColor: '#c0a060' },
+    { id: 'marathon-thepunisherespecial',                 title: 'The Punisher: One Last Kill',  date: new Date(2026, 4, 12),  platform: 'D+',    platformColor: '#1a6ef5' },
+    { id: 'marathon-xmen97t2',                            title: "X-Men '97 T2",                 date: new Date(2026, 6, 1),   platform: 'D+',    platformColor: '#1a6ef5' },
+    { id: 'marathon-spidermanbrandnewday',                title: 'Spider-Man: Brand New Day',    date: new Date(2026, 6, 31),  platform: 'CINE',  platformColor: '#ff9500' },
+    { id: 'marathon-yourfriendlyneighborhoodspidermant2', title: 'Tu Amig. Vecino S-M T2',       date: new Date(2026, 8, 1),   platform: 'D+',    platformColor: '#1a6ef5' },
+    { id: 'marathon-visionquest',                         title: 'Vision Quest',                 date: new Date(2026, 10, 1),  platform: 'D+',    platformColor: '#1a6ef5' },
+    { id: 'marathon-avengersdoomsday',                    title: 'Avengers: Doomsday',         date: new Date(2026, 11, 18), platform: 'CINE',  platformColor: '#ff9500' },
   ];
 
   function parseSpanishDate(str) {
