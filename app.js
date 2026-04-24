@@ -46,12 +46,23 @@ const importResult = document.getElementById('importResult');
 
 // Initialize Application
 function init() {
+  // Legend toggle
+  const legendToggle = document.getElementById('legendToggle');
+  const legendBox    = document.getElementById('legendBox');
+  if (legendToggle && legendBox) {
+    legendToggle.addEventListener('click', () => {
+      const isOpen = legendBox.classList.contains('open');
+      legendBox.classList.toggle('open', !isOpen);
+      legendToggle.classList.toggle('open', !isOpen);
+    });
+  }
+
   // Tab Listeners
   tabBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', () => {
       tabBtns.forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      currentMode = e.target.getAttribute('data-tab');
+      btn.classList.add('active');
+      currentMode = btn.getAttribute('data-tab');
       render();
     });
   });

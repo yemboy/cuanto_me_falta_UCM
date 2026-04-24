@@ -36,8 +36,8 @@
   <meta name="twitter:image" content="https://losfiebruos.lat/og-image.png">
 
   <!-- SEO: Theme & Favicon -->
-  <meta name="theme-color" content="#050510">
-  <meta name="msapplication-TileColor" content="#050510">
+  <meta name="theme-color" content="#060609">
+  <meta name="msapplication-TileColor" content="#060609">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
 
   <!-- SEO: Structured Data (JSON-LD) -->
@@ -68,7 +68,7 @@
   <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -77,59 +77,121 @@
   <canvas id="galaxyCanvas"></canvas>
   <div class="bg-nebula"></div>
 
+  <!-- Scanline overlay -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- Corner HUD decorations -->
+  <div class="hud-corner hud-tl" aria-hidden="true"></div>
+  <div class="hud-corner hud-tr" aria-hidden="true"></div>
+  <div class="hud-corner hud-bl" aria-hidden="true"></div>
+  <div class="hud-corner hud-br" aria-hidden="true"></div>
+
   <div class="app-container">
 
     <!-- HEADER -->
     <header class="header">
-      <div class="header-titles">
-        <h1>MCU Tracker</h1>
-        <p>Tu camino antes del reset del MCU</p>
+
+      <!-- Left column: titles + time -->
+      <div class="header-left">
+        <div class="hud-label">SISTEMA DE RASTREO UCM // v2.0</div>
+        <h1>MCU<br><span>TRACKER</span></h1>
+        <p class="header-sub">Tu camino antes del reset del MCU</p>
         <div class="time-watched" id="timeWatched" title="Tiempo visto / total en este modo">
-          <span class="time-watched-icon">⏳</span>
-          <span class="time-watched-value"><span id="timeWatchedCurrent">0m</span> <span class="time-watched-sep">/</span> <span id="timeWatchedTotal">0m</span></span>
+          <span class="tw-label">TIEMPO</span>
+          <span class="tw-bar">
+            <span class="tw-current" id="timeWatchedCurrent">0m</span>
+            <span class="tw-sep">/</span>
+            <span class="tw-total" id="timeWatchedTotal">0m</span>
+          </span>
         </div>
       </div>
 
-      <!-- Tesseract Cube Progress -->
-      <div class="progress-wrapper">
-        <div class="tesseract-glow" id="tesseractGlow"></div>
-        <div class="tesseract-arcs" id="tesseractArcs"></div>
-        <div class="tesseract-scene" id="tesseractScene">
-          <div class="cube-face front"></div>
-          <div class="cube-face back"></div>
-          <div class="cube-face right"></div>
-          <div class="cube-face left"></div>
-          <div class="cube-face top"></div>
-          <div class="cube-face bottom"></div>
-          <div class="tesseract-core" id="tesseractCore"></div>
-        </div>
-        <div class="progress-text" id="progressText">
-          <span id="progressPercent">0</span>%
+      <!-- Center: Tesseract Progress -->
+      <div class="header-center">
+        <div class="tesseract-hud">
+          <div class="hud-ring hud-ring-1"></div>
+          <div class="hud-ring hud-ring-2"></div>
+          <div class="hud-ring hud-ring-3"></div>
+          <div class="progress-wrapper">
+            <div class="tesseract-glow" id="tesseractGlow"></div>
+            <div class="tesseract-arcs" id="tesseractArcs"></div>
+            <div class="tesseract-scene" id="tesseractScene">
+              <div class="cube-face front"></div>
+              <div class="cube-face back"></div>
+              <div class="cube-face right"></div>
+              <div class="cube-face left"></div>
+              <div class="cube-face top"></div>
+              <div class="cube-face bottom"></div>
+              <div class="tesseract-core" id="tesseractCore"></div>
+            </div>
+            <div class="progress-text" id="progressText">
+              <span id="progressPercent">0</span><span class="pct-sign">%</span>
+            </div>
+          </div>
+          <div class="hud-ticker">ENERGÍA TESSERACT</div>
         </div>
       </div>
+
+      <!-- Right column: static data -->
+      <div class="header-right">
+        <div class="data-readout">
+          <span class="dr-label">OBJETIVO</span>
+          <span class="dr-value iron-red">DOOMSDAY</span>
+        </div>
+        <div class="data-readout">
+          <span class="dr-label">RESET</span>
+          <span class="dr-value strange-orange">SECRET WARS</span>
+        </div>
+        <div class="data-readout">
+          <span class="dr-label">SAGA</span>
+          <span class="dr-value strange-purple">MULTIVERSO</span>
+        </div>
+      </div>
+
     </header>
+
+    <!-- COUNTDOWN BANNER -->
+    <div id="countdownWidget" class="countdown-banner">
+      <div class="cw-label">CARGANDO...</div>
+    </div>
 
     <!-- LEGEND -->
     <section class="legend-container" aria-label="Plataformas de streaming">
-      <h3 class="legend-title">Plataformas de streaming donde ver (LATAM)</h3>
-      <div class="legend-box">
-        <span>🔵 D+ = Disney+</span>
-        <span>🔴 NF = Netflix</span>
-        <span>🟡 PV = Prime</span>
-        <span>🟣 MAX = Max</span>
-        <span>🟠 VIX = ViX</span>
-        <span>💿 R/C = Renta/Compra</span>
-        <span>🎬 CINE = En cines</span>
-        <span>❓ = Verificar</span>
+      <button class="legend-toggle" id="legendToggle">
+        <span class="legend-label">PLATAFORMAS STREAMING — LATAM</span>
+        <span class="legend-arrow">▼</span>
+      </button>
+      <div class="legend-box" id="legendBox">
+        <span class="lb-dplus">🔵 D+ = Disney+</span>
+        <span class="lb-netflix">🔴 NF = Netflix</span>
+        <span class="lb-prime">🟡 PV = Prime</span>
+        <span class="lb-max">🟣 MAX = Max</span>
+        <span class="lb-vix">🟠 VIX = ViX</span>
+        <span class="lb-rent">💿 R/C = Renta/Compra</span>
+        <span class="lb-cine">🎬 CINE = En cines</span>
+        <span class="lb-mgm">🟤 MGM+ = MGM+</span>
+        <span class="lb-unknown">❓ = Verificar</span>
       </div>
     </section>
 
     <!-- TAB SELECTOR -->
     <nav class="tabs" aria-label="Modos de tracker">
-      <button class="tab-btn tab-quick active" data-tab="quick5">⚡ 5 Rápidas</button>
-      <button class="tab-btn" data-tab="fast">Fast Track</button>
-      <button class="tab-btn" data-tab="marathon">Maratón Completo</button>
-      <button class="tab-btn tab-owner" data-tab="owner">👤 Avance del Dueño</button>
+      <button class="tab-btn tab-quick active" data-tab="quick5">
+        <span class="tab-icon">⚡</span>
+        <span class="tab-text">5 RÁPIDAS</span>
+      </button>
+      <button class="tab-btn" data-tab="fast">
+        <span class="tab-icon">▶</span>
+        <span class="tab-text">FAST TRACK</span>
+      </button>
+      <button class="tab-btn" data-tab="marathon">
+        <span class="tab-icon">◈</span>
+        <span class="tab-text">MARATÓN</span>
+      </button>
+      <button class="tab-btn tab-owner" data-tab="owner">
+        <span class="tab-icon">◉</span>
+        <span class="tab-text">DUEÑO</span>
+      </button>
     </nav>
 
     <!-- CONTENT AREA (Accordions injected via JS) -->
@@ -144,7 +206,7 @@
             <li><strong>Fast Track</strong> — Ruta rápida con lo esencial</li>
             <li><strong>Maratón Completo</strong> — Todas las películas, series, One-Shots y especiales en orden cronológico</li>
           </ul>
-          <p>Incluye contenido Pre-UCM (X-Men, Spider-Man de Tobey Maguire, Blade), las 6 fases del MCU, plataformas de streaming en LATAM (Disney+, Netflix, Prime Video, Max, ViX), y funciones para exportar e importar tu progreso.</p>
+          <p>Incluye contenido Pre-UCM (X-Men, Spider-Man de Tobey Maguire, Blade), las 6 fases del MCU, plataformas de streaming en LATAM (Disney+, Netflix, Prime Video, Max, ViX, MGM+), y funciones para exportar e importar tu progreso.</p>
           <p>Activa JavaScript para usar el tracker interactivo.</p>
         </section>
       </noscript>
@@ -152,9 +214,15 @@
 
     <!-- FOOTER CONTROLS -->
     <footer class="controls">
-      <button id="clearProgressBtn" class="btn-clear">Borrar Progreso</button>
-      <button id="exportProgressBtn" class="btn-export">📤 Exportar Mi Avance</button>
-      <button id="importProgressBtn" class="btn-import">📥 Importar Avance</button>
+      <button id="clearProgressBtn" class="btn-clear">
+        <span class="btn-icon">✕</span> BORRAR PROGRESO
+      </button>
+      <button id="exportProgressBtn" class="btn-export">
+        <span class="btn-icon">↑</span> EXPORTAR
+      </button>
+      <button id="importProgressBtn" class="btn-import">
+        <span class="btn-icon">↓</span> IMPORTAR
+      </button>
     </footer>
 
     <!-- Hidden file input for import -->
@@ -164,29 +232,28 @@
     <div class="modal-overlay" id="importModal">
       <div class="modal-content">
         <button class="modal-close" id="modalCloseBtn">&times;</button>
-        <h2 class="modal-title">📥 Importar / Exportar Avance</h2>
+        <div class="modal-hud-label">// SISTEMA DE DATOS</div>
+        <h2 class="modal-title">IMPORTAR / EXPORTAR</h2>
         <p class="modal-subtitle">Guarda tu progreso para no perderlo, o restaura uno previo.</p>
 
         <div class="modal-actions">
-          <!-- Export Section -->
           <div class="modal-section">
-            <div class="modal-section-icon">📤</div>
-            <h3>Exportar</h3>
+            <div class="modal-section-badge export-badge">EXPORT</div>
+            <h3>Exportar Progreso</h3>
             <p>Descarga tu progreso actual como archivo JSON.</p>
-            <button id="modalExportBtn" class="modal-btn modal-btn-export">Descargar Progreso</button>
+            <button id="modalExportBtn" class="modal-btn modal-btn-export">↑ Descargar Progreso</button>
           </div>
 
           <div class="modal-divider"></div>
 
-          <!-- Import Section -->
           <div class="modal-section">
-            <div class="modal-section-icon">📥</div>
-            <h3>Importar</h3>
+            <div class="modal-section-badge import-badge">IMPORT</div>
+            <h3>Importar Progreso</h3>
             <p>Sube un archivo de progreso previamente exportado.</p>
             <div class="drop-zone" id="dropZone">
-              <div class="drop-zone-icon">🎯</div>
+              <div class="drop-zone-icon">◎</div>
               <p>Arrastra tu archivo aquí</p>
-              <span>o</span>
+              <span>— o —</span>
               <button id="browseFileBtn" class="modal-btn modal-btn-browse">Seleccionar Archivo</button>
             </div>
             <div class="import-result" id="importResult"></div>
@@ -194,7 +261,7 @@
         </div>
 
         <div class="modal-footer">
-          <p>💡 Tu progreso se guarda localmente en este navegador. Exporta para tener un respaldo o para moverlo a otro dispositivo.</p>
+          <p>Tu progreso se guarda localmente. Exporta para respaldar o mover a otro dispositivo.</p>
         </div>
       </div>
     </div>
@@ -202,6 +269,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="countdown.js"></script>
   <script src="galaxy.js"></script>
   <script src="data.js"></script>
   <script src="releases.js"></script>
