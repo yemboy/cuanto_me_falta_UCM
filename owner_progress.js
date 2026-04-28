@@ -69,5 +69,19 @@ const ownerProgress = [
   "marathon-jessicajonestemporada1--ep13",
   "marathon-jessicajonestemporada1",
   "marathon-avengerseradeultrón",
-  "marathon-antman"
+  "marathon-antman",
+  "marathon-daredeviltemporada2--ep1",
+  "marathon-daredeviltemporada2--ep2",
+  "marathon-daredeviltemporada2--ep3",
+  "marathon-daredeviltemporada2--ep4",
+  "marathon-daredeviltemporada2--ep5",
+  "marathon-daredeviltemporada2--ep6",
+  "marathon-daredeviltemporada2--ep7",
+  "marathon-daredeviltemporada2--ep8",
+  "marathon-daredeviltemporada2--ep9",
+  "marathon-daredeviltemporada2--ep10",
+  "marathon-daredeviltemporada2--ep11",
+  "marathon-daredeviltemporada2--ep12",
+  "marathon-daredeviltemporada2--ep13",
+  "marathon-daredeviltemporada2"
 ];
