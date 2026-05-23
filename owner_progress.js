@@ -94,5 +94,8 @@ const ownerProgress = [
   "marathon-lukecagetemporada1--ep8",
   "marathon-lukecagetemporada1--ep9",
   "marathon-lukecagetemporada1--ep10",
-  "marathon-lukecagetemporada1--ep11"
+  "marathon-lukecagetemporada1--ep11",
+  "marathon-lukecagetemporada1--ep12",
+  "marathon-lukecagetemporada1--ep13",
+  "marathon-lukecagetemporada1"
 ];
