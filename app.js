@@ -66,7 +66,10 @@ function getEpisodeIdsForSeries(series) {
 }
 function setWatchedClass(id, watched) {
   const el = document.getElementById(`elem-${id}`);
-  if (el) el.classList.toggle('watched', watched);
+  if (el) {
+    el.classList.toggle('watched', watched);
+    if (el.hasAttribute('aria-checked')) el.setAttribute('aria-checked', String(watched));
+  }
 }
 
 // DOM Elements
@@ -266,6 +269,16 @@ function init() {
     }
   });
 
+  // Keyboard support: Enter/Space activate the same logic as the click handlers
+  contentArea.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const target = e.target;
+    if (target.matches('.movie-item[data-toggle-id], .episode-item[data-toggle-id], [data-episodes-toggle], .accordion-header')) {
+      e.preventDefault(); // evita scroll con Space y doble activación en <button>
+      target.click();
+    }
+  });
+
   // Initial Render
   render();
 }
@@ -390,7 +403,7 @@ function render() {
     }
 
     accordion.innerHTML = `
-      <div class="accordion-header">
+      <div class="accordion-header" role="button" tabindex="0" aria-expanded="false">
         <span class="accordion-title">${groupName} <small class="accordion-count" data-group-key="${groupName}">(${groupWatched}/${groupTotal}${durationLabel})</small></span>
         <span class="accordion-icon">▼</span>
       </div>
@@ -414,6 +427,7 @@ function render() {
         accordion.classList.add('open');
         content.style.maxHeight = content.scrollHeight + "px";
       }
+      header.setAttribute('aria-expanded', String(!isOpen));
     });
 
     contentArea.appendChild(accordion);
@@ -458,6 +472,9 @@ function createMovieHTML(item, readOnly, activeSet) {
     : `<div class="streaming-placeholder" title="No hay datos de streaming">📺</div>`;
 
   const dataAttr = readOnly ? '' : `data-toggle-id="${item.id}"`;
+  const ariaAttr = readOnly
+    ? 'aria-disabled="true"'
+    : `role="checkbox" aria-checked="${isWatched}" tabindex="0"`;
 
   // Episodes dropdown (for series with episode data)
   let episodesHTML = '';
@@ -468,7 +485,10 @@ function createMovieHTML(item, readOnly, activeSet) {
         ? (activeSet.has(item.id) || activeSet.has(epId))
         : activeSet.has(epId);
       const epDataAttr = readOnly ? '' : `data-toggle-id="${epId}"`;
-      return `<div class="episode-item ${epWatched ? 'watched' : ''} ${readOnly ? 'read-only' : ''}" id="elem-${epId}" ${epDataAttr}>
+      const epAriaAttr = readOnly
+        ? 'aria-disabled="true"'
+        : `role="checkbox" aria-checked="${epWatched}" tabindex="0"`;
+      return `<div class="episode-item ${epWatched ? 'watched' : ''} ${readOnly ? 'read-only' : ''}" id="elem-${epId}" ${epDataAttr} ${epAriaAttr}>
         <div class="episode-checkbox"></div>
         <span class="episode-name">${ep.name}</span>
         <span class="episode-duration">${ep.duration}</span>
@@ -488,7 +508,7 @@ function createMovieHTML(item, readOnly, activeSet) {
   }
 
   return `
-    <div class="movie-item ${watchedClass} ${readOnlyClass}" id="elem-${item.id}" ${dataAttr}>
+    <div class="movie-item ${watchedClass} ${readOnlyClass}" id="elem-${item.id}" ${dataAttr} ${ariaAttr}>
       <div class="checkbox"></div>
       <div class="movie-info">
         <h3>${item.title}</h3>

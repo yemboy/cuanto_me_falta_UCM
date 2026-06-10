@@ -725,6 +725,19 @@ body.owner-mode .tw-current { color: var(--hud-green); text-shadow: 0 0 10px var
 }
 
 /* =====================================================
+   FOCUS VISIBLE (accesibilidad de teclado)
+   ===================================================== */
+
+.movie-item:focus-visible,
+.episode-item:focus-visible,
+.accordion-header:focus-visible,
+button:focus-visible,
+.filter-search:focus-visible {
+  outline: 2px solid var(--iron-cyan);
+  outline-offset: 2px;
+}
+
+/* =====================================================
    FILTER BAR
    ===================================================== */
 
