@@ -1,0 +1,20 @@
+# Herramientas de IA y agentes locales
+.claude/
+.gemini/
+.aider*
+.cursor/
+.copilot/
+.windsurf/
+.openai/
+.chatgpt/
+.ai/
+
+# Configuraciones locales y temporales
+*.local
+*.local.json
+*.local.*
+tmp/
+
+# Archivos de entorno
+.env
+.env.*
