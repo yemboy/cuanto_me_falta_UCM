@@ -286,6 +286,11 @@ function init() {
     }
   });
 
+  // PWA: register service worker (network-first, see sw.js)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => { /* offline support es opcional */ });
+  }
+
   // Backup nudge: remind users with real progress to export periodically
   maybeShowBackupNudge();
 
