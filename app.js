@@ -1,3 +1,6 @@
+// Fecha del reset del MCU: estreno de Avengers: Secret Wars
+const RESET_DATE = new Date('2027-12-17T00:00:00-05:00');
+
 // Global State
 const STORAGE_KEY = 'mcu_tracker_watched';
 let watchedItems = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []);
@@ -473,6 +476,19 @@ function updateProgress(watched, total) {
   const twTotal = document.getElementById('timeWatchedTotal');
   if (twCurrent) twCurrent.textContent = formatMinutes(watchedMin) || '0m';
   if (twTotal) twTotal.textContent = formatMinutes(totalMin) || '0m';
+
+  // --- PACE INDICATOR: minutos/día necesarios para llegar al reset ---
+  const paceEl = document.getElementById('paceIndicator');
+  if (paceEl) {
+    const remainingMin = totalMin - watchedMin;
+    const daysLeft = Math.max(1, Math.ceil((RESET_DATE - Date.now()) / 86400000));
+    if (remainingMin === 0) {
+      paceEl.textContent = '✅ Llegas al reset — todo visto';
+    } else {
+      const pace = Math.ceil(remainingMin / daysLeft);
+      paceEl.textContent = `📅 ${daysLeft} días para el reset · ritmo: ${pace} min/día`;
+    }
+  }
   // Owner-mode CSS hook
   document.body.classList.toggle('owner-mode', currentMode === 'owner');
 

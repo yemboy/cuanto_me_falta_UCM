@@ -285,6 +285,19 @@ body {
 .tw-sep { color: var(--text-dim); }
 .tw-total { color: var(--text-muted); font-variant-numeric: tabular-nums; }
 
+/* Pace indicator: ritmo diario necesario para llegar al reset */
+.pace-indicator {
+  margin-top: 0.45rem;
+  font-family: var(--font-hud);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.pace-indicator:empty { display: none; }
+
 body.owner-mode .time-watched {
   border-left-color: var(--hud-green);
   background: rgba(0, 255, 115, 0.06);
