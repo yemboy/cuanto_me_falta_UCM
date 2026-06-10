@@ -129,6 +129,10 @@ function init() {
   // Import Button Listener (opens modal)
   importBtn.addEventListener('click', openModal);
 
+  // Share Button Listener (downloads progress image)
+  const shareBtn = document.getElementById('shareProgressBtn');
+  if (shareBtn) shareBtn.addEventListener('click', shareProgressAsImage);
+
   // Modal Close
   modalCloseBtn.addEventListener('click', closeModal);
   importModal.addEventListener('click', (e) => {
@@ -790,6 +794,103 @@ function exportProgressAsJSON() {
   if (nudge) nudge.remove();
 
   showImportResult('success', '¡Archivo descargado!', `Se exportaron ${allWatched.length} elementos. Guárdalo para respaldarlo o subirlo en otro dispositivo.`);
+}
+
+// ===== SHARE PROGRESS AS IMAGE =====
+// Draws a 1080x1080 share card with canvas primitives only (no external images, CSP-safe)
+function shareProgressAsImage() {
+  const data = currentMode === 'quick5' ? quickFiveData : currentMode === 'fast' ? fastTrackData : marathonData;
+  const activeSet = getActiveWatchedSet();
+  const watched = data.filter(i => activeSet.has(i.id)).length;
+  const percentage = data.length === 0 ? 0 : Math.round((watched / data.length) * 100);
+
+  let watchedMin = 0, totalMin = 0;
+  for (const it of data) {
+    const d = parseDuration(it.duration);
+    totalMin += d;
+    if (activeSet.has(it.id)) watchedMin += d;
+  }
+  const remaining = totalMin - watchedMin;
+
+  const modeLabels = {
+    quick5: '⚡ 5 RÁPIDAS',
+    fast: 'FAST TRACK',
+    marathon: 'MARATÓN COMPLETO',
+    owner: 'AVANCE DEL DUEÑO'
+  };
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 1080;
+  canvas.height = 1080;
+  const ctx = canvas.getContext('2d');
+
+  // Fondo espacio oscuro + glow central cyan
+  ctx.fillStyle = '#050510';
+  ctx.fillRect(0, 0, 1080, 1080);
+  const glow = ctx.createRadialGradient(540, 540, 60, 540, 540, 620);
+  glow.addColorStop(0, 'rgba(0, 210, 255, 0.16)');
+  glow.addColorStop(1, 'rgba(0, 210, 255, 0)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, 1080, 1080);
+
+  // Marco sutil
+  ctx.strokeStyle = 'rgba(0, 210, 255, 0.35)';
+  ctx.lineWidth = 4;
+  ctx.strokeRect(40, 40, 1000, 1000);
+
+  ctx.textAlign = 'center';
+
+  // Título del sitio
+  const titleGrad = ctx.createLinearGradient(340, 0, 740, 0);
+  titleGrad.addColorStop(0, '#f0c040');
+  titleGrad.addColorStop(0.5, '#ff9500');
+  titleGrad.addColorStop(1, '#e62429');
+  ctx.fillStyle = titleGrad;
+  ctx.font = '800 78px Inter, sans-serif';
+  ctx.fillText('MCU TRACKER', 540, 180);
+
+  // Modo actual
+  ctx.fillStyle = '#7a82a0';
+  ctx.font = '600 40px Inter, sans-serif';
+  ctx.fillText(modeLabels[currentMode] || '', 540, 250);
+
+  // Porcentaje gigante
+  ctx.fillStyle = '#00d2ff';
+  ctx.font = '800 300px Inter, sans-serif';
+  ctx.fillText(`${percentage}%`, 540, 660);
+
+  // Tiempo restante
+  ctx.fillStyle = '#e8eaf0';
+  ctx.font = '600 46px Inter, sans-serif';
+  const remainingText = remaining <= 0
+    ? '✅ ¡Todo visto! Listo para el reset'
+    : `⏳ Me faltan ${formatMinutes(remaining)} antes del reset`;
+  ctx.fillText(remainingText, 540, 800);
+
+  // Línea separadora
+  ctx.strokeStyle = 'rgba(122, 130, 160, 0.4)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(340, 880);
+  ctx.lineTo(740, 880);
+  ctx.stroke();
+
+  // URL del sitio
+  ctx.fillStyle = '#ff9500';
+  ctx.font = '700 44px Inter, sans-serif';
+  ctx.fillText('losfiebruos.lat', 540, 960);
+
+  canvas.toBlob(blob => {
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mi-progreso-mcu.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 'image/png');
 }
 
 // ===== IMPORT FILE HANDLER =====

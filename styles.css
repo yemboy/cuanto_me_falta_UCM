@@ -1390,6 +1390,17 @@ button:focus-visible,
   box-shadow: 0 0 20px rgba(0,255,115,0.2);
 }
 
+.btn-share {
+  background: transparent;
+  border: 1px solid rgba(255,149,0,0.35);
+  color: var(--strange-orange);
+}
+.btn-share:hover {
+  background: rgba(255,149,0,0.08);
+  border-color: var(--strange-orange);
+  box-shadow: 0 0 20px rgba(255,149,0,0.2);
+}
+
 /* =====================================================
    MODAL
    ===================================================== */
