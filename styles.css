@@ -827,6 +827,55 @@ button:focus-visible,
   box-shadow: 0 0 10px rgba(255, 149, 0, 0.12);
 }
 
+/* Backup nudge banner */
+.backup-nudge {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+  padding: 0.65rem 0.9rem;
+  background: rgba(0, 255, 115, 0.05);
+  border: 1px solid rgba(0, 255, 115, 0.2);
+  border-left: 3px solid var(--hud-green);
+  font-size: 0.8rem;
+  color: var(--text-main);
+}
+
+.backup-nudge-text { flex: 1; line-height: 1.4; }
+
+.backup-nudge-export {
+  padding: 0.4rem 0.8rem;
+  background: rgba(0, 255, 115, 0.08);
+  border: 1px solid rgba(0, 255, 115, 0.4);
+  border-radius: var(--br);
+  color: var(--hud-green);
+  font-family: var(--font-hud);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.backup-nudge-export:hover {
+  background: rgba(0, 255, 115, 0.15);
+  box-shadow: 0 0 12px var(--hud-green-glow);
+}
+
+.backup-nudge-close {
+  padding: 0.2rem 0.45rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.backup-nudge-close:hover { color: var(--text-main); }
+
 .no-results {
   padding: 2.5rem 1rem;
   text-align: center;

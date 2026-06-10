@@ -3,6 +3,9 @@ const RESET_DATE = new Date('2027-12-17T00:00:00-05:00');
 
 // Global State
 const STORAGE_KEY = 'mcu_tracker_watched';
+const LAST_EXPORT_KEY = 'mcu_tracker_last_export';
+const NUDGE_DISMISSED_KEY = 'mcu_tracker_nudge_dismissed';
+const THIRTY_DAYS_MS = 30 * 86400000;
 let watchedItems = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []);
 let currentMode = 'quick5'; // default to quick 5
 
@@ -279,8 +282,47 @@ function init() {
     }
   });
 
+  // Backup nudge: remind users with real progress to export periodically
+  maybeShowBackupNudge();
+
   // Initial Render
   render();
+}
+
+// Show a dismissable banner above the content if the user has 10+ items
+// and hasn't exported (or dismissed the nudge) in the last 30 days
+function maybeShowBackupNudge() {
+  if (watchedItems.size < 10) return;
+  const lastExport = Date.parse(localStorage.getItem(LAST_EXPORT_KEY)) || 0;
+  if (Date.now() - lastExport <= THIRTY_DAYS_MS) return;
+  const dismissed = Date.parse(localStorage.getItem(NUDGE_DISMISSED_KEY)) || 0;
+  if (Date.now() - dismissed <= THIRTY_DAYS_MS) return;
+
+  const banner = document.createElement('div');
+  banner.className = 'backup-nudge';
+
+  const text = document.createElement('span');
+  text.className = 'backup-nudge-text';
+  text.textContent = '💾 Llevas buen progreso. Expórtalo como respaldo — el navegador puede borrarlo.';
+
+  const exportNudgeBtn = document.createElement('button');
+  exportNudgeBtn.className = 'backup-nudge-export';
+  exportNudgeBtn.textContent = 'Exportar';
+  exportNudgeBtn.addEventListener('click', openModal);
+
+  const closeNudgeBtn = document.createElement('button');
+  closeNudgeBtn.className = 'backup-nudge-close';
+  closeNudgeBtn.setAttribute('aria-label', 'Cerrar aviso de respaldo');
+  closeNudgeBtn.textContent = '✕';
+  closeNudgeBtn.addEventListener('click', () => {
+    localStorage.setItem(NUDGE_DISMISSED_KEY, new Date().toISOString());
+    banner.remove();
+  });
+
+  banner.appendChild(text);
+  banner.appendChild(exportNudgeBtn);
+  banner.appendChild(closeNudgeBtn);
+  contentArea.parentNode.insertBefore(banner, contentArea);
 }
 
 // Save to LocalStorage
@@ -743,6 +785,10 @@ function exportProgressAsJSON() {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 
+  localStorage.setItem(LAST_EXPORT_KEY, new Date().toISOString());
+  const nudge = document.querySelector('.backup-nudge');
+  if (nudge) nudge.remove();
+
   showImportResult('success', '¡Archivo descargado!', `Se exportaron ${allWatched.length} elementos. Guárdalo para respaldarlo o subirlo en otro dispositivo.`);
 }
 
@@ -759,7 +805,13 @@ function handleImportFile(file) {
   reader.onload = function(e) {
     try {
       const data = JSON.parse(e.target.result);
-      
+
+      // Files without "version" are old exports and remain valid; newer versions are rejected
+      if (data.version !== undefined && Number(data.version) > 1) {
+        showImportResult('error', 'Versión no soportada', 'Este archivo fue exportado por una versión más nueva del tracker. Recarga la página para actualizar e inténtalo de nuevo.');
+        return;
+      }
+
       // Validate structure
       if (!data.watchedItems || !Array.isArray(data.watchedItems)) {
         showImportResult('error', 'Archivo inválido', 'El archivo no tiene el formato correcto. Asegúrate de usar un archivo exportado desde este tracker.');
