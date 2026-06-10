@@ -437,6 +437,15 @@ function createMovieHTML(item, readOnly, activeSet) {
   const metaHTML = [];
   if (item.duration) metaHTML.push(`<span>⏳ ${item.duration}</span>`);
   if (item.details) metaHTML.push(`<span>${item.details}</span>`);
+  if (item.episodes && item.episodes.length > 0) {
+    const epTotal = item.episodes.length;
+    const epWatchedCount = item.episodes.filter((_, idx) => {
+      const epId = getEpisodeId(item.id, idx);
+      return readOnly ? (activeSet.has(item.id) || activeSet.has(epId)) : activeSet.has(epId);
+    }).length;
+    const completeClass = epWatchedCount === epTotal ? ' complete' : '';
+    metaHTML.push(`<span class="episode-progress${completeClass}" data-ep-progress="${item.id}">${epWatchedCount}/${epTotal} ep</span>`);
+  }
 
   // Release date (real-world) — separate from timeline details
   const releaseDate = typeof releaseDates !== 'undefined' ? releaseDates[item.id] : null;
@@ -511,6 +520,17 @@ function updateAccordionCounts() {
   });
 }
 
+// Refresh the "w/n ep" badge of a series row in place
+function updateEpisodeBadge(seriesId) {
+  const el = document.querySelector(`[data-ep-progress="${seriesId}"]`);
+  const series = seriesMap.get(seriesId);
+  if (!el || !series) return;
+  const epIds = getEpisodeIdsForSeries(series);
+  const w = epIds.filter(epId => watchedItems.has(epId)).length;
+  el.textContent = `${w}/${epIds.length} ep`;
+  el.classList.toggle('complete', w === epIds.length);
+}
+
 // Toggle Watch Status — handles episode↔series cascade
 window.toggleItem = function(id) {
   if (currentMode === 'owner') return; // No toggling in owner mode
@@ -529,6 +549,7 @@ window.toggleItem = function(id) {
       if (allWatched) watchedItems.add(parentId);
       else watchedItems.delete(parentId);
       setWatchedClass(parentId, allWatched);
+      updateEpisodeBadge(parentId);
     }
   } else {
     // --- Top-level toggle: if series-with-episodes, cascade to all episodes ---
@@ -543,6 +564,7 @@ window.toggleItem = function(id) {
         else watchedItems.delete(epId);
         setWatchedClass(epId, nowWatched);
       });
+      updateEpisodeBadge(id);
     }
   }
 

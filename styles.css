@@ -1027,6 +1027,15 @@ body.owner-mode .tw-current { color: var(--hud-green); text-shadow: 0 0 10px var
   letter-spacing: 0.5px;
 }
 
+/* Episode progress badge on series rows */
+.episode-progress {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.episode-progress.complete { color: var(--iron-cyan); }
+
 .movie-release {
   font-family: var(--font-hud);
   font-size: 0.68rem;
