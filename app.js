@@ -9,6 +9,44 @@ let currentMode = 'quick5'; // default to quick 5
 // Owner progress (loaded from owner_progress.js)
 const ownerWatched = new Set(typeof ownerProgress !== 'undefined' ? ownerProgress : []);
 
+// Filter state (query is session-only; hideWatched + platforms persist)
+const FILTERS_KEY = 'mcu_tracker_filters';
+let filters = { query: '', hideWatched: false, platforms: new Set() };
+(function loadFilters() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(FILTERS_KEY));
+    if (saved && saved.v === 1) {
+      filters.hideWatched = !!saved.hideWatched;
+      filters.platforms = new Set(Array.isArray(saved.platforms) ? saved.platforms : []);
+    }
+  } catch (e) { /* filtros corruptos: usar defaults */ }
+})();
+
+function saveFilters() {
+  localStorage.setItem(FILTERS_KEY, JSON.stringify({
+    v: 1,
+    hideWatched: filters.hideWatched,
+    platforms: Array.from(filters.platforms)
+  }));
+}
+
+// Case- and accent-insensitive text normalization for search
+function normalizeText(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+// Pure filter: query + hideWatched + platform whitelist (empty Set = all)
+function applyFilters(items) {
+  const activeSet = getActiveWatchedSet();
+  const q = normalizeText(filters.query.trim());
+  return items.filter(item => {
+    if (q && !normalizeText(item.title).includes(q)) return false;
+    if (filters.hideWatched && activeSet.has(item.id)) return false;
+    if (filters.platforms.size > 0 && (!item.streaming || !filters.platforms.has(item.streaming))) return false;
+    return true;
+  });
+}
+
 // Series-with-episodes lookup: seriesId -> item
 const seriesMap = new Map();
 (function buildSeriesMap() {
@@ -130,6 +168,59 @@ function init() {
     }
   });
 
+  // --- Filter bar: chips, search and hide-watched toggle ---
+  const searchInput = document.getElementById('searchInput');
+  const hideWatchedBtn = document.getElementById('hideWatchedBtn');
+  const platformChips = document.getElementById('platformChips');
+  const filterBar = document.getElementById('filterBar');
+
+  if (platformChips) {
+    const allItems = [...quickFiveData, ...fastTrackData, ...marathonData];
+    const platformValues = [...new Set(allItems.map(i => i.streaming).filter(Boolean))];
+    platformValues.forEach(p => {
+      const chip = document.createElement('button');
+      chip.className = 'platform-chip';
+      chip.dataset.platform = p;
+      chip.textContent = p;
+      chip.classList.toggle('active', filters.platforms.has(p));
+      platformChips.appendChild(chip);
+    });
+  }
+
+  if (hideWatchedBtn) hideWatchedBtn.classList.toggle('active', filters.hideWatched);
+
+  if (searchInput) {
+    let searchDebounce;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(searchDebounce);
+      searchDebounce = setTimeout(() => {
+        filters.query = searchInput.value;
+        render();
+      }, 150);
+    });
+  }
+
+  if (filterBar) {
+    filterBar.addEventListener('click', (e) => {
+      const chip = e.target.closest('.platform-chip');
+      if (chip) {
+        const p = chip.dataset.platform;
+        if (filters.platforms.has(p)) filters.platforms.delete(p);
+        else filters.platforms.add(p);
+        chip.classList.toggle('active', filters.platforms.has(p));
+        saveFilters();
+        render();
+        return;
+      }
+      if (e.target.closest('#hideWatchedBtn')) {
+        filters.hideWatched = !filters.hideWatched;
+        hideWatchedBtn.classList.toggle('active', filters.hideWatched);
+        saveFilters();
+        render();
+      }
+    });
+  }
+
   // CSP fix: event delegation en lugar de onclick inline
   contentArea.addEventListener('click', (e) => {
     // Episode toggle handler — must come before the watched toggle
@@ -246,8 +337,9 @@ function render() {
     groupKey = 'phase';
   }
   
-  const groupedData = groupData(data, groupKey);
-  
+  // Filters narrow the list, but global progress always uses the full dataset
+  const groupedData = groupData(applyFilters(data), groupKey);
+
   // Calculate progress for current mode
   let totalItems = data.length;
   let watchedInMode = data.filter(item => activeSet.has(item.id)).length;
@@ -326,6 +418,14 @@ function render() {
 
     contentArea.appendChild(accordion);
   }
+
+  // Empty state when filters leave no items in any group
+  if (Object.keys(groupedData).length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'no-results';
+    empty.textContent = 'Sin resultados con los filtros actuales';
+    contentArea.appendChild(empty);
+  }
 }
 
 // Create Movie Item HTML
@@ -397,7 +497,8 @@ function createMovieHTML(item, readOnly, activeSet) {
 function updateAccordionCounts() {
   const data = currentMode === 'quick5' ? quickFiveData : currentMode === 'fast' ? fastTrackData : marathonData;
   const groupKey = (currentMode === 'marathon' || currentMode === 'owner') ? 'phase' : 'level';
-  const groupedData = groupData(data, groupKey);
+  // Apply the same filters as render() so counts match what's on screen
+  const groupedData = groupData(applyFilters(data), groupKey);
   const activeSet = getActiveWatchedSet();
 
   document.querySelectorAll('small.accordion-count[data-group-key]').forEach(el => {

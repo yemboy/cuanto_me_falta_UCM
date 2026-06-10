@@ -725,6 +725,105 @@ body.owner-mode .tw-current { color: var(--hud-green); text-shadow: 0 0 10px var
 }
 
 /* =====================================================
+   FILTER BAR
+   ===================================================== */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  padding: 0.7rem 0.9rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+.filter-search {
+  flex: 1 1 200px;
+  min-width: 160px;
+  padding: 0.5rem 0.75rem;
+  background: rgba(0, 210, 255, 0.05);
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  border-radius: var(--br);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  transition: var(--transition);
+}
+
+.filter-search::placeholder { color: var(--text-muted); }
+
+.filter-search:focus {
+  outline: none;
+  border-color: var(--iron-cyan);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.15);
+}
+
+.filter-toggle {
+  padding: 0.5rem 0.85rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--br);
+  color: var(--text-muted);
+  font-family: var(--font-hud);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-toggle:hover { color: var(--text-main); border-color: rgba(255,255,255,0.3); }
+
+.filter-toggle.active {
+  border-color: rgba(0, 210, 255, 0.5);
+  color: var(--iron-cyan);
+  background: rgba(0, 210, 255, 0.08);
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.15);
+}
+
+.platform-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.platform-chip {
+  padding: 0.32rem 0.65rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.platform-chip:hover { color: var(--text-main); border-color: rgba(255,255,255,0.3); }
+
+.platform-chip.active {
+  border-color: rgba(255, 149, 0, 0.5);
+  color: var(--strange-orange);
+  background: rgba(255, 149, 0, 0.08);
+  box-shadow: 0 0 10px rgba(255, 149, 0, 0.12);
+}
+
+.no-results {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-family: var(--font-hud);
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+}
+
+/* =====================================================
    ACCORDION
    ===================================================== */
 
