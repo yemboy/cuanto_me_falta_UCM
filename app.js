@@ -296,7 +296,7 @@ function render() {
 
     accordion.innerHTML = `
       <div class="accordion-header">
-        <span class="accordion-title">${groupName} <small class="accordion-count">(${groupWatched}/${groupTotal}${durationLabel})</small></span>
+        <span class="accordion-title">${groupName} <small class="accordion-count" data-group-key="${groupName}">(${groupWatched}/${groupTotal}${durationLabel})</small></span>
         <span class="accordion-icon">▼</span>
       </div>
       <div class="accordion-content">
@@ -390,6 +390,23 @@ function createMovieHTML(item, readOnly, activeSet) {
   `;
 }
 
+// Refresh the (watched/total · ⏳ time) counters of every accordion header in place
+function updateAccordionCounts() {
+  const data = currentMode === 'quick5' ? quickFiveData : currentMode === 'fast' ? fastTrackData : marathonData;
+  const groupKey = (currentMode === 'marathon' || currentMode === 'owner') ? 'phase' : 'level';
+  const groupedData = groupData(data, groupKey);
+  const activeSet = getActiveWatchedSet();
+
+  document.querySelectorAll('small.accordion-count[data-group-key]').forEach(el => {
+    const items = groupedData[el.dataset.groupKey];
+    if (!items) return;
+    const groupWatched = items.filter(i => activeSet.has(i.id)).length;
+    const groupDuration = calcGroupDuration(items);
+    const durationLabel = groupDuration > 0 ? ` · ⏳ ${formatMinutes(groupDuration)}` : '';
+    el.textContent = `(${groupWatched}/${items.length}${durationLabel})`;
+  });
+}
+
 // Toggle Watch Status — handles episode↔series cascade
 window.toggleItem = function(id) {
   if (currentMode === 'owner') return; // No toggling in owner mode
@@ -431,6 +448,7 @@ window.toggleItem = function(id) {
   const data = currentMode === 'quick5' ? quickFiveData : currentMode === 'fast' ? fastTrackData : marathonData;
   const watchedInMode = data.filter(item => watchedItems.has(item.id)).length;
   updateProgress(watchedInMode, data.length);
+  updateAccordionCounts();
 };
 
 // Update Tesseract Cube Progress — energy fills progressively
