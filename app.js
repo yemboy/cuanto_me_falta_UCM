@@ -50,6 +50,50 @@ function applyFilters(items) {
   });
 }
 
+// Equivalence groups (from equivalences.js): id -> array with every id of the
+// same title across datasets. Toggling any member propagates to the rest.
+const equivalenceGroups = new Map();
+(function buildEquivalenceGroups() {
+  if (typeof itemEquivalences === 'undefined') return;
+  const byCanonical = new Map();
+  Object.entries(itemEquivalences).forEach(([alias, canonical]) => {
+    if (!byCanonical.has(canonical)) byCanonical.set(canonical, [canonical]);
+    byCanonical.get(canonical).push(alias);
+  });
+  byCanonical.forEach(group => {
+    group.forEach(id => equivalenceGroups.set(id, group));
+  });
+})();
+
+// One-shot migration: backfill equivalents of already-watched items.
+// Idempotente y solo aditiva — nunca borra progreso existente.
+(function migrateEquivalences() {
+  let added = false;
+  Array.from(watchedItems).forEach(id => {
+    const group = equivalenceGroups.get(id);
+    if (!group) return;
+    group.forEach(eqId => {
+      if (!watchedItems.has(eqId)) {
+        watchedItems.add(eqId);
+        added = true;
+      }
+    });
+  });
+  if (added) saveProgress();
+})();
+
+// Propagate a top-level watched state to every equivalent id in other datasets
+function propagateEquivalents(id, watched) {
+  const group = equivalenceGroups.get(id);
+  if (!group) return;
+  group.forEach(eqId => {
+    if (eqId === id) return;
+    if (watched) watchedItems.add(eqId);
+    else watchedItems.delete(eqId);
+    setWatchedClass(eqId, watched);
+  });
+}
+
 // Series-with-episodes lookup: seriesId -> item
 const seriesMap = new Map();
 (function buildSeriesMap() {
@@ -621,12 +665,14 @@ window.toggleItem = function(id) {
       else watchedItems.delete(parentId);
       setWatchedClass(parentId, allWatched);
       updateEpisodeBadge(parentId);
+      propagateEquivalents(parentId, allWatched);
     }
   } else {
     // --- Top-level toggle: if series-with-episodes, cascade to all episodes ---
     const nowWatched = !watchedItems.has(id);
     if (nowWatched) watchedItems.add(id); else watchedItems.delete(id);
     setWatchedClass(id, nowWatched);
+    propagateEquivalents(id, nowWatched);
 
     const series = seriesMap.get(id);
     if (series) {
