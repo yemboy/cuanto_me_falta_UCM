@@ -1558,6 +1558,17 @@ button:focus-visible,
   box-shadow: 0 0 20px rgba(0,210,255,0.2);
 }
 
+.modal-btn-link {
+  margin-top: 0.5rem;
+  background: rgba(255,149,0,0.07);
+  border: 1px solid rgba(255,149,0,0.3) !important;
+  color: var(--strange-orange);
+}
+.modal-btn-link:hover {
+  background: rgba(255,149,0,0.12);
+  box-shadow: 0 0 20px rgba(255,149,0,0.15);
+}
+
 .modal-btn-browse {
   background: rgba(0,255,115,0.07);
   border: 1px solid rgba(0,255,115,0.3) !important;

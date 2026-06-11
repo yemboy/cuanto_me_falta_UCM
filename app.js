@@ -189,6 +189,21 @@ function init() {
   // Modal Export Button (JSON for anyone)
   modalExportBtn.addEventListener('click', exportProgressAsJSON);
 
+  // Modal Share-Link Button (progress as URL)
+  const modalShareLinkBtn = document.getElementById('modalShareLinkBtn');
+  if (modalShareLinkBtn) {
+    modalShareLinkBtn.addEventListener('click', () => {
+      if (watchedItems.size === 0) {
+        showImportResult('error', 'Sin progreso', 'No tienes ningún elemento marcado para compartir.');
+        return;
+      }
+      const url = location.origin + location.pathname + encodeProgressToHash();
+      navigator.clipboard.writeText(url)
+        .then(() => showImportResult('success', '¡Link copiado!', 'Pégalo en otro dispositivo (o compártelo) para transferir tu progreso.'))
+        .catch(() => showImportResult('error', 'No se pudo copiar', `Copia el link manualmente: ${url}`));
+    });
+  }
+
   // Browse File Button
   browseFileBtn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -340,6 +355,9 @@ function init() {
 
   // Initial Render
   render();
+
+  // URL share: offer to import progress if the page was opened with #p=...
+  maybeImportFromHash();
 }
 
 // Show a dismissable banner above the content if the user has 10+ items
@@ -944,6 +962,111 @@ function shareProgressAsImage() {
   }, 'image/png');
 }
 
+// ===== SHARE PROGRESS VIA URL (bitmask) =====
+// ADVERTENCIA: el formato v1 depende del ORDEN de declaración de los arrays en
+// data.js (quickFiveData, fastTrackData, marathonData; los episodios de cada
+// serie van inmediatamente después de su padre). Agregar items al FINAL es
+// seguro; insertarlos EN MEDIO rompe los links viejos. Por eso el payload
+// lleva versión (v1): si el orden cambia de forma incompatible, subir a v2.
+function getCanonicalIdOrder() {
+  const order = [];
+  [quickFiveData, fastTrackData, marathonData].forEach(dataset => {
+    dataset.forEach(item => {
+      order.push(item.id);
+      if (item.episodes && item.episodes.length > 0) {
+        getEpisodeIdsForSeries(item).forEach(epId => order.push(epId));
+      }
+    });
+  });
+  return order;
+}
+
+function encodeProgressToHash() {
+  const order = getCanonicalIdOrder();
+  const bytes = new Uint8Array(Math.ceil(order.length / 8));
+  order.forEach((id, i) => {
+    if (watchedItems.has(id)) bytes[i >> 3] |= (1 << (i & 7));
+  });
+  let bin = '';
+  bytes.forEach(b => { bin += String.fromCharCode(b); });
+  const b64url = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  return `#p=v1.${b64url}`;
+}
+
+// Devuelve array de ids o null si el hash no es un payload v1 válido
+function decodeProgressFromHash(hash) {
+  const match = hash.match(/^#p=v1\.([A-Za-z0-9_-]+)$/);
+  if (!match) return null;
+  let b64 = match[1].replace(/-/g, '+').replace(/_/g, '/');
+  while (b64.length % 4) b64 += '=';
+  let bin;
+  try { bin = atob(b64); } catch (e) { return null; }
+  const order = getCanonicalIdOrder();
+  const ids = [];
+  for (let i = 0; i < order.length; i++) {
+    const byte = bin.charCodeAt(i >> 3);
+    if (Number.isNaN(byte)) break; // link viejo: el payload es más corto que los datos actuales
+    if (byte & (1 << (i & 7))) ids.push(order[i]);
+  }
+  return ids;
+}
+
+// Al cargar con #p=... presente: ofrecer importar y limpiar el hash
+function maybeImportFromHash() {
+  const hash = location.hash;
+  if (!hash.startsWith('#p=')) return;
+  const ids = decodeProgressFromHash(hash);
+  history.replaceState(null, '', location.pathname + location.search);
+  if (!ids) {
+    alert('🔗 El link de progreso no es válido o fue creado por una versión más nueva del tracker.');
+    return;
+  }
+  if (ids.length === 0) return;
+  const wantImport = confirm(`🔗 Este link contiene un progreso de ${ids.length} elementos.\n\n¿Quieres importarlo?`);
+  if (!wantImport) return;
+  applyImportedItems(ids);
+}
+
+// Flujo combinar/reemplazar compartido por el import de archivo y el de URL.
+// Devuelve { mode, newItemsAdded } o null si el usuario canceló.
+function applyImportedItems(validItems) {
+  const currentCount = watchedItems.size;
+  const importCount = validItems.length;
+
+  let mode = 'replace';
+  if (currentCount > 0) {
+    const mergeChoice = confirm(
+      `📥 Importar ${importCount} elementos.\n\n` +
+      `Actualmente tienes ${currentCount} elementos marcados.\n\n` +
+      `¿Quieres COMBINAR ambos progresos?\n\n` +
+      `• Aceptar = Combinar (mantiene tu progreso actual + agrega los importados)\n` +
+      `• Cancelar = Reemplazar (borra tu progreso actual y usa solo los importados)`
+    );
+    mode = mergeChoice ? 'merge' : 'replace';
+
+    if (mode === 'replace') {
+      const confirmReplace = confirm('⚠️ ¿Estás seguro? Se borrará todo tu progreso actual y se reemplazará con el importado.');
+      if (!confirmReplace) return null;
+    }
+  }
+
+  if (mode === 'replace') {
+    watchedItems.clear();
+  }
+
+  let newItemsAdded = 0;
+  validItems.forEach(item => {
+    if (!watchedItems.has(item)) {
+      newItemsAdded++;
+    }
+    watchedItems.add(item);
+  });
+
+  saveProgress();
+  render();
+  return { mode, newItemsAdded };
+}
+
 // ===== IMPORT FILE HANDLER =====
 function handleImportFile(file) {
   // Validate file type
@@ -978,44 +1101,11 @@ function handleImportFile(file) {
         return;
       }
 
-      // Ask user: merge or replace?
-      const currentCount = watchedItems.size;
-      const importCount = validItems.length;
-      
-      let mode = 'replace';
-      if (currentCount > 0) {
-        const mergeChoice = confirm(
-          `📥 Importar ${importCount} elementos.\n\n` +
-          `Actualmente tienes ${currentCount} elementos marcados.\n\n` +
-          `¿Quieres COMBINAR ambos progresos?\n\n` +
-          `• Aceptar = Combinar (mantiene tu progreso actual + agrega los importados)\n` +
-          `• Cancelar = Reemplazar (borra tu progreso actual y usa solo los importados)`
-        );
-        mode = mergeChoice ? 'merge' : 'replace';
-        
-        if (mode === 'replace') {
-          const confirmReplace = confirm('⚠️ ¿Estás seguro? Se borrará todo tu progreso actual y se reemplazará con el archivo importado.');
-          if (!confirmReplace) return;
-        }
-      }
-
-      // Apply import
-      if (mode === 'replace') {
-        watchedItems.clear();
-      }
-      
-      let newItemsAdded = 0;
-      validItems.forEach(item => {
-        if (!watchedItems.has(item)) {
-          newItemsAdded++;
-        }
-        watchedItems.add(item);
-      });
-
-      saveProgress();
-      render();
+      const result = applyImportedItems(validItems);
+      if (!result) return; // usuario canceló
 
       const dateInfo = data.exportDateReadable ? ` (exportado el ${data.exportDateReadable})` : '';
+      const { mode, newItemsAdded } = result;
       const modeText = mode === 'merge' ? 'combinados' : 'importados';
       showImportResult(
         'success',
