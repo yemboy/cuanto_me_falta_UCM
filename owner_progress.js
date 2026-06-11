@@ -97,5 +97,18 @@ const ownerProgress = [
   "marathon-lukecagetemporada1--ep11",
   "marathon-lukecagetemporada1--ep12",
   "marathon-lukecagetemporada1--ep13",
-  "marathon-lukecagetemporada1"
+  "marathon-lukecagetemporada1",
+  "marathon-agentsofshieldtemporada3",
+  "marathon-ironfisttemporada1--ep1",
+  "marathon-ironfisttemporada1--ep2",
+  "marathon-ironfisttemporada1--ep3",
+  "marathon-ironfisttemporada1--ep4",
+  "marathon-ironfisttemporada1--ep5",
+  "marathon-ironfisttemporada1--ep6",
+  "marathon-ironfisttemporada1--ep7",
+  "marathon-ironfisttemporada1--ep8",
+  "marathon-ironfisttemporada1--ep9",
+  "marathon-ironfisttemporada1--ep10",
+  "marathon-ironfisttemporada1--ep11",
+  "marathon-ironfisttemporada1--ep12"
 ];
