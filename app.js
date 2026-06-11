@@ -6,7 +6,22 @@ const STORAGE_KEY = 'mcu_tracker_watched';
 const LAST_EXPORT_KEY = 'mcu_tracker_last_export';
 const NUDGE_DISMISSED_KEY = 'mcu_tracker_nudge_dismissed';
 const THIRTY_DAYS_MS = 30 * 86400000;
-let watchedItems = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []);
+let watchedItems = new Set();
+try {
+  const rawProgress = localStorage.getItem(STORAGE_KEY);
+  const savedProgress = JSON.parse(rawProgress);
+  if (Array.isArray(savedProgress)) {
+    watchedItems = new Set(savedProgress.filter(x => typeof x === 'string'));
+  } else if (rawProgress !== null) {
+    // Valor no-array: preservar para diagnóstico antes de empezar de cero
+    localStorage.setItem(STORAGE_KEY + '_corrupt', rawProgress);
+  }
+} catch (e) {
+  // JSON corrupto: preservar el valor crudo y arrancar con progreso vacío.
+  // Nunca dejar que esto brickee la app completa.
+  const rawProgress = localStorage.getItem(STORAGE_KEY);
+  if (rawProgress !== null) localStorage.setItem(STORAGE_KEY + '_corrupt', rawProgress);
+}
 let currentMode = 'quick5'; // default to quick 5
 
 // Owner progress (loaded from owner_progress.js)
@@ -65,23 +80,6 @@ const equivalenceGroups = new Map();
   });
 })();
 
-// One-shot migration: backfill equivalents of already-watched items.
-// Idempotente y solo aditiva — nunca borra progreso existente.
-(function migrateEquivalences() {
-  let added = false;
-  Array.from(watchedItems).forEach(id => {
-    const group = equivalenceGroups.get(id);
-    if (!group) return;
-    group.forEach(eqId => {
-      if (!watchedItems.has(eqId)) {
-        watchedItems.add(eqId);
-        added = true;
-      }
-    });
-  });
-  if (added) saveProgress();
-})();
-
 // Propagate a top-level watched state to every equivalent id in other datasets
 function propagateEquivalents(id, watched) {
   const group = equivalenceGroups.get(id);
@@ -91,6 +89,17 @@ function propagateEquivalents(id, watched) {
     if (watched) watchedItems.add(eqId);
     else watchedItems.delete(eqId);
     setWatchedClass(eqId, watched);
+    // Si el equivalente es una serie con episodios, cascadear a sus episodios
+    // para no dejar el estado inconsistente (serie marcada, 0/N episodios).
+    const eqSeries = seriesMap.get(eqId);
+    if (eqSeries) {
+      getEpisodeIdsForSeries(eqSeries).forEach(epId => {
+        if (watched) watchedItems.add(epId);
+        else watchedItems.delete(epId);
+        setWatchedClass(epId, watched);
+      });
+      updateEpisodeBadge(eqId);
+    }
   });
 }
 
@@ -118,6 +127,33 @@ function setWatchedClass(id, watched) {
     if (el.hasAttribute('aria-checked')) el.setAttribute('aria-checked', String(watched));
   }
 }
+
+// One-shot migration: backfill equivalents of already-watched items.
+// Idempotente y solo aditiva — nunca borra progreso existente.
+// Incluye episodios de series equivalentes para no crear estados inconsistentes.
+(function migrateEquivalences() {
+  let added = false;
+  Array.from(watchedItems).forEach(id => {
+    const group = equivalenceGroups.get(id);
+    if (!group) return;
+    group.forEach(eqId => {
+      if (!watchedItems.has(eqId)) {
+        watchedItems.add(eqId);
+        added = true;
+      }
+      const eqSeries = seriesMap.get(eqId);
+      if (eqSeries) {
+        getEpisodeIdsForSeries(eqSeries).forEach(epId => {
+          if (!watchedItems.has(epId)) {
+            watchedItems.add(epId);
+            added = true;
+          }
+        });
+      }
+    });
+  });
+  if (added) saveProgress();
+})();
 
 // DOM Elements
 const contentArea = document.getElementById('contentArea');
@@ -459,6 +495,11 @@ function formatMinutes(totalMin) {
 
 // Render Content
 function render() {
+  // Preservar qué accordions estaban abiertos para restaurarlos tras el re-render
+  const openGroups = new Set(
+    Array.from(contentArea.querySelectorAll('.accordion.open .accordion-count[data-group-key]'))
+      .map(el => el.dataset.groupKey)
+  );
   contentArea.innerHTML = '';
   
   const isOwnerMode = currentMode === 'owner';
@@ -559,6 +600,14 @@ function render() {
     });
 
     contentArea.appendChild(accordion);
+
+    // Restaurar accordion abierto si lo estaba antes del re-render
+    if (openGroups.has(groupName)) {
+      accordion.classList.add('open');
+      const content = accordion.querySelector('.accordion-content');
+      content.style.maxHeight = content.scrollHeight + 'px';
+      header.setAttribute('aria-expanded', 'true');
+    }
   }
 
   // Empty state when filters leave no items in any group
@@ -719,6 +768,13 @@ window.toggleItem = function(id) {
   }
 
   saveProgress();
+
+  // Con "ocultar vistas" activo, el item marcado debe desaparecer de la lista.
+  // Re-render completo (preserva accordions abiertos) en vez de updates in-place.
+  if (filters.hideWatched) {
+    render();
+    return;
+  }
 
   // Quick re-calc progress globally (only top-level items count toward totals)
   const data = currentMode === 'quick5' ? quickFiveData : currentMode === 'fast' ? fastTrackData : marathonData;
@@ -1000,11 +1056,16 @@ function closeShareModal() {
 }
 
 // ===== SHARE PROGRESS VIA URL (bitmask) =====
-// ADVERTENCIA: el formato v1 depende del ORDEN de declaración de los arrays en
-// data.js (quickFiveData, fastTrackData, marathonData; los episodios de cada
-// serie van inmediatamente después de su padre). Agregar items al FINAL es
-// seguro; insertarlos EN MEDIO rompe los links viejos. Por eso el payload
-// lleva versión (v1): si el orden cambia de forma incompatible, subir a v2.
+// ADVERTENCIA: el formato v1 depende del ORDEN GLOBAL de declaración:
+// quickFiveData → fastTrackData → marathonData (concatenados), con los
+// episodios de cada serie inmediatamente después de su padre.
+// ÚNICA operación segura: agregar items al FINAL de marathonData.
+// Agregar al final de quickFiveData o fastTrackData, insertar en medio de
+// cualquier array, o insertar episodios en una serie existente DESPLAZA
+// todos los bits posteriores y corrompe los links viejos SILENCIOSAMENTE
+// (el decode no falla: devuelve IDs incorrectos).
+// Si el orden cambia de forma incompatible, subir el payload a v2 y
+// rechazar v1 en decodeProgressFromHash.
 function getCanonicalIdOrder() {
   const order = [];
   [quickFiveData, fastTrackData, marathonData].forEach(dataset => {

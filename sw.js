@@ -21,7 +21,9 @@ const PRECACHE_URLS = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(PRECACHE_URLS))
+      // addAll es atómico: un solo 404 cancelaría todo el precache.
+      // allSettled tolera fallos individuales — mejor offline parcial que ninguno.
+      .then(cache => Promise.allSettled(PRECACHE_URLS.map(url => cache.add(url))))
       .then(() => self.skipWaiting())
   );
 });
