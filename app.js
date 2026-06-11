@@ -183,8 +183,23 @@ function init() {
     if (e.target === importModal) closeModal();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && importModal.classList.contains('active')) closeModal();
+    if (e.key !== 'Escape') return;
+    if (importModal.classList.contains('active')) closeModal();
+    const shareModal = document.getElementById('shareModal');
+    if (shareModal && shareModal.classList.contains('active')) closeShareModal();
   });
+
+  // Share preview modal
+  const shareModal = document.getElementById('shareModal');
+  const shareModalCloseBtn = document.getElementById('shareModalCloseBtn');
+  const shareDownloadBtn = document.getElementById('shareDownloadBtn');
+  if (shareModalCloseBtn) shareModalCloseBtn.addEventListener('click', closeShareModal);
+  if (shareModal) {
+    shareModal.addEventListener('click', (e) => {
+      if (e.target === shareModal) closeShareModal();
+    });
+  }
+  if (shareDownloadBtn) shareDownloadBtn.addEventListener('click', downloadShareImage);
 
   // Modal Export Button (JSON for anyone)
   modalExportBtn.addEventListener('click', exportProgressAsJSON);
@@ -949,7 +964,24 @@ function shareProgressAsImage() {
   ctx.font = '700 44px Inter, sans-serif';
   ctx.fillText('losfiebruos.lat', 540, 960);
 
-  canvas.toBlob(blob => {
+  // Preview en modal vía data: URL (permitida por la CSP actual: img-src 'self' data:)
+  shareCanvas = canvas;
+  const previewImg = document.getElementById('sharePreviewImg');
+  const shareModal = document.getElementById('shareModal');
+  if (previewImg && shareModal) {
+    previewImg.src = canvas.toDataURL('image/png');
+    shareModal.classList.add('active');
+  } else {
+    downloadShareImage(); // fallback si el modal no existe
+  }
+}
+
+// Canvas de la última imagen generada (para descargar desde el modal de preview)
+let shareCanvas = null;
+
+function downloadShareImage() {
+  if (!shareCanvas) return;
+  shareCanvas.toBlob(blob => {
     if (!blob) return;
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -960,6 +992,11 @@ function shareProgressAsImage() {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   }, 'image/png');
+}
+
+function closeShareModal() {
+  const shareModal = document.getElementById('shareModal');
+  if (shareModal) shareModal.classList.remove('active');
 }
 
 // ===== SHARE PROGRESS VIA URL (bitmask) =====

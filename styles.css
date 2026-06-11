@@ -1581,6 +1581,22 @@ button:focus-visible,
   box-shadow: 0 0 20px rgba(0,255,115,0.15);
 }
 
+/* Share preview */
+.share-preview {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  margin: 1.25rem auto 0;
+  border: 1px solid rgba(0, 210, 255, 0.25);
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.1);
+}
+
+.share-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
 /* Drop zone */
 .drop-zone {
   border: 1px dashed rgba(0, 255, 115, 0.25);
