@@ -259,11 +259,495 @@ class StarfieldScene {
   }
 }
 
+
+// ============================================================
+// 2. TESSERACT HUD — Three.js enhancement layer
+//    Renders behind the CSS cube with orbital particles,
+//    energy beams, 3D rings, and progress reactivity.
+// ============================================================
+class TesseractHUD {
+  constructor() {
+    this.container = document.querySelector('.tesseract-hud');
+    if (!this.container) return;
+
+    // Size to fill the HUD area
+    const size = 180;
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+    this.camera.position.set(0, 0, 4.5);
+
+    this.renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true,
+    });
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.renderer.setSize(size, size);
+    this.renderer.setClearColor(0x000000, 0);
+
+    // Style the canvas to sit behind the CSS cube
+    const cvs = this.renderer.domElement;
+    cvs.style.position = 'absolute';
+    cvs.style.top = '50%';
+    cvs.style.left = '50%';
+    cvs.style.transform = 'translate(-50%, -50%)';
+    cvs.style.zIndex = '0';
+    cvs.style.pointerEvents = 'none';
+    this.container.style.position = 'relative';
+    this.container.insertBefore(cvs, this.container.firstChild);
+
+    this.progress = 0; // 0–1
+    this.group = new THREE.Group();
+    this.scene.add(this.group);
+
+    this.buildScene();
+
+    this.clock = new THREE.Clock();
+
+    // Watch the progress percentage for changes
+    this.observeProgress();
+
+    this.animate();
+  }
+
+  buildScene() {
+    // --- ORBITAL PARTICLES (3 rings at different tilts) ---
+    this.orbitals = [];
+    const orbitConfigs = [
+      { count: 60, radius: 1.6, tiltX: 0, tiltZ: 0, color: 0x00d2ff, speed: 0.2 },
+      { count: 45, radius: 1.9, tiltX: Math.PI / 3, tiltZ: Math.PI / 6, color: 0xfbbf24, speed: -0.15 },
+      { count: 35, radius: 1.4, tiltX: -Math.PI / 4, tiltZ: Math.PI / 3, color: 0xa78bfa, speed: 0.25 },
+    ];
+
+    orbitConfigs.forEach(cfg => {
+      const orbital = this.createOrbitalRing(cfg);
+      this.orbitals.push(orbital);
+      this.group.add(orbital.points);
+    });
+
+    // --- ENERGY BEAMS (lines radiating from center) ---
+    this.beams = [];
+    const beamCount = 8;
+    for (let i = 0; i < beamCount; i++) {
+      const angle = (i / beamCount) * Math.PI * 2;
+      const phi = Math.PI / 2 + (Math.random() - 0.5) * 0.8;
+
+      const dir = new THREE.Vector3(
+        Math.sin(phi) * Math.cos(angle),
+        Math.sin(phi) * Math.sin(angle),
+        Math.cos(phi)
+      );
+
+      const points = [
+        new THREE.Vector3(0, 0, 0),
+        dir.clone().multiplyScalar(1.8),
+      ];
+
+      const geo = new THREE.BufferGeometry().setFromPoints(points);
+      const mat = new THREE.LineBasicMaterial({
+        color: 0x00d2ff,
+        transparent: true,
+        opacity: 0,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      const line = new THREE.Line(geo, mat);
+      line.userData = { phase: Math.random() * Math.PI * 2, dir };
+      this.beams.push(line);
+      this.group.add(line);
+    }
+
+    // --- 3D ENERGY RINGS (torus wireframes) ---
+    this.rings = [];
+    const ringConfigs = [
+      { radius: 1.3, tube: 0.015, segments: 6, color: 0x00d2ff, rotAxis: 'x', speed: 0.35 },
+      { radius: 1.55, tube: 0.01, segments: 8, color: 0xfbbf24, rotAxis: 'y', speed: -0.25 },
+      { radius: 1.1, tube: 0.012, segments: 5, color: 0x7b2fff, rotAxis: 'z', speed: 0.45 },
+    ];
+
+    ringConfigs.forEach(cfg => {
+      const geo = new THREE.TorusGeometry(cfg.radius, cfg.tube, 4, cfg.segments);
+      const mat = new THREE.MeshBasicMaterial({
+        color: cfg.color,
+        transparent: true,
+        opacity: 0.25,
+        wireframe: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.userData = { rotAxis: cfg.rotAxis, speed: cfg.speed };
+      this.rings.push(mesh);
+      this.group.add(mesh);
+    });
+
+    // --- GLOWING CORE (icosahedron at center) ---
+    const coreGeo = new THREE.IcosahedronGeometry(0.18, 2);
+    const coreMat = new THREE.MeshBasicMaterial({
+      color: 0x00d2ff,
+      transparent: true,
+      opacity: 0.3,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    this.core3d = new THREE.Mesh(coreGeo, coreMat);
+    this.group.add(this.core3d);
+
+    // Outer glow halo
+    const haloGeo = new THREE.IcosahedronGeometry(0.35, 2);
+    const haloMat = new THREE.MeshBasicMaterial({
+      color: 0x00d2ff,
+      transparent: true,
+      opacity: 0.08,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    this.halo = new THREE.Mesh(haloGeo, haloMat);
+    this.group.add(this.halo);
+
+    // --- SPARK PARTICLES (random energy sparks around) ---
+    this.sparks = this.createSparks(120);
+    this.group.add(this.sparks);
+
+    // --- INFINITY STONES (5 gems orbiting the tesseract) ---
+    this.infinityStones = this.createInfinityStones();
+    this.infinityStones.forEach(stone => this.group.add(stone.group));
+  }
+
+  createOrbitalRing({ count, radius, tiltX, tiltZ, color, speed }) {
+    const positions = new Float32Array(count * 3);
+    const phases = new Float32Array(count);
+
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * Math.PI * 2;
+      const r = radius + (Math.random() - 0.5) * 0.15;
+      positions[i * 3]     = Math.cos(angle) * r;
+      positions[i * 3 + 1] = Math.sin(angle) * r;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 0.1;
+      phases[i] = angle;
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('aPhase', new THREE.BufferAttribute(phases, 1));
+
+    const mat = new THREE.ShaderMaterial({
+      uniforms: {
+        uTime: { value: 0 },
+        uColor: { value: new THREE.Color(color) },
+        uIntensity: { value: 0.4 },
+      },
+      vertexShader: `
+        attribute float aPhase;
+        uniform float uTime;
+        uniform float uIntensity;
+        varying float vAlpha;
+        void main() {
+          vec3 p = position;
+          float angle = aPhase + uTime;
+          float r = length(position.xy);
+          p.x = cos(angle) * r;
+          p.y = sin(angle) * r;
+          vAlpha = (0.3 + 0.7 * sin(uTime * 2.0 + aPhase * 3.0)) * uIntensity;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+          gl_PointSize = (1.5 + uIntensity * 2.5);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 uColor;
+        varying float vAlpha;
+        void main() {
+          vec2 c = gl_PointCoord - 0.5;
+          float d = length(c);
+          if (d > 0.5) discard;
+          float a = (1.0 - smoothstep(0.0, 0.5, d)) * vAlpha;
+          gl_FragColor = vec4(uColor, a);
+        }
+      `,
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    });
+
+    const points = new THREE.Points(geo, mat);
+    points.rotation.x = tiltX;
+    points.rotation.z = tiltZ;
+
+    return { points, mat, speed, tiltX, tiltZ };
+  }
+
+  createSparks(count) {
+    const positions = new Float32Array(count * 3);
+    const velocities = new Float32Array(count * 3);
+    const lifetimes = new Float32Array(count);
+
+    for (let i = 0; i < count; i++) {
+      this.resetSpark(positions, velocities, lifetimes, i);
+    }
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const mat = new THREE.PointsMaterial({
+      size: 0.03,
+      color: 0x00d2ff,
+      transparent: true,
+      opacity: 0.6,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+
+    const pts = new THREE.Points(geo, mat);
+    pts.userData = { velocities, lifetimes, count };
+    return pts;
+  }
+
+  resetSpark(positions, velocities, lifetimes, i) {
+    // Start near center
+    positions[i * 3]     = (Math.random() - 0.5) * 0.3;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 0.3;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 0.3;
+
+    // Random outward velocity
+    const speed = 0.01 + Math.random() * 0.02;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    velocities[i * 3]     = Math.sin(phi) * Math.cos(theta) * speed;
+    velocities[i * 3 + 1] = Math.sin(phi) * Math.sin(theta) * speed;
+    velocities[i * 3 + 2] = Math.cos(phi) * speed;
+
+    lifetimes[i] = 0.5 + Math.random() * 1.0;
+  }
+
+  // --- INFINITY STONES ---
+  // 5 gems orbiting the tesseract: Soul, Reality, Power, Time, Mind
+  // (Space Stone = the tesseract itself)
+  createInfinityStones() {
+    const stoneConfigs = [
+      { name: 'Soul',    color: 0xff9500, orbitRadius: 1.75, orbitSpeed: 0.18,  tiltX: 0.3,  tiltZ: 0,     phase: 0 },
+      { name: 'Reality', color: 0xe62429, orbitRadius: 1.55, orbitSpeed: -0.14, tiltX: -0.5, tiltZ: 0.4,   phase: Math.PI * 0.4 },
+      { name: 'Power',   color: 0x7b2fff, orbitRadius: 1.9,  orbitSpeed: 0.12,  tiltX: 0.8,  tiltZ: -0.3,  phase: Math.PI * 0.8 },
+      { name: 'Time',    color: 0x00ff73, orbitRadius: 1.65, orbitSpeed: -0.16, tiltX: -0.2, tiltZ: 0.7,   phase: Math.PI * 1.2 },
+      { name: 'Mind',    color: 0xf0c040, orbitRadius: 1.45, orbitSpeed: 0.2,   tiltX: 0.6,  tiltZ: -0.5,  phase: Math.PI * 1.6 },
+    ];
+
+    return stoneConfigs.map(cfg => {
+      const stoneGroup = new THREE.Group();
+
+      // Gem body — octahedron (diamond/gem shape)
+      const gemGeo = new THREE.OctahedronGeometry(0.09, 0);
+      const gemMat = new THREE.MeshBasicMaterial({
+        color: cfg.color,
+        transparent: true,
+        opacity: 0.9,
+      });
+      const gem = new THREE.Mesh(gemGeo, gemMat);
+      stoneGroup.add(gem);
+
+      // Inner glow (slightly larger, additive)
+      const glowGeo = new THREE.OctahedronGeometry(0.14, 1);
+      const glowMat = new THREE.MeshBasicMaterial({
+        color: cfg.color,
+        transparent: true,
+        opacity: 0.3,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      const glow = new THREE.Mesh(glowGeo, glowMat);
+      stoneGroup.add(glow);
+
+      // Outer halo (soft sphere glow)
+      const haloGeo = new THREE.SphereGeometry(0.22, 8, 8);
+      const haloMat = new THREE.MeshBasicMaterial({
+        color: cfg.color,
+        transparent: true,
+        opacity: 0.12,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      const halo = new THREE.Mesh(haloGeo, haloMat);
+      stoneGroup.add(halo);
+
+      // Tiny trail particles behind the stone
+      const trailCount = 8;
+      const trailPositions = new Float32Array(trailCount * 3);
+      const trailGeo = new THREE.BufferGeometry();
+      trailGeo.setAttribute('position', new THREE.BufferAttribute(trailPositions, 3));
+      const trailMat = new THREE.PointsMaterial({
+        size: 0.025,
+        color: cfg.color,
+        transparent: true,
+        opacity: 0.5,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      const trail = new THREE.Points(trailGeo, trailMat);
+      stoneGroup.add(trail);
+
+      return {
+        group: stoneGroup,
+        gem,
+        glow,
+        halo,
+        haloMat,
+        trail,
+        trailPositions,
+        trailHistory: [],
+        ...cfg,
+      };
+    });
+  }
+
+  observeProgress() {
+    const percentEl = document.getElementById('progressPercent');
+    if (!percentEl) return;
+
+    // Read initial value
+    this.progress = Math.min(1, (parseInt(percentEl.textContent) || 0) / 100);
+
+    // Watch for changes
+    const observer = new MutationObserver(() => {
+      this.progress = Math.min(1, (parseInt(percentEl.textContent) || 0) / 100);
+    });
+    observer.observe(percentEl, { childList: true, characterData: true, subtree: true });
+  }
+
+  animate = () => {
+    requestAnimationFrame(this.animate);
+    const t = this.clock.getElapsedTime();
+    const p = this.progress;
+
+    // Intensity scales with progress
+    const intensity = 0.2 + p * 0.8;
+
+    // --- ORBITAL PARTICLES (slowed down) ---
+    this.orbitals.forEach(orb => {
+      orb.mat.uniforms.uTime.value = t * orb.speed;
+      orb.mat.uniforms.uIntensity.value = intensity;
+    });
+
+    // --- ENERGY BEAMS: appear gradually, pulse (slower) ---
+    this.beams.forEach((beam, i) => {
+      const beamProgress = Math.max(0, (p - 0.15) / 0.85);
+      const pulse = 0.3 + 0.7 * Math.abs(Math.sin(t * 1.2 + beam.userData.phase));
+      beam.material.opacity = beamProgress * pulse * 0.35;
+
+      const len = 0.5 + beamProgress * 1.3;
+      const posArr = beam.geometry.attributes.position.array;
+      const d = beam.userData.dir;
+      posArr[3] = d.x * len;
+      posArr[4] = d.y * len;
+      posArr[5] = d.z * len;
+      beam.geometry.attributes.position.needsUpdate = true;
+    });
+
+    // --- 3D RINGS: rotate slower, intensity based on progress ---
+    this.rings.forEach(ring => {
+      const { rotAxis, speed } = ring.userData;
+      const s = speed * (0.4 + p * 0.8);
+      if (rotAxis === 'x') ring.rotation.x = t * s;
+      else if (rotAxis === 'y') ring.rotation.y = t * s;
+      else ring.rotation.z = t * s;
+
+      ring.rotation.x += Math.sin(t * 0.3) * 0.06;
+      ring.rotation.y += Math.cos(t * 0.25) * 0.05;
+
+      ring.material.opacity = 0.1 + p * 0.35;
+    });
+
+    // --- CORE: gentle pulse, scale with progress ---
+    const corePulse = 1 + Math.sin(t * 1.8) * 0.15 * intensity;
+    this.core3d.scale.setScalar(corePulse * (0.6 + p * 0.6));
+    this.core3d.material.opacity = 0.15 + p * 0.5;
+    this.core3d.rotation.x = t * 0.5;
+    this.core3d.rotation.y = t * 0.35;
+
+    // Halo breathes gently
+    const haloPulse = 1 + Math.sin(t * 0.8) * 0.2;
+    this.halo.scale.setScalar(haloPulse * (0.8 + p * 0.5));
+    this.halo.material.opacity = 0.05 + p * 0.15;
+    this.halo.rotation.y = -t * 0.12;
+
+    // --- INFINITY STONES: orbit around tesseract ---
+    this.infinityStones.forEach(stone => {
+      const angle = stone.phase + t * stone.orbitSpeed;
+      const r = stone.orbitRadius;
+
+      // Orbital position with tilt
+      const x = Math.cos(angle) * r;
+      const y = Math.sin(angle) * r * Math.cos(stone.tiltX);
+      const z = Math.sin(angle) * r * Math.sin(stone.tiltX) + Math.cos(angle) * Math.sin(stone.tiltZ) * 0.3;
+
+      stone.group.position.set(x, y, z);
+
+      // Gem self-rotation (gentle tumble)
+      stone.gem.rotation.x = t * 0.6 + stone.phase;
+      stone.gem.rotation.y = t * 0.4;
+
+      // Glow pulse
+      const glowPulse = 0.2 + 0.15 * Math.sin(t * 1.5 + stone.phase * 2);
+      stone.glow.material.opacity = glowPulse;
+      stone.glow.rotation.x = -t * 0.3;
+      stone.glow.rotation.z = t * 0.2;
+
+      // Halo breathe
+      const haloPulse = 1 + Math.sin(t * 1.2 + stone.phase) * 0.25;
+      stone.halo.scale.setScalar(haloPulse);
+      stone.haloMat.opacity = 0.08 + 0.06 * Math.sin(t * 1.2 + stone.phase);
+
+      // Trail particles — record position history
+      stone.trailHistory.push({ x, y, z });
+      if (stone.trailHistory.length > 8) stone.trailHistory.shift();
+
+      for (let i = 0; i < stone.trailHistory.length; i++) {
+        const h = stone.trailHistory[i];
+        stone.trailPositions[i * 3]     = h.x;
+        stone.trailPositions[i * 3 + 1] = h.y;
+        stone.trailPositions[i * 3 + 2] = h.z;
+      }
+      stone.trail.geometry.attributes.position.needsUpdate = true;
+    });
+
+    // --- SPARKS: animate outward from center ---
+    const { velocities, lifetimes, count } = this.sparks.userData;
+    const posArr = this.sparks.geometry.attributes.position.array;
+    const dt = 0.016;
+
+    for (let i = 0; i < count; i++) {
+      lifetimes[i] -= dt;
+
+      if (lifetimes[i] <= 0) {
+        if (Math.random() < (0.1 + p * 0.9)) {
+          this.resetSpark(posArr, velocities, lifetimes, i);
+        }
+        continue;
+      }
+
+      posArr[i * 3]     += velocities[i * 3] * intensity;
+      posArr[i * 3 + 1] += velocities[i * 3 + 1] * intensity;
+      posArr[i * 3 + 2] += velocities[i * 3 + 2] * intensity;
+    }
+    this.sparks.geometry.attributes.position.needsUpdate = true;
+    this.sparks.material.opacity = 0.2 + p * 0.6;
+
+    // Very gentle overall group rotation
+    this.group.rotation.y = t * 0.08;
+    this.group.rotation.x = Math.sin(t * 0.15) * 0.06;
+
+    this.renderer.render(this.scene, this.camera);
+  }
+}
+
+
 // ============================================================
 // BOOT
 // ============================================================
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => new StarfieldScene());
+  document.addEventListener('DOMContentLoaded', () => {
+    new StarfieldScene();
+    new TesseractHUD();
+  });
 } else {
   new StarfieldScene();
+  new TesseractHUD();
 }
