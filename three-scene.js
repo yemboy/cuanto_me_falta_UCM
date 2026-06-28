@@ -360,30 +360,6 @@ class TesseractHUD {
       this.group.add(line);
     }
 
-    // --- 3D ENERGY RINGS (torus wireframes) ---
-    this.rings = [];
-    const ringConfigs = [
-      { radius: 1.3, tube: 0.015, segments: 6, color: 0x00d2ff, rotAxis: 'x', speed: 0.18 },
-      { radius: 1.55, tube: 0.01, segments: 8, color: 0xfbbf24, rotAxis: 'y', speed: -0.13 },
-      { radius: 1.1, tube: 0.012, segments: 5, color: 0x7b2fff, rotAxis: 'z', speed: 0.22 },
-    ];
-
-    ringConfigs.forEach(cfg => {
-      const geo = new THREE.TorusGeometry(cfg.radius, cfg.tube, 4, cfg.segments);
-      const mat = new THREE.MeshBasicMaterial({
-        color: cfg.color,
-        transparent: true,
-        opacity: 0.25,
-        wireframe: true,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false,
-      });
-      const mesh = new THREE.Mesh(geo, mat);
-      mesh.userData = { rotAxis: cfg.rotAxis, speed: cfg.speed };
-      this.rings.push(mesh);
-      this.group.add(mesh);
-    });
-
     // --- GLOWING CORE (icosahedron at center) ---
     const coreGeo = new THREE.IcosahedronGeometry(0.18, 2);
     const coreMat = new THREE.MeshBasicMaterial({
@@ -414,7 +390,10 @@ class TesseractHUD {
 
     // --- INFINITY STONES (5 gems orbiting the tesseract) ---
     this.infinityStones = this.createInfinityStones();
-    this.infinityStones.forEach(stone => this.group.add(stone.group));
+    this.infinityStones.forEach(stone => {
+      this.group.add(stone.group);
+      this.group.add(stone.trail);   // comet trail in absolute orbit coords
+    });
   }
 
   createOrbitalRing({ count, radius, tiltX, tiltZ, color, speed }) {
@@ -571,21 +550,23 @@ class TesseractHUD {
       const halo = new THREE.Mesh(haloGeo, haloMat);
       stoneGroup.add(halo);
 
-      // Tiny trail particles behind the stone
-      const trailCount = 8;
+      // Comet-style trail behind the stone (added to the main group, not the
+      // moving stoneGroup, so the absolute orbit positions render correctly).
+      // Per-vertex color fades head→tail; additive blending makes black invisible.
+      const trailCount = 32;
       const trailPositions = new Float32Array(trailCount * 3);
+      const trailColors = new Float32Array(trailCount * 3);
       const trailGeo = new THREE.BufferGeometry();
       trailGeo.setAttribute('position', new THREE.BufferAttribute(trailPositions, 3));
+      trailGeo.setAttribute('color', new THREE.BufferAttribute(trailColors, 3));
       const trailMat = new THREE.PointsMaterial({
-        size: 0.025,
-        color: cfg.color,
+        size: 0.1,
+        vertexColors: true,
         transparent: true,
-        opacity: 0.5,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       });
       const trail = new THREE.Points(trailGeo, trailMat);
-      stoneGroup.add(trail);
 
       return {
         group: stoneGroup,
@@ -594,8 +575,10 @@ class TesseractHUD {
         halo,
         haloMat,
         trail,
+        trailCount,
         trailPositions,
-        trailHistory: [],
+        trailColors,
+        trailColor: new THREE.Color(cfg.color),
         ...cfg,
       };
     });
@@ -644,23 +627,6 @@ class TesseractHUD {
       beam.geometry.attributes.position.needsUpdate = true;
     });
 
-    // --- 3D RINGS: rotate slower, intensity based on progress ---
-    this.rings.forEach(ring => {
-      const { rotAxis, speed } = ring.userData;
-      const s = speed * (0.8 + p * 0.4);
-      
-      const baseX = rotAxis === 'x' ? t * s : 0;
-      const baseY = rotAxis === 'y' ? t * s : 0;
-      const baseZ = rotAxis === 'z' ? t * s : 0;
-
-      // Absolute wobble (do not use += in a rAF loop for wobble)
-      ring.rotation.x = baseX + Math.sin(t * 0.2) * 0.1;
-      ring.rotation.y = baseY + Math.cos(t * 0.15) * 0.12;
-      ring.rotation.z = baseZ;
-
-      ring.material.opacity = 0.1 + p * 0.35;
-    });
-
     // --- CORE: gentle pulse, scale with progress ---
     const corePulse = 1 + Math.sin(t * 1.8) * 0.15 * intensity;
     this.core3d.scale.setScalar(corePulse * (0.6 + p * 0.6));
@@ -701,17 +667,27 @@ class TesseractHUD {
       stone.halo.scale.setScalar(haloPulse);
       stone.haloMat.opacity = 0.08 + 0.06 * Math.sin(t * 1.2 + stone.phase);
 
-      // Trail particles — record position history
-      stone.trailHistory.push({ x, y, z });
-      if (stone.trailHistory.length > 8) stone.trailHistory.shift();
+      // Comet trail — analytic points trailing the gem along its own orbit
+      // (evenly spaced behind the current angle; fades head→tail).
+      const N = stone.trailCount;
+      const c = stone.trailColor;
+      const pos = stone.trailPositions;
+      const col = stone.trailColors;
+      const trailBright = 0.5 + p * 0.5; // visible even at 0%, brighter with progress
+      const dA = 0.018 * Math.sign(stone.orbitSpeed || 1); // spacing, trailing behind motion
 
-      for (let i = 0; i < stone.trailHistory.length; i++) {
-        const h = stone.trailHistory[i];
-        stone.trailPositions[i * 3]     = h.x;
-        stone.trailPositions[i * 3 + 1] = h.y;
-        stone.trailPositions[i * 3 + 2] = h.z;
+      for (let k = 0; k < N; k++) {
+        const a = angle - k * dA;
+        pos[k * 3]     = Math.cos(a) * r;
+        pos[k * 3 + 1] = Math.sin(a) * r * Math.cos(stone.tiltX);
+        pos[k * 3 + 2] = Math.sin(a) * r * Math.sin(stone.tiltX) + Math.cos(a) * Math.sin(stone.tiltZ) * 0.3;
+        const b = Math.pow(1 - k / (N - 1), 0.7) * trailBright; // head bright → tail faint
+        col[k * 3]     = c.r * b;
+        col[k * 3 + 1] = c.g * b;
+        col[k * 3 + 2] = c.b * b;
       }
       stone.trail.geometry.attributes.position.needsUpdate = true;
+      stone.trail.geometry.attributes.color.needsUpdate = true;
     });
 
     // --- SPARKS: animate outward from center ---
