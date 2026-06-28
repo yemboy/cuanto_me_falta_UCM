@@ -1959,6 +1959,11 @@ button:focus-visible,
   .header-left { align-items: center; }
   .header-left h1 { font-size: 2.4rem; }
 
+  /* Reserve room for the 3D HUD canvas (180px), which overflows .progress-wrapper.
+     On desktop the side columns absorb the overflow; stacked on mobile it would
+     bleed onto the title above and the data readouts below. */
+  .tesseract-hud { margin: 45px 0; }
+
   .header-right {
     flex-direction: row;
     flex-wrap: wrap;
