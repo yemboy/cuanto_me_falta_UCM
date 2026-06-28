@@ -337,6 +337,13 @@ function init() {
         hideWatchedBtn.classList.toggle('active', filters.hideWatched);
         saveFilters();
         render();
+        return;
+      }
+      if (e.target.closest('#toggleAllBtn')) {
+        // If any accordion is collapsed, expand all; otherwise collapse all.
+        const anyClosed = [...contentArea.querySelectorAll('.accordion')]
+          .some(a => !a.classList.contains('open'));
+        setAllAccordionsOpen(anyClosed);
       }
     });
   }
@@ -617,6 +624,38 @@ function render() {
     empty.textContent = 'Sin resultados con los filtros actuales';
     contentArea.appendChild(empty);
   }
+
+  syncToggleAllBtn();
+}
+
+// Expand or collapse every accordion at once (mirrors the per-header toggle).
+function setAllAccordionsOpen(open) {
+  contentArea.querySelectorAll('.accordion').forEach(acc => {
+    const content = acc.querySelector('.accordion-content');
+    const header = acc.querySelector('.accordion-header');
+    if (open) {
+      acc.classList.add('open');
+      if (content) content.style.maxHeight = content.scrollHeight + 'px';
+      if (header) header.setAttribute('aria-expanded', 'true');
+    } else {
+      acc.classList.remove('open');
+      if (content) content.style.maxHeight = null;
+      if (header) header.setAttribute('aria-expanded', 'false');
+    }
+  });
+  syncToggleAllBtn();
+}
+
+// Keep the "Expandir/Colapsar todo" button in sync with the accordion states.
+function syncToggleAllBtn() {
+  const btn = document.getElementById('toggleAllBtn');
+  if (!btn) return;
+  const accordions = contentArea.querySelectorAll('.accordion');
+  const allOpen = accordions.length > 0 &&
+    [...accordions].every(a => a.classList.contains('open'));
+  btn.classList.toggle('active', allOpen);
+  btn.textContent = allOpen ? 'Colapsar todo' : 'Expandir todo';
+  btn.disabled = accordions.length === 0;
 }
 
 // Create Movie Item HTML
