@@ -66,7 +66,7 @@
   }
 
   function mountWidget(upcoming) {
-    const container = document.getElementById('countdownWidget');
+    const container = document.getElementById('countdownContent');
     if (!container) return;
 
     if (upcoming.length === 0) {

@@ -743,14 +743,174 @@ class TesseractHUD {
 
 
 // ============================================================
+// 3. TVA TIMELINE HUD — Three.js enhancement layer
+//    Renders behind the countdown banner.
+// ============================================================
+class TVATimelineScene {
+  constructor() {
+    this.container = document.getElementById('countdownCanvasContainer');
+    if (!this.container) return;
+
+    this.scene = new THREE.Scene();
+    
+    // Orthographic camera for a flat 2D-ish look overlay
+    const w = this.container.clientWidth;
+    const h = this.container.clientHeight;
+    this.camera = new THREE.OrthographicCamera(w / -2, w / 2, h / 2, h / -2, 1, 100);
+    this.camera.position.z = 10;
+
+    this.renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true,
+    });
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.renderer.setSize(w, h);
+    this.renderer.setClearColor(0x000000, 0);
+
+    this.container.appendChild(this.renderer.domElement);
+
+    this.group = new THREE.Group();
+    this.scene.add(this.group);
+
+    this.buildLoom(w, h);
+
+    this.clock = new THREE.Clock();
+    
+    window.addEventListener('resize', this.onResize);
+    setTimeout(() => this.onResize(), 100);
+    this.animate();
+  }
+
+  buildLoom(w, h) {
+    this.threads = [];
+    const threadCount = 15;
+    const length = w * 1.5;
+
+    // Palette: Sacred Timeline gold & slight blue variants
+    const colors = [0xffd700, 0xffeb3b, 0xffc107, 0x81d4fa];
+
+    for (let i = 0; i < threadCount; i++) {
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      // Create a sine wave curve
+      const points = [];
+      const segments = 50;
+      
+      const amplitude = (Math.random() * h * 0.4) + 5;
+      const frequency = (Math.random() * 0.005) + 0.002;
+      const phase = Math.random() * Math.PI * 2;
+      const yOffset = (Math.random() - 0.5) * (h * 0.2);
+
+      for (let j = 0; j <= segments; j++) {
+        const x = (j / segments) * length - (length / 2);
+        points.push(new THREE.Vector3(x, 0, 0)); // y is animated
+      }
+
+      const geo = new THREE.BufferGeometry().setFromPoints(points);
+      const mat = new THREE.LineBasicMaterial({
+        color: color,
+        transparent: true,
+        opacity: (Math.random() * 0.4) + 0.1,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+
+      const line = new THREE.Line(geo, mat);
+      line.userData = {
+        amplitude, frequency, phase, yOffset, 
+        speed: (Math.random() * 2) + 0.5,
+        originalPoints: points.map(p => p.x)
+      };
+
+      this.threads.push(line);
+      this.group.add(line);
+    }
+    
+    // Add some glowing "nexus event" particles
+    const particleCount = 40;
+    const partGeo = new THREE.BufferGeometry();
+    const partPos = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+      partPos[i * 3]     = (Math.random() - 0.5) * w;
+      partPos[i * 3 + 1] = (Math.random() - 0.5) * h * 0.5;
+      partPos[i * 3 + 2] = 0;
+    }
+    partGeo.setAttribute('position', new THREE.BufferAttribute(partPos, 3));
+    
+    const partMat = new THREE.PointsMaterial({
+      size: 3,
+      color: 0xffd700,
+      transparent: true,
+      opacity: 0.6,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+    
+    this.particles = new THREE.Points(partGeo, partMat);
+    this.particles.userData = { width: w, speeds: Array.from({length: particleCount}, () => (Math.random() * 30) + 10) };
+    this.group.add(this.particles);
+  }
+
+  onResize = () => {
+    if (!this.container) return;
+    const w = this.container.clientWidth;
+    const h = this.container.clientHeight;
+    
+    this.renderer.setSize(w, h);
+    this.camera.left = w / -2;
+    this.camera.right = w / 2;
+    this.camera.top = h / 2;
+    this.camera.bottom = h / -2;
+    this.camera.updateProjectionMatrix();
+  };
+
+  animate = () => {
+    requestAnimationFrame(this.animate);
+    const t = this.clock.getElapsedTime();
+
+    // Animate threads (sine waves flowing)
+    this.threads.forEach(thread => {
+      const { amplitude, frequency, phase, yOffset, speed, originalPoints } = thread.userData;
+      const positions = thread.geometry.attributes.position.array;
+      
+      for (let i = 0; i < originalPoints.length; i++) {
+        const x = originalPoints[i];
+        // Wave travels to the right
+        const y = Math.sin((x * frequency) - (t * speed) + phase) * amplitude + yOffset;
+        positions[i * 3 + 1] = y;
+      }
+      thread.geometry.attributes.position.needsUpdate = true;
+    });
+
+    // Animate particles (flow right)
+    const pPos = this.particles.geometry.attributes.position.array;
+    const speeds = this.particles.userData.speeds;
+    const w = this.particles.userData.width;
+    
+    for (let i = 0; i < speeds.length; i++) {
+      pPos[i * 3] += speeds[i] * 0.016; // rough dt
+      if (pPos[i * 3] > w / 2) {
+        pPos[i * 3] = -w / 2;
+        pPos[i * 3 + 1] = (Math.random() - 0.5) * this.container.clientHeight * 0.5;
+      }
+    }
+    this.particles.geometry.attributes.position.needsUpdate = true;
+
+    this.renderer.render(this.scene, this.camera);
+  };
+}
+
+
+// ============================================================
 // BOOT
 // ============================================================
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     new StarfieldScene();
     new TesseractHUD();
+    new TVATimelineScene();
   });
 } else {
   new StarfieldScene();
   new TesseractHUD();
+  new TVATimelineScene();
 }
