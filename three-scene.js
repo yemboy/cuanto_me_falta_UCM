@@ -785,6 +785,18 @@ class TVATimelineScene {
   }
 
   buildLoom(w, h) {
+    // Clear any previous loom so this can be re-run on resize (the banner grows
+    // from its "CARGANDO..." size to the mounted timer size).
+    if (this.threads) {
+      this.threads.forEach(t => { this.group.remove(t); t.geometry.dispose(); t.material.dispose(); });
+    }
+    if (this.particles) {
+      this.group.remove(this.particles);
+      this.particles.geometry.dispose();
+      this.particles.material.dispose();
+    }
+    this.builtH = h;
+
     this.threads = [];
     const threadCount = 15;
     const length = w * 1.5;
@@ -857,13 +869,20 @@ class TVATimelineScene {
     if (!this.container) return;
     const w = this.container.clientWidth;
     const h = this.container.clientHeight;
-    
+    if (w === 0 || h === 0) return;
+
     this.renderer.setSize(w, h);
     this.camera.left = w / -2;
     this.camera.right = w / 2;
     this.camera.top = h / 2;
     this.camera.bottom = h / -2;
     this.camera.updateProjectionMatrix();
+
+    // Rebuild the loom when the banner height changes noticeably so the
+    // threads/particles fill the actual area instead of a stale size.
+    if (Math.abs(h - (this.builtH || 0)) > 4) {
+      this.buildLoom(w, h);
+    }
   };
 
   animate = () => {

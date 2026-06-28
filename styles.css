@@ -1742,6 +1742,30 @@ button:focus-visible,
   clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 100%);
 }
 
+/* Countdown banner: TVA timeline canvas sits behind the dynamic timer content.
+   These rules replace inline styles that the page CSP (style-src 'self') blocks —
+   without them #countdownCanvasContainer collapsed to 0x0 and nothing rendered. */
+#countdownWidget {
+  background: rgba(4, 9, 20, 0.2);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+#countdownCanvasContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+#countdownContent {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
 .countdown-banner::before {
   content: '';
   position: absolute;
@@ -1922,6 +1946,12 @@ button:focus-visible,
     align-items: flex-start;
     clip-path: none;
     padding: 1rem 1.25rem;
+    gap: 1rem;
+  }
+
+  #countdownContent {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
   }
 
