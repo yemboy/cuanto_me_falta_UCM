@@ -360,9 +360,9 @@ class TesseractHUD {
     // --- 3D ENERGY RINGS (torus wireframes) ---
     this.rings = [];
     const ringConfigs = [
-      { radius: 1.3, tube: 0.015, segments: 6, color: 0x00d2ff, rotAxis: 'x', speed: 0.35 },
-      { radius: 1.55, tube: 0.01, segments: 8, color: 0xfbbf24, rotAxis: 'y', speed: -0.25 },
-      { radius: 1.1, tube: 0.012, segments: 5, color: 0x7b2fff, rotAxis: 'z', speed: 0.45 },
+      { radius: 1.3, tube: 0.015, segments: 6, color: 0x00d2ff, rotAxis: 'x', speed: 0.0125 },
+      { radius: 1.55, tube: 0.01, segments: 8, color: 0xfbbf24, rotAxis: 'y', speed: -0.0075 },
+      { radius: 1.1, tube: 0.012, segments: 5, color: 0x7b2fff, rotAxis: 'z', speed: 0.015 },
     ];
 
     ringConfigs.forEach(cfg => {
@@ -644,13 +644,16 @@ class TesseractHUD {
     // --- 3D RINGS: rotate slower, intensity based on progress ---
     this.rings.forEach(ring => {
       const { rotAxis, speed } = ring.userData;
-      const s = speed * (0.4 + p * 0.8);
-      if (rotAxis === 'x') ring.rotation.x = t * s;
-      else if (rotAxis === 'y') ring.rotation.y = t * s;
-      else ring.rotation.z = t * s;
+      const s = speed * (0.6 + p * 0.4);
+      
+      const baseX = rotAxis === 'x' ? t * s : 0;
+      const baseY = rotAxis === 'y' ? t * s : 0;
+      const baseZ = rotAxis === 'z' ? t * s : 0;
 
-      ring.rotation.x += Math.sin(t * 0.3) * 0.06;
-      ring.rotation.y += Math.cos(t * 0.25) * 0.05;
+      // Absolute wobble (do not use += in a rAF loop for wobble)
+      ring.rotation.x = baseX + Math.sin(t * 0.2) * 0.1;
+      ring.rotation.y = baseY + Math.cos(t * 0.15) * 0.12;
+      ring.rotation.z = baseZ;
 
       ring.material.opacity = 0.1 + p * 0.35;
     });
