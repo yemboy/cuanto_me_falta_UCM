@@ -358,13 +358,15 @@ body.owner-mode .tw-current { color: var(--hud-green); text-shadow: 0 0 10px var
 }
 
 .hud-ticker {
+  position: relative;
+  z-index: 12;
   font-family: var(--font-hud);
   font-size: 0.6rem;
   letter-spacing: 3px;
   color: var(--iron-cyan);
-  opacity: 0.5;
+  opacity: 0.7;
   text-transform: uppercase;
-  margin-top: 0.5rem;
+  margin-top: 1.2rem;
 }
 
 /* Tesseract Cube */
@@ -510,6 +512,16 @@ body.owner-mode .tw-current { color: var(--hud-green); text-shadow: 0 0 10px var
 }
 
 .pct-sign { font-size: 0.75rem; opacity: 0.7; }
+
+/* Energy pulse each time the progress value updates */
+@keyframes counterPulse {
+  0%   { transform: translateX(-50%) scale(1); }
+  35%  { transform: translateX(-50%) scale(1.18);
+         text-shadow: 0 0 16px rgba(0,210,255,1), 0 0 28px rgba(0,210,255,0.7);
+         border-color: rgba(0,210,255,0.8); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+.progress-text.counter-pulse { animation: counterPulse 0.5s ease-out; }
 
 .progress-text.full-energy {
   color: #fff;

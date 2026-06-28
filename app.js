@@ -791,6 +791,14 @@ function updateProgress(watched, total) {
   // Update text
   progressPercent.innerText = percentage;
 
+  // Energy pulse on the counter each time the value updates
+  const progressTextEl = document.getElementById('progressText');
+  if (progressTextEl) {
+    progressTextEl.classList.remove('counter-pulse');
+    void progressTextEl.offsetWidth; // force reflow to restart the CSS animation
+    progressTextEl.classList.add('counter-pulse');
+  }
+
   // --- WATCHED TIME display (left of tesseract) ---
   const data = currentMode === 'quick5' ? quickFiveData : currentMode === 'fast' ? fastTrackData : marathonData;
   const activeSet = getActiveWatchedSet();

@@ -285,7 +285,9 @@ class TesseractHUD {
     this.renderer.setSize(size, size);
     this.renderer.setClearColor(0x000000, 0);
 
-    // Style the canvas to sit behind the CSS cube
+    // Style the canvas to sit behind the CSS cube.
+    // Anchor to .progress-wrapper (holds the cube + % text) so the rings center
+    // on the cube — not on .tesseract-hud, which is taller due to the ticker below.
     const cvs = this.renderer.domElement;
     cvs.style.position = 'absolute';
     cvs.style.top = '50%';
@@ -293,8 +295,9 @@ class TesseractHUD {
     cvs.style.transform = 'translate(-50%, -50%)';
     cvs.style.zIndex = '0';
     cvs.style.pointerEvents = 'none';
-    this.container.style.position = 'relative';
-    this.container.insertBefore(cvs, this.container.firstChild);
+    const anchor = this.container.querySelector('.progress-wrapper') || this.container;
+    anchor.style.position = 'relative';
+    anchor.insertBefore(cvs, anchor.firstChild);
 
     this.progress = 0; // 0–1
     this.group = new THREE.Group();
@@ -360,9 +363,9 @@ class TesseractHUD {
     // --- 3D ENERGY RINGS (torus wireframes) ---
     this.rings = [];
     const ringConfigs = [
-      { radius: 1.3, tube: 0.015, segments: 6, color: 0x00d2ff, rotAxis: 'x', speed: 0.0125 },
-      { radius: 1.55, tube: 0.01, segments: 8, color: 0xfbbf24, rotAxis: 'y', speed: -0.0075 },
-      { radius: 1.1, tube: 0.012, segments: 5, color: 0x7b2fff, rotAxis: 'z', speed: 0.015 },
+      { radius: 1.3, tube: 0.015, segments: 6, color: 0x00d2ff, rotAxis: 'x', speed: 0.18 },
+      { radius: 1.55, tube: 0.01, segments: 8, color: 0xfbbf24, rotAxis: 'y', speed: -0.13 },
+      { radius: 1.1, tube: 0.012, segments: 5, color: 0x7b2fff, rotAxis: 'z', speed: 0.22 },
     ];
 
     ringConfigs.forEach(cfg => {
@@ -644,7 +647,7 @@ class TesseractHUD {
     // --- 3D RINGS: rotate slower, intensity based on progress ---
     this.rings.forEach(ring => {
       const { rotAxis, speed } = ring.userData;
-      const s = speed * (0.6 + p * 0.4);
+      const s = speed * (0.8 + p * 0.4);
       
       const baseX = rotAxis === 'x' ? t * s : 0;
       const baseY = rotAxis === 'y' ? t * s : 0;
