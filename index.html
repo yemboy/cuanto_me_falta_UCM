@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO: Title & Description -->
@@ -23,9 +23,9 @@
   <meta property="og:url" content="https://losfiebruos.lat/">
   <meta property="og:title" content="MCU Tracker — ¿Cuánto te falta para Doomsday y el reset del MCU?">
   <meta property="og:description" content="Checklist interactivo de todas las películas y series Marvel. Marca lo que ya viste y descubre cuánto te falta para Avengers: Doomsday y el gran reset en Avengers: Secret Wars.">
-  <meta property="og:image" content="https://losfiebruos.lat/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="https://losfiebruos.lat/og-image.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
   <meta property="og:locale" content="es_MX">
   <meta property="og:site_name" content="MCU Tracker — LosFiebruos">
 
@@ -33,7 +33,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MCU Tracker — ¿Cuánto te falta para Doomsday y el reset del MCU?">
   <meta name="twitter:description" content="Checklist interactivo de todas las películas y series Marvel. De Iron Man a Secret Wars. ¡Marca tu progreso!">
-  <meta name="twitter:image" content="https://losfiebruos.lat/og-image.png">
+  <meta name="twitter:image" content="https://losfiebruos.lat/og-image.jpg">
 
   <!-- SEO: Theme & Favicon -->
   <meta name="theme-color" content="#060609">
@@ -66,10 +66,9 @@
   }
   </script>
 
-  <!-- Fonts & Styles -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Fonts & Styles (fuentes self-hosteadas en /fonts, declaradas en styles.css) -->
+  <link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/rajdhani-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -176,6 +175,7 @@
         <span class="lb-cine">🎬 CINE = En cines</span>
         <span class="lb-mgm">🟤 MGM+ = MGM+</span>
         <span class="lb-unknown">❓ = Verificar</span>
+        <span class="lb-verified">Disponibilidad verificada: abril 2026 — puede haber cambiado</span>
       </div>
     </section>
 
@@ -239,6 +239,9 @@
       <button id="shareProgressBtn" class="btn-share">
         <span class="btn-icon">📤</span> COMPARTIR
       </button>
+      <button id="statsBtn" class="btn-stats">
+        <span class="btn-icon">📊</span> ESTADÍSTICAS
+      </button>
     </footer>
 
     <!-- Hidden file input for import -->
@@ -283,6 +286,17 @@
       </div>
     </div>
 
+    <!-- Stats Modal -->
+    <div class="modal-overlay" id="statsModal">
+      <div class="modal-content">
+        <button class="modal-close" id="statsModalCloseBtn">&times;</button>
+        <div class="modal-hud-label">// ANÁLISIS DE PROGRESO</div>
+        <h2 class="modal-title">ESTADÍSTICAS</h2>
+        <p class="modal-subtitle">Tu avance en el Maratón completo, fase por fase.</p>
+        <div id="statsContent"></div>
+      </div>
+    </div>
+
     <!-- Share Preview Modal -->
     <div class="modal-overlay" id="shareModal">
       <div class="modal-content">
@@ -306,6 +320,6 @@
   <script src="releases.js"></script>
   <script src="owner_progress.js"></script>
   <script src="equivalences.js"></script>
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

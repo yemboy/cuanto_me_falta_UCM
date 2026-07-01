@@ -4,7 +4,9 @@
    - Mouse parallax, scroll warp, twinkle shaders, hero stars
    ========================================================================== */
 
-import * as THREE from './three.module.js';
+// THREE se carga con import() dinámico en bootScenes() — ver BOOT al final.
+// three.module.js pesa ~1.2 MB: solo se descarga si el dispositivo va a animar.
+let THREE;
 
 // ============================================================
 // STARFIELD 3D
@@ -901,14 +903,24 @@ class TVATimelineScene {
 // ============================================================
 // BOOT
 // ============================================================
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    new StarfieldScene();
-    new TesseractHUD();
-    new TVATimelineScene();
-  });
-} else {
+// Las tres escenas son decorativas: la página funciona igual sin ellas.
+// No se descarga Three.js si el usuario pidió menos movimiento o si el
+// dispositivo reporta poca memoria (deviceMemory < 4 GB).
+async function bootScenes() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (navigator.deviceMemory !== undefined && navigator.deviceMemory < 4) return;
+  try {
+    THREE = await import('./three.module.js');
+  } catch (e) {
+    return; // sin módulo (offline parcial, navegador viejo): fondo estático
+  }
   new StarfieldScene();
   new TesseractHUD();
   new TVATimelineScene();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootScenes);
+} else {
+  bootScenes();
 }

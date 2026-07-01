@@ -3,6 +3,44 @@
    Palette: Iron Man + Dr. Strange + Venom
    ===================================================== */
 
+/* Fuentes self-hosteadas (subset latin — cubre español).
+   Inter es fuente variable: un solo archivo sirve 400/600/800. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/rajdhani-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/rajdhani-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/rajdhani-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/rajdhani-700.woff2') format('woff2');
+}
+
 :root {
   /* Core palette */
   --bg-dark:            #060609;
@@ -665,6 +703,19 @@ body.owner-mode .tw-current { color: var(--hud-green); text-shadow: 0 0 10px var
 .lb-cine    { background: rgba(240,192,64,0.12);   border-color: rgba(240,192,64,0.4);  color: var(--iron-gold); }
 .lb-mgm     { background: rgba(180,140,60,0.13);   border-color: rgba(180,140,60,0.4);  color: #c8a050; }
 .lb-unknown { background: rgba(120,120,120,0.08);  border-color: rgba(120,120,120,0.25);color: #888888; }
+
+/* Nota de vigencia de los datos de streaming: ocupa toda la fila, sin chip */
+.legend-box .lb-verified {
+  flex-basis: 100%;
+  background: transparent;
+  border: none;
+  clip-path: none;
+  padding: 0.3rem 0 0;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--text-muted);
+  white-space: normal;
+}
 
 /* =====================================================
    TABS
@@ -1413,6 +1464,122 @@ button:focus-visible,
   box-shadow: 0 0 20px rgba(255,149,0,0.2);
 }
 
+.btn-stats {
+  background: transparent;
+  border: 1px solid rgba(123,47,255,0.35);
+  color: var(--strange-purple);
+}
+.btn-stats:hover {
+  background: rgba(123,47,255,0.08);
+  border-color: var(--strange-purple);
+  box-shadow: 0 0 20px rgba(123,47,255,0.2);
+}
+
+/* =====================================================
+   STATS MODAL
+   ===================================================== */
+
+.stats-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.6rem;
+  margin: 1rem 0 1.4rem;
+}
+
+.stats-card {
+  background: rgba(0, 210, 255, 0.04);
+  border: 1px solid rgba(0, 210, 255, 0.14);
+  border-radius: var(--br);
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+}
+
+.stats-card-value {
+  font-family: var(--font-hud);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--iron-cyan);
+}
+
+.stats-card-label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.stats-section-title {
+  font-family: var(--font-hud);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  color: var(--strange-orange);
+  margin: 1.3rem 0 0.6rem;
+}
+
+.stats-row { margin-bottom: 0.65rem; }
+
+.stats-row-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.stats-row-name {
+  font-family: var(--font-hud);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.stats-row-count {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.stats-bar {
+  height: 6px;
+  background: rgba(0, 210, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.stats-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--iron-cyan), rgba(0, 210, 255, 0.55));
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.stats-bar-fill.complete {
+  background: linear-gradient(90deg, var(--hud-green), rgba(0, 255, 115, 0.55));
+}
+
+.stats-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.stats-platform-chip {
+  font-size: 0.72rem;
+  color: var(--text-main);
+  background: rgba(0, 210, 255, 0.05);
+  border: 1px solid rgba(0, 210, 255, 0.16);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  white-space: nowrap;
+}
+
+.stats-platform-chip.complete {
+  color: var(--hud-green);
+  border-color: rgba(0, 255, 115, 0.4);
+}
+
 /* =====================================================
    MODAL
    ===================================================== */
@@ -2011,4 +2178,19 @@ button:focus-visible,
 
   .modal-content { padding: 1.5rem 1.1rem; clip-path: none; }
   .modal-title { font-size: 1.25rem; }
+}
+
+/* =====================================================
+   ACCESIBILIDAD — prefers-reduced-motion
+   Desactiva todas las animaciones y transiciones para
+   usuarios que piden menos movimiento (el starfield 3D
+   ni siquiera se descarga — ver three-scene.js).
+   ===================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

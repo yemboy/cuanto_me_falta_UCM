@@ -1,3 +1,13 @@
+// app.js es un ES module (ver index.html). Los datasets (quickFiveData, etc.)
+// siguen siendo scripts clásicos: sus const globales son visibles aquí porque
+// comparten el mismo scope global.
+import {
+  normalizeText, parseDuration, calcGroupDuration, formatMinutes, groupData,
+  getEpisodeId, isEpisodeId, getSeriesIdFromEpisodeId, getEpisodeIdsForSeries,
+  formatDateKey, calcStreak
+} from './utils.js';
+import { getCanonicalIdOrder, encodeProgress, decodeProgress } from './progress-codec.js';
+
 // Fecha del reset del MCU: estreno de Avengers: Secret Wars
 const RESET_DATE = new Date('2027-12-17T00:00:00-05:00');
 
@@ -5,6 +15,7 @@ const RESET_DATE = new Date('2027-12-17T00:00:00-05:00');
 const STORAGE_KEY = 'mcu_tracker_watched';
 const LAST_EXPORT_KEY = 'mcu_tracker_last_export';
 const NUDGE_DISMISSED_KEY = 'mcu_tracker_nudge_dismissed';
+const ACTIVITY_KEY = 'mcu_tracker_activity';
 const THIRTY_DAYS_MS = 30 * 86400000;
 let watchedItems = new Set();
 try {
@@ -46,11 +57,6 @@ function saveFilters() {
     hideWatched: filters.hideWatched,
     platforms: Array.from(filters.platforms)
   }));
-}
-
-// Case- and accent-insensitive text normalization for search
-function normalizeText(str) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
 
 // Pure filter: query + hideWatched + platform whitelist (empty Set = all)
@@ -112,14 +118,6 @@ const seriesMap = new Map();
   });
 })();
 
-// Episode ID helpers
-const EP_SEP = '--ep';
-function getEpisodeId(seriesId, idx) { return `${seriesId}${EP_SEP}${idx + 1}`; }
-function isEpisodeId(id) { return typeof id === 'string' && id.includes(EP_SEP); }
-function getSeriesIdFromEpisodeId(epId) { return epId.split(EP_SEP)[0]; }
-function getEpisodeIdsForSeries(series) {
-  return series.episodes.map((_, idx) => getEpisodeId(series.id, idx));
-}
 function setWatchedClass(id, watched) {
   const el = document.getElementById(`elem-${id}`);
   if (el) {
@@ -223,6 +221,8 @@ function init() {
     if (importModal.classList.contains('active')) closeModal();
     const shareModal = document.getElementById('shareModal');
     if (shareModal && shareModal.classList.contains('active')) closeShareModal();
+    const statsModalEl = document.getElementById('statsModal');
+    if (statsModalEl && statsModalEl.classList.contains('active')) closeStatsModal();
   });
 
   // Share preview modal
@@ -236,6 +236,18 @@ function init() {
     });
   }
   if (shareDownloadBtn) shareDownloadBtn.addEventListener('click', downloadShareImage);
+
+  // Stats modal
+  const statsBtn = document.getElementById('statsBtn');
+  const statsModal = document.getElementById('statsModal');
+  const statsModalCloseBtn = document.getElementById('statsModalCloseBtn');
+  if (statsBtn) statsBtn.addEventListener('click', openStatsModal);
+  if (statsModalCloseBtn) statsModalCloseBtn.addEventListener('click', closeStatsModal);
+  if (statsModal) {
+    statsModal.addEventListener('click', (e) => {
+      if (e.target === statsModal) closeStatsModal();
+    });
+  }
 
   // Modal Export Button (JSON for anyone)
   modalExportBtn.addEventListener('click', exportProgressAsJSON);
@@ -459,45 +471,21 @@ function saveProgress() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(watchedItems)));
 }
 
-// Group data by key (handles missing keys gracefully)
-function groupData(data, key) {
-  return data.reduce((acc, item) => {
-    let group = item[key];
-    if (group === undefined) group = '_none';
-    if (!acc[group]) acc[group] = [];
-    acc[group].push(item);
-    return acc;
-  }, {});
+// Registro de actividad para la racha: guarda los días (fecha local) en que
+// el usuario marcó al menos un item. Se acota a ~un año de historial.
+function recordActivity() {
+  let days = [];
+  try { days = JSON.parse(localStorage.getItem(ACTIVITY_KEY)) || []; } catch (e) { /* corrupto: reiniciar */ }
+  if (!Array.isArray(days)) days = [];
+  const today = formatDateKey(new Date());
+  if (days.includes(today)) return;
+  days.push(today);
+  localStorage.setItem(ACTIVITY_KEY, JSON.stringify(days.sort().slice(-366)));
 }
 
 // Get the active watched set depending on mode
 function getActiveWatchedSet() {
   return currentMode === 'owner' ? ownerWatched : watchedItems;
-}
-
-// Parse a duration string like "2h 06m", "53m", "1h 55m" into total minutes
-function parseDuration(str) {
-  if (!str) return 0;
-  let minutes = 0;
-  const hMatch = str.match(/(\d+)\s*h/);
-  const mMatch = str.match(/(\d+)\s*m/);
-  if (hMatch) minutes += parseInt(hMatch[1]) * 60;
-  if (mMatch) minutes += parseInt(mMatch[1]);
-  return minutes;
-}
-
-// Calculate total duration in minutes for a group of items
-function calcGroupDuration(items) {
-  return items.reduce((sum, item) => sum + parseDuration(item.duration), 0);
-}
-
-// Format total minutes into a readable string like "45h 32m"
-function formatMinutes(totalMin) {
-  if (totalMin <= 0) return '';
-  const h = Math.floor(totalMin / 60);
-  const m = totalMin % 60;
-  if (h === 0) return `${m}m`;
-  return `${h}h ${String(m).padStart(2, '0')}m`;
 }
 
 // Render Content
@@ -776,6 +764,7 @@ window.toggleItem = function(id) {
     const nowWatched = !watchedItems.has(id);
     if (nowWatched) watchedItems.add(id); else watchedItems.delete(id);
     setWatchedClass(id, nowWatched);
+    if (nowWatched) recordActivity();
 
     const parentId = getSeriesIdFromEpisodeId(id);
     const parent = seriesMap.get(parentId);
@@ -793,6 +782,7 @@ window.toggleItem = function(id) {
     const nowWatched = !watchedItems.has(id);
     if (nowWatched) watchedItems.add(id); else watchedItems.delete(id);
     setWatchedClass(id, nowWatched);
+    if (nowWatched) recordActivity();
     propagateEquivalents(id, nowWatched);
 
     const series = seriesMap.get(id);
@@ -1102,58 +1092,133 @@ function closeShareModal() {
   if (shareModal) shareModal.classList.remove('active');
 }
 
-// ===== SHARE PROGRESS VIA URL (bitmask) =====
-// ADVERTENCIA: el formato v1 depende del ORDEN GLOBAL de declaración:
-// quickFiveData → fastTrackData → marathonData (concatenados), con los
-// episodios de cada serie inmediatamente después de su padre.
-// ÚNICA operación segura: agregar items al FINAL de marathonData.
-// Agregar al final de quickFiveData o fastTrackData, insertar en medio de
-// cualquier array, o insertar episodios en una serie existente DESPLAZA
-// todos los bits posteriores y corrompe los links viejos SILENCIOSAMENTE
-// (el decode no falla: devuelve IDs incorrectos).
-// Si el orden cambia de forma incompatible, subir el payload a v2 y
-// rechazar v1 en decodeProgressFromHash.
-function getCanonicalIdOrder() {
-  const order = [];
-  [quickFiveData, fastTrackData, marathonData].forEach(dataset => {
-    dataset.forEach(item => {
-      order.push(item.id);
-      if (item.episodes && item.episodes.length > 0) {
-        getEpisodeIdsForSeries(item).forEach(epId => order.push(epId));
-      }
-    });
+// ===== STATS MODAL =====
+// Todo construido con createElement/textContent (sin innerHTML) y los anchos
+// de las barras vía element.style — compatible con la CSP estricta.
+function buildStats() {
+  const container = document.getElementById('statsContent');
+  if (!container) return;
+  container.textContent = '';
+
+  const activeSet = getActiveWatchedSet();
+
+  // --- Resumen: títulos, tiempo y racha ---
+  let watchedMin = 0, totalMin = 0, watchedCount = 0;
+  for (const it of marathonData) {
+    const d = parseDuration(it.duration);
+    totalMin += d;
+    if (activeSet.has(it.id)) { watchedMin += d; watchedCount++; }
+  }
+
+  let activityDays = [];
+  try { activityDays = JSON.parse(localStorage.getItem(ACTIVITY_KEY)) || []; } catch (e) { /* sin historial */ }
+  if (!Array.isArray(activityDays)) activityDays = [];
+  const streak = calcStreak(activityDays);
+
+  const summary = document.createElement('div');
+  summary.className = 'stats-summary';
+  const cards = [
+    { value: `${watchedCount}/${marathonData.length}`, label: 'títulos vistos' },
+    { value: formatMinutes(watchedMin) || '0m', label: 'tiempo visto' },
+    { value: formatMinutes(totalMin - watchedMin) || '0m', label: 'tiempo restante' },
+    { value: streak > 0 ? `🔥 ${streak}` : '—', label: streak === 1 ? 'día de racha' : 'días de racha' },
+  ];
+  cards.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'stats-card';
+    const v = document.createElement('div');
+    v.className = 'stats-card-value';
+    v.textContent = c.value;
+    const l = document.createElement('div');
+    l.className = 'stats-card-label';
+    l.textContent = c.label;
+    card.appendChild(v);
+    card.appendChild(l);
+    summary.appendChild(card);
   });
-  return order;
+  container.appendChild(summary);
+
+  // --- Progreso por fase ---
+  const phaseTitle = document.createElement('h3');
+  phaseTitle.className = 'stats-section-title';
+  phaseTitle.textContent = 'POR FASE';
+  container.appendChild(phaseTitle);
+
+  Object.entries(groupData(marathonData, 'phase')).forEach(([phase, items]) => {
+    const watched = items.filter(i => activeSet.has(i.id)).length;
+    const pct = Math.round((watched / items.length) * 100);
+
+    const row = document.createElement('div');
+    row.className = 'stats-row';
+
+    const head = document.createElement('div');
+    head.className = 'stats-row-head';
+    const name = document.createElement('span');
+    name.className = 'stats-row-name';
+    name.textContent = phase;
+    const count = document.createElement('span');
+    count.className = 'stats-row-count';
+    count.textContent = `${watched}/${items.length} · ${pct}%`;
+    head.appendChild(name);
+    head.appendChild(count);
+
+    const bar = document.createElement('div');
+    bar.className = 'stats-bar';
+    const fill = document.createElement('div');
+    fill.className = 'stats-bar-fill' + (pct === 100 ? ' complete' : '');
+    fill.style.width = pct + '%';
+    bar.appendChild(fill);
+
+    row.appendChild(head);
+    row.appendChild(bar);
+    container.appendChild(row);
+  });
+
+  // --- Vistos por plataforma ---
+  const platTitle = document.createElement('h3');
+  platTitle.className = 'stats-section-title';
+  platTitle.textContent = 'POR PLATAFORMA';
+  container.appendChild(platTitle);
+
+  const platList = document.createElement('div');
+  platList.className = 'stats-platforms';
+  Object.entries(groupData(marathonData, 'streaming')).forEach(([platform, items]) => {
+    if (platform === '_none') return;
+    const watched = items.filter(i => activeSet.has(i.id)).length;
+    const chip = document.createElement('span');
+    chip.className = 'stats-platform-chip' + (watched === items.length ? ' complete' : '');
+    chip.textContent = `${platform} · ${watched}/${items.length}`;
+    platList.appendChild(chip);
+  });
+  container.appendChild(platList);
+}
+
+function openStatsModal() {
+  const statsModal = document.getElementById('statsModal');
+  if (!statsModal) return;
+  buildStats();
+  statsModal.classList.add('active');
+}
+
+function closeStatsModal() {
+  const statsModal = document.getElementById('statsModal');
+  if (statsModal) statsModal.classList.remove('active');
+}
+
+// ===== SHARE PROGRESS VIA URL (bitmask) =====
+// La lógica del formato (y la advertencia sobre el orden de los datos)
+// vive en progress-codec.js; aquí solo se conectan los datasets globales.
+function canonicalOrder() {
+  return getCanonicalIdOrder([quickFiveData, fastTrackData, marathonData]);
 }
 
 function encodeProgressToHash() {
-  const order = getCanonicalIdOrder();
-  const bytes = new Uint8Array(Math.ceil(order.length / 8));
-  order.forEach((id, i) => {
-    if (watchedItems.has(id)) bytes[i >> 3] |= (1 << (i & 7));
-  });
-  let bin = '';
-  bytes.forEach(b => { bin += String.fromCharCode(b); });
-  const b64url = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-  return `#p=v1.${b64url}`;
+  return encodeProgress(canonicalOrder(), watchedItems);
 }
 
 // Devuelve array de ids o null si el hash no es un payload v1 válido
 function decodeProgressFromHash(hash) {
-  const match = hash.match(/^#p=v1\.([A-Za-z0-9_-]+)$/);
-  if (!match) return null;
-  let b64 = match[1].replace(/-/g, '+').replace(/_/g, '/');
-  while (b64.length % 4) b64 += '=';
-  let bin;
-  try { bin = atob(b64); } catch (e) { return null; }
-  const order = getCanonicalIdOrder();
-  const ids = [];
-  for (let i = 0; i < order.length; i++) {
-    const byte = bin.charCodeAt(i >> 3);
-    if (Number.isNaN(byte)) break; // link viejo: el payload es más corto que los datos actuales
-    if (byte & (1 << (i & 7))) ids.push(order[i]);
-  }
-  return ids;
+  return decodeProgress(hash, canonicalOrder());
 }
 
 // Al cargar con #p=... presente: ofrecer importar y limpiar el hash
@@ -1284,5 +1349,10 @@ function showImportResult(type, title, message) {
   importResult.classList.add('visible');
 }
 
-// Start
-document.addEventListener('DOMContentLoaded', init);
+// Start (los módulos son diferidos: normalmente el DOM aún está cargando,
+// pero cubrimos ambos casos por robustez)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}

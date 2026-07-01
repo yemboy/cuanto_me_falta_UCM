@@ -1,22 +1,30 @@
 // Service Worker — MCU Tracker
 // Estrategia: network-first con fallback a cache. No hay build step ni hashing
 // de assets, así que cache-first dejaría datos stale tras cada commit de data.js.
-const CACHE_NAME = 'mcu-tracker-v2';
+const CACHE_NAME = 'mcu-tracker-v3';
 
 const PRECACHE_URLS = [
   '/',
   '/index.html',
   '/styles.css',
   '/app.js',
+  '/utils.js',
+  '/progress-codec.js',
   '/data.js',
   '/releases.js',
   '/owner_progress.js',
+  '/equivalences.js',
   '/three-scene.js',
   '/three.module.js',
   '/countdown.js',
   '/manifest.json',
   '/icon-192.png',
-  '/icon-512.png'
+  '/icon-512.png',
+  '/fonts/rajdhani-400.woff2',
+  '/fonts/rajdhani-500.woff2',
+  '/fonts/rajdhani-600.woff2',
+  '/fonts/rajdhani-700.woff2',
+  '/fonts/inter-var.woff2'
 ];
 
 self.addEventListener('install', (event) => {
@@ -45,7 +53,7 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request)
       .then(response => {
-        // Solo cachear respuestas same-origin exitosas (las opacas de Google Fonts pasan directo)
+        // Solo cachear respuestas same-origin exitosas
         if (response.ok && new URL(event.request.url).origin === self.location.origin) {
           const copy = response.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));

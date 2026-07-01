@@ -37,7 +37,7 @@ cuanto_me_falta_UCM/
 ├── robots.txt            ← Configuración SEO + reglas de crawling
 ├── sitemap.xml           ← Sitemap para motores de búsqueda
 ├── CNAME                 ← Dominio custom: losfiebruos.lat
-├── og-image.png          ← Imagen Open Graph para redes sociales (1200x630)
+├── og-image.jpg          ← Imagen Open Graph para redes sociales (1024x1024)
 ├── LICENSE               ← Texto completo GPLv3
 ├── README.md             ← Readme del repo (mínimo)
 ├── context_AI.md         ← Este archivo. Contexto completo para LLMs
