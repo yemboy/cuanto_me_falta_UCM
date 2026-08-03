@@ -151,14 +151,16 @@ const releaseDates = {
   "marathon-thepunisherespecial": "12 mayo 2026",
   "marathon-thefantasticfourfirststeps": "25 julio 2025",
   "marathon-spidermanbrandnewday": "31 julio 2026",
-  "marathon-visionquest": "~Finales 2026",
+  "marathon-visionquest": "14 octubre 2026",
   "marathon-avengersdoomsday": "18 diciembre 2026",
+  "marathon-daredevilbornagaintemporada3": "~Marzo 2027",
+  "marathon-avengerssecretwars": "17 diciembre 2027",
 
   // FUERA DE LA LÍNEA TEMPORAL
   "marathon-yourfriendlyneighborhoodspiderman": "29 enero 2025",
   "marathon-yourfriendlyneighborhoodspidermant2": "~Otoño 2026",
   "marathon-xmen97t1": "20 marzo 2024",
-  "marathon-xmen97t2": "~Verano 2026",
+  "marathon-xmen97t2": "1 julio 2026",
   "marathon-marvelzombies": "24 septiembre 2025",
   "marathon-spidernoir": "27 mayo 2026",
   "marathon-inhumanstemporada1": "29 septiembre 2017",

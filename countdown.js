@@ -1,18 +1,18 @@
-// MCU Countdown — próximo estreno
+// MCU Countdown — los 2 próximos estrenos (banner principal + banner secundario)
 (function () {
   const MONTH_MAP = {
     enero: 0, febrero: 1, marzo: 2, abril: 3, mayo: 4, junio: 5,
     julio: 6, agosto: 7, septiembre: 8, octubre: 9, noviembre: 10, diciembre: 11
   };
 
+  // Fechas fallback: si releases.js tiene una fecha exacta parseable para el
+  // mismo id, esa manda (ver buildUpcomingList). Las aproximadas ("~") no.
   const UPCOMING = [
-    { id: 'marathon-spidernoir',                          title: 'Spider-Man Noir',              date: new Date(2026, 4, 27),  platform: 'MGM+',  platformColor: '#c0a060' },
-    { id: 'marathon-thepunisherespecial',                 title: 'The Punisher: One Last Kill',  date: new Date(2026, 4, 12),  platform: 'D+',    platformColor: '#1a6ef5' },
-    { id: 'marathon-xmen97t2',                            title: "X-Men '97 T2",                 date: new Date(2026, 6, 1),   platform: 'D+',    platformColor: '#1a6ef5' },
-    { id: 'marathon-spidermanbrandnewday',                title: 'Spider-Man: Brand New Day',    date: new Date(2026, 6, 31),  platform: 'CINE',  platformColor: '#ff9500' },
-    { id: 'marathon-yourfriendlyneighborhoodspidermant2', title: 'Tu Amig. Vecino S-M T2',       date: new Date(2026, 8, 1),   platform: 'D+',    platformColor: '#1a6ef5' },
-    { id: 'marathon-visionquest',                         title: 'Vision Quest',                 date: new Date(2026, 10, 1),  platform: 'D+',    platformColor: '#1a6ef5' },
-    { id: 'marathon-avengersdoomsday',                    title: 'Avengers: Doomsday',         date: new Date(2026, 11, 18), platform: 'CINE',  platformColor: '#ff9500' },
+    { id: 'marathon-yourfriendlyneighborhoodspidermant2', title: 'Tu Amig. Vecino S-M T2',      date: new Date(2026, 8, 1),   platform: 'D+',   platformColor: '#1a6ef5' },
+    { id: 'marathon-visionquest',                         title: 'Vision Quest',                date: new Date(2026, 9, 14),  platform: 'D+',   platformColor: '#1a6ef5' },
+    { id: 'marathon-avengersdoomsday',                    title: 'Avengers: Doomsday',          date: new Date(2026, 11, 18), platform: 'CINE', platformColor: '#ff9500' },
+    { id: 'marathon-daredevilbornagaintemporada3',        title: 'Daredevil: Born Again T3',    date: new Date(2027, 2, 1),   platform: 'D+',   platformColor: '#1a6ef5' },
+    { id: 'marathon-avengerssecretwars',                  title: 'Avengers: Secret Wars',       date: new Date(2027, 11, 17), platform: 'CINE', platformColor: '#ff9500' },
   ];
 
   function parseSpanishDate(str) {
@@ -65,69 +65,98 @@
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }
 
-  function mountWidget(upcoming) {
-    const container = document.getElementById('countdownContent');
-    if (!container) return;
-
-    if (upcoming.length === 0) {
-      container.textContent = '';
-      const label = document.createElement('div');
-      label.className = 'cw-label';
-      label.textContent = 'SIN PRÓXIMOS ESTRENOS';
-      container.appendChild(label);
-      return;
-    }
-
-    const next = upcoming[0];
-
+  // Renderiza un estreno dentro de un contenedor y devuelve las referencias
+  // que el tick necesita para actualizar los dígitos.
+  function renderSlot(container, item, label) {
     container.innerHTML = `
       <div class="cw-info">
-        <div class="cw-label">PRÓXIMO ESTRENO</div>
-        <div class="cw-title" id="cwTitle"></div>
+        <div class="cw-label"></div>
+        <div class="cw-title"></div>
         <div class="cw-meta-row">
-          <span class="cw-platform" id="cwPlatform"></span>
-          <span class="cw-date" id="cwDate"></span>
+          <span class="cw-platform"></span>
+          <span class="cw-date"></span>
         </div>
       </div>
       <div class="cw-timer">
-        <div class="cw-unit"><span class="cw-digit" id="cwDays">00</span><span class="cw-unit-label">DÍAS</span></div>
+        <div class="cw-unit"><span class="cw-digit cw-days">00</span><span class="cw-unit-label">DÍAS</span></div>
         <span class="cw-colon">·</span>
-        <div class="cw-unit"><span class="cw-digit" id="cwHours">00</span><span class="cw-unit-label">HRS</span></div>
+        <div class="cw-unit"><span class="cw-digit cw-hours">00</span><span class="cw-unit-label">HRS</span></div>
         <span class="cw-colon">·</span>
-        <div class="cw-unit"><span class="cw-digit" id="cwMins">00</span><span class="cw-unit-label">MIN</span></div>
+        <div class="cw-unit"><span class="cw-digit cw-mins">00</span><span class="cw-unit-label">MIN</span></div>
         <span class="cw-colon">·</span>
-        <div class="cw-unit"><span class="cw-digit" id="cwSecs">00</span><span class="cw-unit-label">SEG</span></div>
+        <div class="cw-unit"><span class="cw-digit cw-secs">00</span><span class="cw-unit-label">SEG</span></div>
       </div>
     `;
 
-    const titleEl = document.getElementById('cwTitle');
-    const platformEl = document.getElementById('cwPlatform');
-    const dateEl = document.getElementById('cwDate');
-    titleEl.textContent    = next.title;
-    platformEl.textContent = next.platform;
-    dateEl.textContent     = formatDate(next.date);
+    container.querySelector('.cw-label').textContent = label;
+    container.querySelector('.cw-title').textContent = item.title;
+    container.querySelector('.cw-date').textContent  = formatDate(item.date);
 
-    // CSP-safe: set platform colors via element.style instead of inline HTML
-    platformEl.style.background = hexToRgba(next.platformColor, 0.13);
-    platformEl.style.border     = `1px solid ${hexToRgba(next.platformColor, 0.4)}`;
-    platformEl.style.color      = next.platformColor;
+    // CSP-safe: colores de plataforma vía element.style, nunca inline en HTML
+    const platformEl = container.querySelector('.cw-platform');
+    platformEl.textContent       = item.platform;
+    platformEl.style.background  = hexToRgba(item.platformColor, 0.13);
+    platformEl.style.border      = `1px solid ${hexToRgba(item.platformColor, 0.4)}`;
+    platformEl.style.color       = item.platformColor;
+
+    return {
+      date:  item.date,
+      days:  container.querySelector('.cw-days'),
+      hours: container.querySelector('.cw-hours'),
+      mins:  container.querySelector('.cw-mins'),
+      secs:  container.querySelector('.cw-secs')
+    };
+  }
+
+  let timerId = null;
+
+  function mountWidget(upcoming) {
+    const primary         = document.getElementById('countdownContent');
+    const secondaryWidget = document.getElementById('countdownWidget2');
+    const secondary       = document.getElementById('countdownContent2');
+    if (!primary) return;
+
+    if (timerId !== null) { clearInterval(timerId); timerId = null; }
+
+    if (upcoming.length === 0) {
+      primary.textContent = '';
+      const label = document.createElement('div');
+      label.className = 'cw-label';
+      label.textContent = 'SIN PRÓXIMOS ESTRENOS';
+      primary.appendChild(label);
+      if (secondaryWidget) secondaryWidget.hidden = true;
+      return;
+    }
+
+    const slots = [renderSlot(primary, upcoming[0], 'PRÓXIMO ESTRENO')];
+
+    if (secondaryWidget && secondary) {
+      if (upcoming.length > 1) {
+        secondaryWidget.hidden = false;
+        slots.push(renderSlot(secondary, upcoming[1], 'SIGUIENTE ESTRENO'));
+      } else {
+        secondaryWidget.hidden = true;
+      }
+    }
 
     function tick() {
-      const diff = next.date - new Date();
-      const { days, hours, mins, secs } = formatCountdown(diff);
-      const d = document.getElementById('cwDays');
-      const h = document.getElementById('cwHours');
-      const m = document.getElementById('cwMins');
-      const s = document.getElementById('cwSecs');
-      if (d) d.textContent = days;
-      if (h) h.textContent = hours;
-      if (m) m.textContent = mins;
-      if (s) s.textContent = secs;
-      if (diff <= 0) { upcoming.shift(); mountWidget(upcoming); }
+      const now = new Date();
+      let expired = false;
+      slots.forEach(slot => {
+        const diff = slot.date - now;
+        const t = formatCountdown(diff);
+        slot.days.textContent  = t.days;
+        slot.hours.textContent = t.hours;
+        slot.mins.textContent  = t.mins;
+        slot.secs.textContent  = t.secs;
+        if (diff <= 0) expired = true;
+      });
+      // Un estreno llegó a cero: reconstruir la lista y remontar ambos banners
+      if (expired) mountWidget(buildUpcomingList());
     }
 
     tick();
-    setInterval(tick, 1000);
+    timerId = setInterval(tick, 1000);
   }
 
   document.addEventListener('DOMContentLoaded', () => {

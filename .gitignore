@@ -1,5 +1,6 @@
 # Herramientas de IA y agentes locales
 .claude/
+claude.md
 .gemini/
 .aider*
 .cursor/

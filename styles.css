@@ -1923,7 +1923,8 @@ button:focus-visible,
   z-index: 0;
   pointer-events: none;
 }
-#countdownContent {
+#countdownContent,
+#countdownContent2 {
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -1931,6 +1932,31 @@ button:focus-visible,
   gap: 2rem;
   position: relative;
   z-index: 1;
+}
+
+/* El UA pone display:none con [hidden], pero display:flex de .countdown-banner
+   lo pisaría — regla explícita para que hidden funcione en los banners. */
+.countdown-banner[hidden] { display: none; }
+
+/* Banner secundario: mismo lenguaje visual, más compacto, bordes invertidos.
+   Se pega al banner principal para leerse como un solo bloque de estrenos. */
+.countdown-banner-secondary {
+  margin-top: -0.85rem;
+  padding: 0.7rem 2rem;
+  border-left-color: var(--strange-orange);
+  border-right-color: var(--iron-cyan);
+}
+.countdown-banner-secondary .cw-label { color: var(--strange-orange); }
+.countdown-banner-secondary .cw-title { font-size: 1rem; }
+.countdown-banner-secondary .cw-digit { font-size: 1.4rem; }
+.countdown-banner-secondary .cw-unit {
+  padding: 0.35rem 0.6rem;
+  min-width: 48px;
+}
+.countdown-banner-secondary .cw-unit-label { font-size: 0.52rem; }
+.countdown-banner-secondary .cw-colon {
+  font-size: 1.1rem;
+  margin-bottom: 0.9rem;
 }
 
 .countdown-banner::before {
@@ -2116,7 +2142,8 @@ button:focus-visible,
     gap: 1rem;
   }
 
-  #countdownContent {
+  #countdownContent,
+  #countdownContent2 {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
