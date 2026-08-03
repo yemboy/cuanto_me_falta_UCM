@@ -2093,6 +2093,94 @@ button:focus-visible,
 }
 
 /* =====================================================
+   AYUDA — botón flotante "?" + modal ¿Cómo funciona?
+   ===================================================== */
+
+.help-fab {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 900; /* debajo de los modales (1000) */
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(12, 14, 28, 0.85);
+  border: 1px solid rgba(0, 210, 255, 0.35);
+  border-radius: 50%;
+  color: var(--iron-cyan);
+  font-family: var(--font-hud);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: var(--transition);
+  animation: helpPulse 3.5s ease-in-out infinite;
+}
+
+.help-fab:hover,
+.help-fab:focus-visible {
+  color: #fff;
+  border-color: var(--iron-cyan);
+  box-shadow: 0 0 26px rgba(0, 210, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+@keyframes helpPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 210, 255, 0.12); }
+  50%      { box-shadow: 0 0 22px rgba(0, 210, 255, 0.35); }
+}
+
+.help-modal-content { max-width: 560px; }
+
+.help-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.help-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.help-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  color: var(--iron-cyan);
+  background: rgba(0, 210, 255, 0.06);
+  border: 1px solid rgba(0, 210, 255, 0.18);
+  clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 100%);
+}
+
+.help-item h3 {
+  font-family: var(--font-hud);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--iron-gold);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.help-item p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.help-item p strong { color: var(--text-main); font-weight: 600; }
+
+/* =====================================================
    SEO FALLBACK
    ===================================================== */
 

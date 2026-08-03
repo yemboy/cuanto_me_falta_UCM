@@ -251,6 +251,9 @@
       </button>
     </footer>
 
+    <!-- Botón flotante de ayuda -->
+    <button id="helpFab" class="help-fab" aria-label="Cómo funciona la página" title="¿Cómo funciona?">?</button>
+
     <!-- Hidden file input for import -->
     <input type="file" id="importFileInput" accept=".json">
 
@@ -289,6 +292,68 @@
 
         <div class="modal-footer">
           <p>Tu progreso se guarda localmente. Exporta para respaldar o mover a otro dispositivo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal-overlay" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpModalTitle">
+      <div class="modal-content help-modal-content">
+        <button class="modal-close" id="helpModalCloseBtn">&times;</button>
+        <div class="modal-hud-label">// MANUAL DE OPERACIÓN</div>
+        <h2 class="modal-title" id="helpModalTitle">¿CÓMO FUNCIONA?</h2>
+        <p class="modal-subtitle">Guía rápida del tracker: marca lo que ya viste y llega listo al reset del MCU.</p>
+
+        <div class="help-list">
+          <div class="help-item">
+            <span class="help-icon">◈</span>
+            <div>
+              <h3>Elige tu modo</h3>
+              <p><strong>⚡ 5 Rápidas</strong> es lo mínimo imprescindible, <strong>Fast Track</strong> lo esencial, <strong>Maratón</strong> todo el UCM (incluye Pre-UCM: X-Men, Blade, Spider-Man de Tobey) y <strong>Dueño</strong> muestra el avance del creador (solo lectura). El progreso se sincroniza: marcar una película en un modo la marca en los demás.</p>
+            </div>
+          </div>
+          <div class="help-item">
+            <span class="help-icon">✓</span>
+            <div>
+              <h3>Marca lo que ya viste</h3>
+              <p>Toca cualquier título para marcarlo como visto. Las series tienen un botón de episodios: puedes marcar episodio por episodio, y al completarlos todos la serie se marca sola (y al revés).</p>
+            </div>
+          </div>
+          <div class="help-item">
+            <span class="help-icon">⚡</span>
+            <div>
+              <h3>Tesseract y cuenta regresiva</h3>
+              <p>El cubo se carga de energía con tu porcentaje de progreso. Los banners muestran los 2 próximos estrenos, y el indicador de ritmo te dice cuántos minutos al día necesitas ver para llegar al reset.</p>
+            </div>
+          </div>
+          <div class="help-item">
+            <span class="help-icon">🔍</span>
+            <div>
+              <h3>Filtra el contenido</h3>
+              <p>Busca por título (sin preocuparte por acentos), filtra por plataforma de streaming (LATAM), oculta lo ya visto o expande/colapsa todas las fases de una vez.</p>
+            </div>
+          </div>
+          <div class="help-item">
+            <span class="help-icon">📊</span>
+            <div>
+              <h3>Estadísticas</h3>
+              <p>Desglose de tu avance por fase y por plataforma, tiempo visto y restante, y tu racha de días consecutivos marcando contenido.</p>
+            </div>
+          </div>
+          <div class="help-item">
+            <span class="help-icon">💾</span>
+            <div>
+              <h3>Tu progreso es tuyo</h3>
+              <p>Todo se guarda en este navegador, sin cuentas ni servidores. Para respaldarlo o moverlo a otro dispositivo: <strong>Exportar/Importar</strong> como archivo JSON, <strong>copiar link de progreso</strong> o <strong>compartir</strong> tu avance como imagen.</p>
+            </div>
+          </div>
+          <div class="help-item">
+            <span class="help-icon">📱</span>
+            <div>
+              <h3>Instálala como app</h3>
+              <p>Es una PWA: desde el menú del navegador puedes instalarla en tu teléfono o computadora, y funciona incluso sin conexión.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

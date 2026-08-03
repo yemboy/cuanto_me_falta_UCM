@@ -223,7 +223,21 @@ function init() {
     if (shareModal && shareModal.classList.contains('active')) closeShareModal();
     const statsModalEl = document.getElementById('statsModal');
     if (statsModalEl && statsModalEl.classList.contains('active')) closeStatsModal();
+    const helpModalEl = document.getElementById('helpModal');
+    if (helpModalEl && helpModalEl.classList.contains('active')) closeHelpModal();
   });
+
+  // Help modal (botón flotante "?")
+  const helpFab = document.getElementById('helpFab');
+  const helpModal = document.getElementById('helpModal');
+  const helpModalCloseBtn = document.getElementById('helpModalCloseBtn');
+  if (helpFab) helpFab.addEventListener('click', openHelpModal);
+  if (helpModalCloseBtn) helpModalCloseBtn.addEventListener('click', closeHelpModal);
+  if (helpModal) {
+    helpModal.addEventListener('click', (e) => {
+      if (e.target === helpModal) closeHelpModal();
+    });
+  }
 
   // Share preview modal
   const shareModal = document.getElementById('shareModal');
@@ -1191,6 +1205,16 @@ function buildStats() {
     platList.appendChild(chip);
   });
   container.appendChild(platList);
+}
+
+function openHelpModal() {
+  const helpModal = document.getElementById('helpModal');
+  if (helpModal) helpModal.classList.add('active');
+}
+
+function closeHelpModal() {
+  const helpModal = document.getElementById('helpModal');
+  if (helpModal) helpModal.classList.remove('active');
 }
 
 function openStatsModal() {
