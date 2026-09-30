@@ -662,7 +662,7 @@ const marathonData = [
     "duration": "2h 13m",
     "details": "Otoño 2016 — El \"8 años después\" es un error oficial",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
-    "streaming": "🔴 NF / 🟠 VIX ❓",
+    "streaming": "🔴 NF / 🟣 MAX / 🟠 VIX ❓",
     "subcategory": "2016: Guerra Civil y sus consecuencias"
   },
   {
