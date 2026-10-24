@@ -4,151 +4,151 @@ const marathonData = [
     "title": "Blade (1998)",
     "duration": "2h 00m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
     "subcategory": "Universo Blade"
   },
   {
     "id": "marathon-bladeii2002",
     "title": "Blade II (2002)",
-    "duration": "2h 17m",
+    "duration": "1h 57m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
     "subcategory": "Universo Blade"
   },
   {
     "id": "marathon-bladetrinity2004",
     "title": "Blade: Trinity (2004)",
-    "duration": "2h 24m",
+    "duration": "1h 53m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
     "subcategory": "Universo Blade"
-  },
-  {
-    "id": "marathon-xmen2000",
-    "title": "X-Men (2000)",
-    "duration": "1h 44m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
-  },
-  {
-    "id": "marathon-x2xmenunited2003",
-    "title": "X2: X-Men United (2003)",
-    "duration": "2h 14m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
-  },
-  {
-    "id": "marathon-xmenlabatallafinal2006",
-    "title": "X-Men: La Batalla Final (2006)",
-    "duration": "1h 44m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
-  },
-  {
-    "id": "marathon-xmenorígeneswolverine2009",
-    "title": "X-Men Orígenes: Wolverine (2009)",
-    "duration": "1h 47m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
   },
   {
     "id": "marathon-xmenprimerageneración2011",
     "title": "X-Men: Primera Generación (2011)",
     "duration": "2h 11m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "details": "1962 — Línea original. Inicio cronológico de la saga Fox",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
+  },
+  {
+    "id": "marathon-xmenorígeneswolverine2009",
+    "title": "X-Men Orígenes: Wolverine (2009)",
+    "duration": "1h 47m",
+    "details": "1979 (prólogo 1845) — Línea original",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
+    "streaming": "🔵 D+",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
+  },
+  {
+    "id": "marathon-xmen2000",
+    "title": "X-Men (2000)",
+    "duration": "1h 44m",
+    "details": "~2000 — Línea original",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
+    "streaming": "🔵 D+",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
+  },
+  {
+    "id": "marathon-x2xmenunited2003",
+    "title": "X2: X-Men United (2003)",
+    "duration": "2h 14m",
+    "details": "~2003 — Línea original",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
+    "streaming": "🔵 D+",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
+  },
+  {
+    "id": "marathon-xmenlabatallafinal2006",
+    "title": "X-Men: La Batalla Final (2006)",
+    "duration": "1h 44m",
+    "details": "~2006 — Línea original",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
+    "streaming": "🔵 D+",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
   },
   {
     "id": "marathon-wolverineinmortal2013",
     "title": "Wolverine Inmortal (2013)",
     "duration": "2h 06m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "details": "2013 — Línea original",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
   },
   {
     "id": "marathon-xmendíasdelfuturopasado2014",
     "title": "X-Men: Días del Futuro Pasado (2014)",
     "duration": "2h 12m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "details": "2023 → 1973 — Reinicia la línea temporal: lo que sigue es la línea nueva",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
-  },
-  {
-    "id": "marathon-deadpool2016",
-    "title": "Deadpool (2016)",
-    "duration": "1h 48m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
   },
   {
     "id": "marathon-xmenapocalipsis2016",
     "title": "X-Men: Apocalipsis (2016)",
     "duration": "2h 24m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "details": "1983 — Línea nueva",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
-  },
-  {
-    "id": "marathon-logan2017",
-    "title": "Logan (2017)",
-    "duration": "2h 17m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
-  },
-  {
-    "id": "marathon-deadpool22018",
-    "title": "Deadpool 2 (2018)",
-    "duration": "1h 59m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
   },
   {
     "id": "marathon-xmendarkphoenix2019",
     "title": "X-Men: Dark Phoenix (2019)",
     "duration": "1h 54m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "details": "1992 — Línea nueva",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
+  },
+  {
+    "id": "marathon-deadpool2016",
+    "title": "Deadpool (2016)",
+    "duration": "1h 48m",
+    "details": "2016 — Línea nueva",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
+    "streaming": "🔵 D+",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
+  },
+  {
+    "id": "marathon-deadpool22018",
+    "title": "Deadpool 2 (2018)",
+    "duration": "1h 59m",
+    "details": "2018 — Línea nueva",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
+    "streaming": "🔵 D+",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
   },
   {
     "id": "marathon-losnuevosmutantes2020",
     "title": "Los Nuevos Mutantes (2020)",
     "duration": "1h 34m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "details": "~2020 — Sin anclaje con el resto de la saga",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
-    "subcategory": "Universo X-Men (Fox — Tierra-10005)"
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
+  },
+  {
+    "id": "marathon-logan2017",
+    "title": "Logan (2017)",
+    "duration": "2h 17m",
+    "details": "2029 — Cierre de la saga Fox",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
+    "streaming": "🔵 D+",
+    "subcategory": "Universo X-Men (Fox — Tierra-10005) — orden cronológico"
   },
   {
     "id": "marathon-spiderman2002",
     "title": "Spider-Man (2002)",
     "duration": "2h 01m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔴 NF",
     "subcategory": "Universo Spider-Man (Tobey Maguire — Tierra-96283)"
   },
@@ -157,7 +157,7 @@ const marathonData = [
     "title": "Spider-Man 2 (2004)",
     "duration": "2h 07m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔴 NF",
     "subcategory": "Universo Spider-Man (Tobey Maguire — Tierra-96283)"
   },
@@ -166,7 +166,7 @@ const marathonData = [
     "title": "Spider-Man 3 (2007)",
     "duration": "2h 19m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔴 NF",
     "subcategory": "Universo Spider-Man (Tobey Maguire — Tierra-96283)"
   },
@@ -175,7 +175,7 @@ const marathonData = [
     "title": "Daredevil (2003)",
     "duration": "1h 43m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
     "subcategory": "Universo Daredevil / Elektra (Fox)"
   },
@@ -184,7 +184,7 @@ const marathonData = [
     "title": "Elektra (2005)",
     "duration": "1h 37m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
     "subcategory": "Universo Daredevil / Elektra (Fox)"
   },
@@ -193,7 +193,7 @@ const marathonData = [
     "title": "Los Cuatro Fantásticos (2005)",
     "duration": "1h 46m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
     "subcategory": "Universo Los 4 Fantásticos (Fox)"
   },
@@ -202,7 +202,7 @@ const marathonData = [
     "title": "Los 4 Fantásticos y Silver Surfer (2007)",
     "duration": "1h 32m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔵 D+",
     "subcategory": "Universo Los 4 Fantásticos (Fox)"
   },
@@ -211,7 +211,7 @@ const marathonData = [
     "title": "The Amazing Spider-Man (2012)",
     "duration": "2h 16m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔴 NF",
     "subcategory": "Universo Amazing Spider-Man (Andrew Garfield — Tierra-120703)"
   },
@@ -220,45 +220,9 @@ const marathonData = [
     "title": "The Amazing Spider-Man 2 (2014)",
     "duration": "2h 22m",
     "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
+    "phase": "🌀 PRÓLOGO: UNIVERSOS LEGACY (PARALELOS AL UCM)",
     "streaming": "🔴 NF",
     "subcategory": "Universo Amazing Spider-Man (Andrew Garfield — Tierra-120703)"
-  },
-  {
-    "id": "marathon-venom2018",
-    "title": "Venom (2018)",
-    "duration": "1h 52m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔴 NF",
-    "subcategory": "Universo Sony SSU (Tierra-688B)"
-  },
-  {
-    "id": "marathon-venomlettherebecarnage2021",
-    "title": "Venom: Let There Be Carnage (2021)",
-    "duration": "1h 37m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔴 NF",
-    "subcategory": "Universo Sony SSU (Tierra-688B)"
-  },
-  {
-    "id": "marathon-morbius2022",
-    "title": "Morbius (2022)",
-    "duration": "1h 44m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔴 NF",
-    "subcategory": "Universo Sony SSU (Tierra-688B)"
-  },
-  {
-    "id": "marathon-venomthelastdance2024",
-    "title": "Venom: The Last Dance (2024)",
-    "duration": "1h 49m",
-    "details": "",
-    "phase": "🌀 PRE-UCM: LOS UNIVERSOS LEGACY (EL MULTIVERSO)",
-    "streaming": "🔴 NF",
-    "subcategory": "Universo Sony SSU (Tierra-688B)"
   },
   {
     "id": "marathon-eyesofwakandaep1",
@@ -269,17 +233,17 @@ const marathonData = [
     "streaming": "🔵 D+"
   },
   {
-    "id": "marathon-eyesofwakandaep2",
-    "title": "Eyes of Wakanda — Ep. 2",
-    "duration": "31m",
+    "id": "marathon-eyesofwakandaep3",
+    "title": "Eyes of Wakanda — Ep. 3",
+    "duration": "30m",
     "details": "1200 a.C. (Guerra de Troya)",
     "phase": "⚱️ ERA ANTIGUA: WAKANDA A TRAVÉS DE LOS MILENIOS",
     "streaming": "🔵 D+"
   },
   {
-    "id": "marathon-eyesofwakandaep3",
-    "title": "Eyes of Wakanda — Ep. 3",
-    "duration": "30m",
+    "id": "marathon-eyesofwakandaep2",
+    "title": "Eyes of Wakanda — Ep. 2",
+    "duration": "31m",
     "details": "1400 d.C. (China, dinastía Ming)",
     "phase": "⚱️ ERA ANTIGUA: WAKANDA A TRAVÉS DE LOS MILENIOS",
     "streaming": "🔵 D+"
@@ -311,6 +275,7 @@ const marathonData = [
   {
     "id": "marathon-agentcartertemporada1",
     "title": "Agent Carter — Temporada 1",
+    "duration": "5h 44m",
     "details": "1946 — Serie ABC, 8 episodios",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
     "streaming": "🔵 D+"
@@ -318,6 +283,7 @@ const marathonData = [
   {
     "id": "marathon-agentcartertemporada2",
     "title": "Agent Carter — Temporada 2",
+    "duration": "7h 10m",
     "details": "1947 — Serie ABC, 10 episodios",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
     "streaming": "🔵 D+"
@@ -334,7 +300,7 @@ const marathonData = [
     "id": "marathon-ironman",
     "title": "Iron Man",
     "duration": "2h 06m",
-    "details": "2008",
+    "details": "2010 — Libro oficial de Marvel (2023); la película salió en 2008",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
     "streaming": "🔵 D+"
   },
@@ -342,7 +308,7 @@ const marathonData = [
     "id": "marathon-ironman2",
     "title": "Iron Man 2",
     "duration": "2h 04m",
-    "details": "2010 — Semana de Fury",
+    "details": "2011 — Semana de Fury",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
     "streaming": "🔵 D+"
   },
@@ -350,7 +316,7 @@ const marathonData = [
     "id": "marathon-afunnythinghappenedonthewaytothorshammer",
     "title": "A Funny Thing Happened on the Way to Thor's Hammer",
     "duration": "4m",
-    "details": "2010 — One-Shot: Coulson camino a Nuevo México",
+    "details": "2011 — One-Shot: Coulson camino a Nuevo México",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
     "streaming": "🔵 D+"
   },
@@ -358,7 +324,7 @@ const marathonData = [
     "id": "marathon-elincreíblehulk",
     "title": "El Increíble Hulk",
     "duration": "1h 52m",
-    "details": "2010 — Semana de Fury",
+    "details": "2011 — Semana de Fury",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
     "streaming": "🔵 D+"
   },
@@ -366,7 +332,7 @@ const marathonData = [
     "id": "marathon-thor",
     "title": "Thor",
     "duration": "1h 55m",
-    "details": "2010 — Semana de Fury",
+    "details": "2011 — Semana de Fury",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
     "streaming": "🔵 D+"
   },
@@ -374,7 +340,7 @@ const marathonData = [
     "id": "marathon-theconsultantoneshot",
     "title": "The Consultant (One-Shot)",
     "duration": "4m",
-    "details": "2010–2011 — Coulson y Sitwell re: Abomination",
+    "details": "2011 — Coulson y Sitwell re: Abomination",
     "phase": "🛡️ FASE 1: LA INICIATIVA VENGADORES (1943 – 2012)",
     "streaming": "🔵 D+"
   },
@@ -405,6 +371,7 @@ const marathonData = [
   {
     "id": "marathon-agentsofshieldt1eps17",
     "title": "Agents of S.H.I.E.L.D. — T1, Eps. 1–7",
+    "duration": "5h 01m",
     "details": "Finales 2013",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
     "streaming": "🔵 D+"
@@ -428,6 +395,7 @@ const marathonData = [
   {
     "id": "marathon-agentsofshieldt1eps816",
     "title": "Agents of S.H.I.E.L.D. — T1, Eps. 8–16",
+    "duration": "6h 27m",
     "details": "Inicios 2014",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
     "streaming": "🔵 D+"
@@ -443,6 +411,7 @@ const marathonData = [
   {
     "id": "marathon-agentsofshieldt1eps1722",
     "title": "Agents of S.H.I.E.L.D. — T1, Eps. 17–22",
+    "duration": "4h 18m",
     "details": "2014 — Post-revelación HYDRA",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
     "streaming": "🔵 D+"
@@ -465,8 +434,9 @@ const marathonData = [
   },
   {
     "id": "marathon-agentsofshieldtemporada2",
-    "title": "Agents of S.H.I.E.L.D. — Temporada 2",
-    "details": "2014–2015 — Conecta con Age of Ultron",
+    "title": "Agents of S.H.I.E.L.D. — T2, Eps. 1–19",
+    "duration": "13h 37m",
+    "details": "2014–2015 — El 2x19 es el lead-in de Age of Ultron",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
     "streaming": "🔵 D+"
   },
@@ -521,6 +491,14 @@ const marathonData = [
     "title": "Avengers: Era de Ultrón",
     "duration": "2h 21m",
     "details": "2015 — Caída de Sokovia",
+    "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "marathon-agentsofshieldt2eps2022",
+    "title": "Agents of S.H.I.E.L.D. — T2, Eps. 20–22",
+    "duration": "2h 09m",
+    "details": "2015 — Post-Sokovia",
     "phase": "🚀 FASE 2: LAS CONSECUENCIAS Y EL COSMOS (2012 – 2015)",
     "streaming": "🔵 D+"
   },
@@ -580,8 +558,9 @@ const marathonData = [
   },
   {
     "id": "marathon-agentsofshieldtemporada3",
-    "title": "Agents of S.H.I.E.L.D. — Temporada 3",
-    "details": "2015–2016",
+    "title": "Agents of S.H.I.E.L.D. — T3, Eps. 1–19",
+    "duration": "13h 37m",
+    "details": "2015–2016 — Antes de los Acuerdos de Sokovia",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
     "streaming": "🔵 D+",
     "subcategory": "2016: Guerra Civil y sus consecuencias"
@@ -634,6 +613,15 @@ const marathonData = [
     "title": "Capitán América: Civil War",
     "duration": "2h 27m",
     "details": "2016 — Acuerdos de Sokovia",
+    "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
+    "streaming": "🔵 D+",
+    "subcategory": "2016: Guerra Civil y sus consecuencias"
+  },
+  {
+    "id": "marathon-agentsofshieldt3eps2022",
+    "title": "Agents of S.H.I.E.L.D. — T3, Eps. 20–22",
+    "duration": "2h 09m",
+    "details": "2016 — Post-Civil War. Acuerdos de Sokovia",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
     "streaming": "🔵 D+",
     "subcategory": "2016: Guerra Civil y sus consecuencias"
@@ -701,6 +689,7 @@ const marathonData = [
   {
     "id": "marathon-agentsofshieldtemporada4",
     "title": "Agents of S.H.I.E.L.D. — Temporada 4",
+    "duration": "15h 46m",
     "details": "2017 — Ghost Rider, Darkhold, Framework",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
     "streaming": "🔵 D+",
@@ -859,6 +848,7 @@ const marathonData = [
   {
     "id": "marathon-agentsofshieldtemporada5",
     "title": "Agents of S.H.I.E.L.D. — Temporada 5",
+    "duration": "15h 46m",
     "details": "2017–2018 — Diverge del MCU principal aquí",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
     "streaming": "🔵 D+",
@@ -885,6 +875,7 @@ const marathonData = [
   {
     "id": "marathon-agentsofshieldtemporada6",
     "title": "Agents of S.H.I.E.L.D. — Temporada 6",
+    "duration": "9h 19m",
     "details": "2019 — ⚠️ Ignora el Chasquido. Línea temporal alternativa",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
     "streaming": "🔵 D+",
@@ -893,6 +884,7 @@ const marathonData = [
   {
     "id": "marathon-agentsofshieldtemporada7",
     "title": "Agents of S.H.I.E.L.D. — Temporada 7",
+    "duration": "9h 19m",
     "details": "Viajes en el tiempo — ⚠️ Línea temporal alternativa",
     "phase": "♾️ FASE 3: LA DIVISIÓN Y LA GUERRA DEL INFINITO (2016 – 2023)",
     "streaming": "🔵 D+",
@@ -912,7 +904,7 @@ const marathonData = [
     "title": "Loki — Temporada 1",
     "duration": "4h 50m",
     "details": "Fuera del tiempo (TVA) — Loki de 2012 escapa. Muerte de Aquel que Permanece → Multiverso",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: Glorious Purpose", "duration": "51m" },
@@ -928,7 +920,7 @@ const marathonData = [
     "title": "What If...? — Temporada 1",
     "duration": "5h 10m",
     "details": "Multiverso — Animada. Líneas temporales alternativas",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: Captain Carter", "duration": "34m" },
@@ -947,7 +939,7 @@ const marathonData = [
     "title": "WandaVision",
     "duration": "5h 43m",
     "details": "Finales 2023 — 3 semanas post-Endgame. Wanda → Bruja Escarlata",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: Filmed Before a Live Studio Audience", "duration": "27m" },
@@ -966,7 +958,7 @@ const marathonData = [
     "title": "The Falcon and the Winter Soldier",
     "duration": "5h 22m",
     "details": "Principios 2024 — 6 meses post-Endgame. Sam acepta el manto",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: New World Order", "duration": "50m" },
@@ -982,7 +974,7 @@ const marathonData = [
     "title": "Shang-Chi y la Leyenda de los Diez Anillos",
     "duration": "2h 12m",
     "details": "Abril 2024 — Festival Qingming",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+"
   },
   {
@@ -990,7 +982,7 @@ const marathonData = [
     "title": "Spider-Man: Far From Home",
     "duration": "2h 09m",
     "details": "Verano 2024 — Mysterio revela identidad de Peter",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔴 NF / 🔵 D+ ❓"
   },
   {
@@ -998,7 +990,7 @@ const marathonData = [
     "title": "Eternals",
     "duration": "2h 36m",
     "details": "Otoño 2024 — Flashbacks de 7.000 años. Emergencia de Tiamut",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+"
   },
   {
@@ -1006,23 +998,51 @@ const marathonData = [
     "title": "Spider-Man: No Way Home",
     "duration": "2h 28m",
     "details": "Otoño–Invierno 2024 — Multiverso. Tobey + Andrew regresan",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔴 NF"
   },
   {
-    "id": "marathon-doctorstrangeenelmultiversodelalocura",
-    "title": "Doctor Strange en el Multiverso de la Locura",
-    "duration": "2h 06m",
-    "details": "Finales 2024 — Wanda persigue a America Chavez",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
-    "streaming": "🔵 D+"
+    "id": "marathon-venom2018",
+    "title": "Venom (2018)",
+    "duration": "1h 52m",
+    "details": "Universo propio — Sin conexión con el UCM hasta Venom 2",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
+    "streaming": "🔴 NF",
+    "subcategory": "Universo Sony SSU (Tierra-688B) — ver después de No Way Home"
+  },
+  {
+    "id": "marathon-venomlettherebecarnage2021",
+    "title": "Venom: Let There Be Carnage (2021)",
+    "duration": "1h 37m",
+    "details": "Universo propio — Post-créditos durante No Way Home",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
+    "streaming": "🔴 NF",
+    "subcategory": "Universo Sony SSU (Tierra-688B) — ver después de No Way Home"
+  },
+  {
+    "id": "marathon-morbius2022",
+    "title": "Morbius (2022)",
+    "duration": "1h 44m",
+    "details": "Universo propio — Post-créditos tras No Way Home (Vulture)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
+    "streaming": "🔴 NF",
+    "subcategory": "Universo Sony SSU (Tierra-688B) — ver después de No Way Home"
+  },
+  {
+    "id": "marathon-venomthelastdance2024",
+    "title": "Venom: The Last Dance (2024)",
+    "duration": "1h 49m",
+    "details": "Universo propio — Post-No Way Home",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
+    "streaming": "🔴 NF",
+    "subcategory": "Universo Sony SSU (Tierra-688B) — ver después de No Way Home"
   },
   {
     "id": "marathon-hawkeye",
     "title": "Hawkeye",
     "duration": "4h 39m",
     "details": "Navidad 2024 — Kate Bishop. Reintroduce a Kingpin",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: Never Meet Your Heroes", "duration": "47m" },
@@ -1034,11 +1054,19 @@ const marathonData = [
     ]
   },
   {
+    "id": "marathon-doctorstrangeenelmultiversodelalocura",
+    "title": "Doctor Strange en el Multiverso de la Locura",
+    "duration": "2h 06m",
+    "details": "2025 — Wanda persigue a America Chavez",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
+    "streaming": "🔵 D+"
+  },
+  {
     "id": "marathon-moonknight",
     "title": "Moon Knight",
     "duration": "4h 45m",
     "details": "Principios 2025 — Marc Spector / Steven Grant + Khonshu",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: The Goldfish Problem", "duration": "45m" },
@@ -1053,8 +1081,8 @@ const marathonData = [
     "id": "marathon-echo",
     "title": "Echo",
     "duration": "3h 22m",
-    "details": "Mayo 2025 — Marvel Spotlight. Post-Hawkeye",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "details": "2025 — Marvel Spotlight. Post-Hawkeye",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: Chafa", "duration": "49m" },
@@ -1065,30 +1093,11 @@ const marathonData = [
     ]
   },
   {
-    "id": "marathon-shehulkdefensoradehéroes",
-    "title": "She-Hulk: Defensora de Héroes",
-    "duration": "4h 54m",
-    "details": "2024–2025 — Jennifer Walters",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
-    "streaming": "🔵 D+",
-    "episodes": [
-      { "name": "Ep. 1: A Normal Amount of Rage", "duration": "35m" },
-      { "name": "Ep. 2: Superhuman Law", "duration": "28m" },
-      { "name": "Ep. 3: The People vs. Emil Blonsky", "duration": "32m" },
-      { "name": "Ep. 4: Is This Not Real Magic?", "duration": "33m" },
-      { "name": "Ep. 5: Mean, Green, and Straight Poured into These Jeans", "duration": "30m" },
-      { "name": "Ep. 6: Just Jen", "duration": "31m" },
-      { "name": "Ep. 7: The Retreat", "duration": "34m" },
-      { "name": "Ep. 8: Ribbit and Rip It", "duration": "36m" },
-      { "name": "Ep. 9: Whose Show Is This?", "duration": "35m" }
-    ]
-  },
-  {
     "id": "marathon-msmarvel",
     "title": "Ms. Marvel",
     "duration": "4h 38m",
     "details": "2025 — Kamala Khan en Jersey City",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: Generation Why", "duration": "47m" },
@@ -1104,15 +1113,34 @@ const marathonData = [
     "title": "Thor: Love and Thunder",
     "duration": "1h 59m",
     "details": "~2025 — Gorr. Jane Foster como Mighty Thor",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+"
+  },
+  {
+    "id": "marathon-shehulkdefensoradehéroes",
+    "title": "She-Hulk: Defensora de Héroes",
+    "duration": "4h 54m",
+    "details": "2025 — Jennifer Walters",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
+    "streaming": "🔵 D+",
+    "episodes": [
+      { "name": "Ep. 1: A Normal Amount of Rage", "duration": "35m" },
+      { "name": "Ep. 2: Superhuman Law", "duration": "28m" },
+      { "name": "Ep. 3: The People vs. Emil Blonsky", "duration": "32m" },
+      { "name": "Ep. 4: Is This Not Real Magic?", "duration": "33m" },
+      { "name": "Ep. 5: Mean, Green, and Straight Poured into These Jeans", "duration": "30m" },
+      { "name": "Ep. 6: Just Jen", "duration": "31m" },
+      { "name": "Ep. 7: The Retreat", "duration": "34m" },
+      { "name": "Ep. 8: Ribbit and Rip It", "duration": "36m" },
+      { "name": "Ep. 9: Whose Show Is This?", "duration": "35m" }
+    ]
   },
   {
     "id": "marathon-werewolfbynight",
     "title": "Werewolf by Night",
     "duration": "53m",
     "details": "~2025 — Especial de Halloween",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+"
   },
   {
@@ -1120,7 +1148,15 @@ const marathonData = [
     "title": "Black Panther: Wakanda Forever",
     "duration": "2h 41m",
     "details": "~2025 — Muerte de T'Challa. Namor + Talokan",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "marathon-ironheart",
+    "title": "Ironheart",
+    "duration": "4h 30m",
+    "details": "Finales 2025 — Riri vuelve de Wakanda. Mephisto",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+"
   },
   {
@@ -1128,14 +1164,7 @@ const marathonData = [
     "title": "Guardianes de la Galaxia: Especial Navideño",
     "duration": "42m",
     "details": "Navidad ~2025 — Kevin Bacon secuestrado",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
-    "streaming": "🔵 D+"
-  },
-  {
-    "id": "marathon-ironheart",
-    "title": "Ironheart",
-    "details": "~Oct 2025 — Riri Williams. Mephisto. Última serie Fase 5",
-    "phase": "🌌 FASE 4: LA SAGA DEL MULTIVERSO — INICIO (2023 – 2025)",
+    "phase": "🌌 SAGA DEL MULTIVERSO I: POST-BLIP (2023 – 2025)",
     "streaming": "🔵 D+"
   },
   {
@@ -1143,7 +1172,7 @@ const marathonData = [
     "title": "Ant-Man and the Wasp: Quantumania",
     "duration": "2h 05m",
     "details": "2026 — Kang el Conquistador. Reino Cuántico",
-    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
+    "phase": "⚡ SAGA DEL MULTIVERSO II: ESCALADA (2026)",
     "streaming": "🔵 D+"
   },
   {
@@ -1151,7 +1180,7 @@ const marathonData = [
     "title": "Guardianes de la Galaxia Vol. 3",
     "duration": "2h 30m",
     "details": "2026 — Despedida de los Guardianes originales",
-    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
+    "phase": "⚡ SAGA DEL MULTIVERSO II: ESCALADA (2026)",
     "streaming": "🔵 D+"
   },
   {
@@ -1159,7 +1188,7 @@ const marathonData = [
     "title": "Secret Invasion",
     "duration": "4h 30m",
     "details": "2026 — Fury vs invasión Skrull",
-    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
+    "phase": "⚡ SAGA DEL MULTIVERSO II: ESCALADA (2026)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: Resurrection", "duration": "54m" },
@@ -1175,7 +1204,7 @@ const marathonData = [
     "title": "The Marvels",
     "duration": "1h 45m",
     "details": "2026 — Carol + Monica + Kamala",
-    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
+    "phase": "⚡ SAGA DEL MULTIVERSO II: ESCALADA (2026)",
     "streaming": "🔵 D+"
   },
   {
@@ -1183,7 +1212,7 @@ const marathonData = [
     "title": "Loki — Temporada 2",
     "duration": "4h 55m",
     "details": "Fuera del tiempo (TVA) — Cierra la trama de Kang",
-    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
+    "phase": "⚡ SAGA DEL MULTIVERSO II: ESCALADA (2026)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: Ouroboros", "duration": "45m" },
@@ -1199,7 +1228,7 @@ const marathonData = [
     "title": "Deadpool & Wolverine",
     "duration": "2h 08m",
     "details": "2024 / Vacío — Conecta Fox con MCU. Narrativamente va aquí",
-    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
+    "phase": "⚡ SAGA DEL MULTIVERSO II: ESCALADA (2026)",
     "streaming": "🔵 D+"
   },
   {
@@ -1207,7 +1236,7 @@ const marathonData = [
     "title": "What If...? — Temporada 2",
     "duration": "5h 01m",
     "details": "Multiverso — Animada",
-    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
+    "phase": "⚡ SAGA DEL MULTIVERSO II: ESCALADA (2026)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: Nebula Joined the Nova Corps", "duration": "35m" },
@@ -1226,7 +1255,7 @@ const marathonData = [
     "title": "Agatha All Along",
     "duration": "6h 22m",
     "details": "2026 — 3 años post-WandaVision. Camino de las Brujas",
-    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
+    "phase": "⚡ SAGA DEL MULTIVERSO II: ESCALADA (2026)",
     "streaming": "🔵 D+",
     "episodes": [
       { "name": "Ep. 1: Seekest Thou the Road", "duration": "43m" },
@@ -1243,59 +1272,62 @@ const marathonData = [
   {
     "id": "marathon-whatiftemporada3",
     "title": "What If...? — Temporada 3",
+    "duration": "4h 20m",
     "details": "Multiverso — Animada. Temporada final",
-    "phase": "⚡ FASE 5: LA SAGA DEL MULTIVERSO — ESCALADA (2026)",
-    "streaming": "🔵 D+"
-  },
-  {
-    "id": "marathon-daredevilbornagaintemporada1",
-    "title": "Daredevil: Born Again — Temporada 1",
-    "details": "Finales 2026 – Inicios 2027 — Fisk como alcalde de NYC",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
-    "streaming": "🔵 D+"
-  },
-  {
-    "id": "marathon-wonderman",
-    "title": "Wonder Man",
-    "details": "2025–2027 — Trevor Slattery regresa. 8 episodios Disney+",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "phase": "⚡ SAGA DEL MULTIVERSO II: ESCALADA (2026)",
     "streaming": "🔵 D+"
   },
   {
     "id": "marathon-captainamericabravenewworld",
     "title": "Captain America: Brave New World",
     "duration": "1h 59m",
-    "details": "Nov 2026 – Abr 2027 — Ross presidente. Sam como Cap",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "details": "~2026 — Ross presidente. Sam como Cap",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "marathon-daredevilbornagaintemporada1",
+    "title": "Daredevil: Born Again — Temporada 1",
+    "duration": "7h 15m",
+    "details": "~2026 — Fisk como alcalde de NYC",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
     "streaming": "🔵 D+"
   },
   {
     "id": "marathon-thunderbolts",
     "title": "Thunderbolts*",
     "duration": "2h 07m",
-    "details": "2027 — Post-créditos → nave de los F4 llega a Earth-616",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
-    "streaming": "🔵 D+"
-  },
-  {
-    "id": "marathon-daredevilbornagaintemporada2",
-    "title": "Daredevil: Born Again — Temporada 2",
-    "details": "~Med 2027 — 6 meses post-T1. Krysten Ritter (Jessica Jones) regresa",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
-    "streaming": "🔵 D+"
-  },
-  {
-    "id": "marathon-daredevilbornagaintemporada3",
-    "title": "Daredevil: Born Again — Temporada 3",
-    "details": "Marzo 2027 — Ya en rodaje. Continúa la historia de Fisk y Matt Murdock",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "details": "~2027 — Post-créditos (14 meses después): la nave de los F4 llega a Earth-616",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
     "streaming": "🔵 D+"
   },
   {
     "id": "marathon-thepunisherespecial",
     "title": "The Punisher: One Last Kill",
-    "details": "12 de Mayo 2026 — Presentación Especial Disney+ (60 min). Jon Bernthal. Concurrente con Born Again T2",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "duration": "1h 00m",
+    "details": "Concurrente con Born Again T2 — Presentación Especial Disney+. Jon Bernthal",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "marathon-daredevilbornagaintemporada2",
+    "title": "Daredevil: Born Again — Temporada 2",
+    "details": "6 meses post-T1 — Krysten Ritter (Jessica Jones) regresa",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "marathon-wonderman",
+    "title": "Wonder Man",
+    "details": "Sin anclaje temporal conocido — Trevor Slattery regresa. 8 episodios Disney+",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
+    "streaming": "🔵 D+"
+  },
+  {
+    "id": "marathon-daredevilbornagaintemporada3",
+    "title": "Daredevil: Born Again — Temporada 3",
+    "details": "Sin estrenar — Continúa la historia de Fisk y Matt Murdock",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
     "streaming": "🔵 D+"
   },
   {
@@ -1303,35 +1335,35 @@ const marathonData = [
     "title": "The Fantastic Four: First Steps",
     "duration": "1h 55m",
     "details": "~1965 (Earth-828) — Universo alternativo retro. Doctor Doom (RDJ)",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
-    "streaming": "🎬 CINE"
-  },
-  {
-    "id": "marathon-spidermanbrandnewday",
-    "title": "Spider-Man: Brand New Day",
-    "details": "2028 (in-universe) — Estreno: 31 julio 2026. Dir: Destin Daniel Cretton. Tom Holland, Zendaya, Jon Bernthal (Punisher), Mark Ruffalo (Hulk)",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
     "streaming": "🎬 CINE"
   },
   {
     "id": "marathon-visionquest",
     "title": "VisionQuest",
-    "details": "~2027 (in-universe) — Serie Disney+, 8 episodios. Dir: Terry Matalas. Paul Bettany + James Spader como Ultron",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "details": "Fecha in-universe por confirmar — Serie Disney+, 8 episodios. Paul Bettany + James Spader como Ultron",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
     "streaming": "🔵 D+"
+  },
+  {
+    "id": "marathon-spidermanbrandnewday",
+    "title": "Spider-Man: Brand New Day",
+    "details": "Fecha in-universe por confirmar — Tom Holland, Zendaya, Jon Bernthal (Punisher), Mark Ruffalo (Hulk)",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
+    "streaming": "🎬 CINE"
   },
   {
     "id": "marathon-avengersdoomsday",
     "title": "Avengers: Doomsday",
-    "details": "2028+ (in-universe) — Estreno: 18 dic 2026. Hermanos Russo. RDJ como Doctor Doom. Chris Evans regresa",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "details": "Sin estrenar — Hermanos Russo. RDJ como Doctor Doom. Chris Evans regresa",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
     "streaming": "🎬 CINE"
   },
   {
     "id": "marathon-avengerssecretwars",
     "title": "Avengers: Secret Wars",
-    "details": "Estreno: 17 dic 2027. Finale de la Saga del Multiverso. El 'reset' del MCU a una línea temporal singular. Hermanos Russo. RDJ regresa como Doom",
-    "phase": "🔥 FASE 6: EL CAMINO A DOOMSDAY (2026 – 2027+)",
+    "details": "Sin estrenar — Finale de la Saga del Multiverso. El 'reset' del MCU a una línea temporal singular",
+    "phase": "🔥 CAMINO A DOOMSDAY (2026 – 2028)",
     "streaming": "🎬 CINE"
   },
   {
@@ -1355,6 +1387,7 @@ const marathonData = [
   {
     "id": "marathon-yourfriendlyneighborhoodspiderman",
     "title": "Your Friendly Neighborhood Spider-Man — T1",
+    "duration": "4h 30m",
     "details": "Línea alternativa — Animada Disney+",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🔵 D+",
@@ -1363,7 +1396,7 @@ const marathonData = [
   {
     "id": "marathon-yourfriendlyneighborhoodspidermant2",
     "title": "Your Friendly Neighborhood Spider-Man — T2",
-    "details": "Otoño 2026 — Animada Disney+",
+    "details": "Línea alternativa — Animada Disney+",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🔵 D+",
     "subcategory": "Canónico pero fuera de Earth-616"
@@ -1392,7 +1425,7 @@ const marathonData = [
   {
     "id": "marathon-xmen97t2",
     "title": "X-Men '97 — T2",
-    "details": "Verano 2026 — Animada Disney+",
+    "details": "Earth-92131 — Animada Disney+",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🔵 D+",
     "subcategory": "Canónico pero fuera de Earth-616"
@@ -1400,6 +1433,7 @@ const marathonData = [
   {
     "id": "marathon-marvelzombies",
     "title": "Marvel Zombies",
+    "duration": "2h 00m",
     "details": "~2023 alt — Animada. Spin-off de What If S1E5",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🔵 D+",
@@ -1408,7 +1442,7 @@ const marathonData = [
   {
     "id": "marathon-spidernoir",
     "title": "Spider-Noir",
-    "details": "27 de Mayo 2026 — Serie Prime Video (NO Disney+). 8 episodios. Nicolas Cage. Formato blanco y negro",
+    "details": "Universo propio — Serie Prime Video (NO Disney+). 8 episodios. Nicolas Cage. Blanco y negro",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🟡 PV",
     "subcategory": "No es MCU pero conecta al multiverso"
@@ -1416,34 +1450,38 @@ const marathonData = [
   {
     "id": "marathon-inhumanstemporada1",
     "title": "Inhumans — Temporada 1",
-    "details": "~2016 — No canónica",
+    "duration": "5h 44m",
+    "details": "~2016 — Marvel Television. Canon no confirmado",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🔵 D+",
-    "subcategory": "No canónico (Marvel Television)"
+    "subcategory": "Marvel Television — canon no confirmado"
   },
   {
     "id": "marathon-runawaystemporadas13",
     "title": "Runaways — Temporadas 1-3",
-    "details": "2017–2019 — No canónica. Ignora el Chasquido",
+    "duration": "24h 45m",
+    "details": "2017–2019 — Marvel Television. Canon no confirmado. Ignora el Chasquido",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🔵 D+",
-    "subcategory": "No canónico (Marvel Television)"
+    "subcategory": "Marvel Television — canon no confirmado"
   },
   {
     "id": "marathon-cloakdaggertemporadas12",
     "title": "Cloak & Dagger — Temporadas 1-2",
-    "details": "2017 — No canónica",
+    "duration": "14h 20m",
+    "details": "2017 — Marvel Television. Canon no confirmado",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "🔵 D+",
-    "subcategory": "No canónico (Marvel Television)"
+    "subcategory": "Marvel Television — canon no confirmado"
   },
   {
     "id": "marathon-helstromtemporada1",
     "title": "Helstrom — Temporada 1",
-    "details": "~2020 — No canónica. Separada del MCU",
+    "duration": "8h 20m",
+    "details": "~2020 — Marvel Television. Canon no confirmado",
     "phase": "🌐 FUERA DE LA LÍNEA TEMPORAL SAGRADA",
     "streaming": "❓ (retirada de algunas regiones)",
-    "subcategory": "No canónico (Marvel Television)"
+    "subcategory": "Marvel Television — canon no confirmado"
   }
 ];
 const fastTrackData = [
