@@ -28,6 +28,8 @@ cuanto_me_falta_UCM/
 ├── index.html            ← Página única (SPA). HTML, meta SEO, JSON-LD, modales, CSP estricta
 ├── styles.css            ← Todo el CSS del proyecto. Design system completo
 ├── app.js                ← Lógica principal. Estado, renderizado, import/export, event delegation
+├── progress-codec.js     ← Codec para compartir progreso por URL (#p=v1/v2, v1 solo lectura)
+├── progress-order.js     ← Registro congelado de posiciones de bit para links #p=v2 (append-only; ver reglas dentro)
 ├── data.js               ← Datos de contenido. Tres arrays (duration + episodes para series)
 ├── releases.js           ← Fechas de estreno reales. Objeto clave-valor por ID de maratón
 ├── galaxy.js             ← Fondo animado canvas. Campo de estrellas, nebulosas, estrellas fugaces

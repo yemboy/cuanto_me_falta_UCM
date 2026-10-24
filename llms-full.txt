@@ -56,27 +56,27 @@ Las 5 películas mínimas imprescindibles si no tienes tiempo:
 
 ## Maratón Completo — Orden Cronológico
 
-### 🌀 PRE-UCM: Los Universos Legacy (El Multiverso)
+### 🌀 Prólogo: Universos Legacy (Paralelos al UCM)
 
 #### Universo Blade
 - Blade (1998) — D+
 - Blade II (2002) — D+
 - Blade: Trinity (2004) — D+
 
-#### Universo X-Men (Fox — Tierra-10005)
-- X-Men (2000) — D+
-- X2: X-Men United (2003) — D+
-- X-Men: La Batalla Final (2006) — D+
-- X-Men Orígenes: Wolverine (2009) — D+
-- X-Men: Primera Generación (2011) — D+
-- Wolverine Inmortal (2013) — D+
-- X-Men: Días del Futuro Pasado (2014) — D+
-- Deadpool (2016) — D+
-- X-Men: Apocalipsis (2016) — D+
-- Logan (2017) — D+
-- Deadpool 2 (2018) — D+
-- X-Men: Dark Phoenix (2019) — D+
-- Los Nuevos Mutantes (2020) — D+
+#### Universo X-Men (Fox — Tierra-10005) — orden cronológico
+- X-Men: Primera Generación (2011) (1962) — D+
+- X-Men Orígenes: Wolverine (2009) (1979 (prólogo 1845)) — D+
+- X-Men (2000) (~2000) — D+
+- X2: X-Men United (2003) (~2003) — D+
+- X-Men: La Batalla Final (2006) (~2006) — D+
+- Wolverine Inmortal (2013) (2013) — D+
+- X-Men: Días del Futuro Pasado (2014) (2023 → 1973) — D+
+- X-Men: Apocalipsis (2016) (1983) — D+
+- X-Men: Dark Phoenix (2019) (1992) — D+
+- Deadpool (2016) (2016) — D+
+- Deadpool 2 (2018) (2018) — D+
+- Los Nuevos Mutantes (2020) (~2020) — D+
+- Logan (2017) (2029) — D+
 
 #### Universo Spider-Man (Tobey Maguire — Tierra-96283)
 - Spider-Man (2002) — NF
@@ -95,133 +95,153 @@ Las 5 películas mínimas imprescindibles si no tienes tiempo:
 - The Amazing Spider-Man (2012) — NF
 - The Amazing Spider-Man 2 (2014) — NF
 
-#### Universo Sony SSU (Tierra-688B)
-- Venom (2018) — NF
-- Venom: Let There Be Carnage (2021) — NF
-- Morbius (2022) — NF
-- Venom: The Last Dance (2024) — NF
-
-### ⚱️ Era Antigua: Wakanda a Través de los Milenios
-- Eyes of Wakanda — Ep. 1 (1260 a.C.) — D+
-- Eyes of Wakanda — Ep. 2 (1200 a.C.) — D+
-- Eyes of Wakanda — Ep. 3 (1400 d.C.) — D+
-- Eyes of Wakanda — Ep. 4 (1896) — D+
+### ⚱️ ERA ANTIGUA: WAKANDA A TRAVÉS DE LOS MILENIOS
+- Eyes of Wakanda — Ep. 1 (1260 a.C. (Creta, Edad del Bronce)) — D+
+- Eyes of Wakanda — Ep. 3 (1200 a.C. (Guerra de Troya)) — D+
+- Eyes of Wakanda — Ep. 2 (1400 d.C. (China, dinastía Ming)) — D+
+- Eyes of Wakanda — Ep. 4 (1896 (Etiopía)) — D+
 
 ### 🛡️ Fase 1: La Iniciativa Vengadores (1943–2012)
 - Capitán América: El Primer Vengador (1943–1945) — D+
-- Agent Carter (One-Shot, 1946) — D+
-- Agent Carter — Temporada 1 (1946, 8 episodios) — D+
-- Agent Carter — Temporada 2 (1947, 10 episodios) — D+
+- Agent Carter (One-Shot) (1946) — D+
+- Agent Carter — Temporada 1 (1946) — D+
+- Agent Carter — Temporada 2 (1947) — D+
 - Capitana Marvel (1995) — D+
-- Iron Man (2008) — D+
-- Iron Man 2 (2010) — D+
-- A Funny Thing Happened on the Way to Thor's Hammer (One-Shot) — D+
-- El Increíble Hulk (2010) — D+
-- Thor (2010) — D+
-- The Consultant (One-Shot, 2010–2011) — D+
+- Iron Man (2010) — D+
+- Iron Man 2 (2011) — D+
+- A Funny Thing Happened on the Way to Thor's Hammer (2011) — D+
+- El Increíble Hulk (2011) — D+
+- Thor (2011) — D+
+- The Consultant (One-Shot) (2011) — D+
 - Los Vengadores (2012) — D+
-- Item 47 (One-Shot, 2012) — D+
+- Item 47 (One-Shot) (2012) — D+
 
 ### 🚀 Fase 2: Las Consecuencias y el Cosmos (2012–2015)
 - Iron Man 3 (Dic 2012) — D+
 - Agents of S.H.I.E.L.D. — T1, Eps. 1–7 (Finales 2013) — D+
 - Thor: Un Mundo Oscuro (2013) — D+
-- All Hail the King (One-Shot, 2013) — D+
+- All Hail the King (One-Shot) (2013) — D+
 - Agents of S.H.I.E.L.D. — T1, Eps. 8–16 (Inicios 2014) — D+
 - Capitán América: El Soldado del Invierno (2014) — D+
 - Agents of S.H.I.E.L.D. — T1, Eps. 17–22 (2014) — D+
 - Guardianes de la Galaxia Vol. 1 (2014) — D+
 - Guardianes de la Galaxia Vol. 2 (2014) — D+
-- Agents of S.H.I.E.L.D. — Temporada 2 (2014–2015) — D+
-- Daredevil — Temporada 1 (Ene–Feb 2015, Netflix) — D+
-- Jessica Jones — Temporada 1 (Mar–Abr 2015, Netflix) — D+
+- Agents of S.H.I.E.L.D. — T2, Eps. 1–19 (2014–2015) — D+
+- Daredevil — Temporada 1 (Ene–Feb 2015) — D+
+- Jessica Jones — Temporada 1 (Mar–Abr 2015) — D+
 - Avengers: Era de Ultrón (2015) — D+
+- Agents of S.H.I.E.L.D. — T2, Eps. 20–22 (2015) — D+
 - Ant-Man (2015) — D+
-- Daredevil — Temporada 2 (Oct–Nov 2015, Netflix) — D+
-- Luke Cage — Temporada 1 (Nov–Dic 2015, Netflix) — D+
+- Daredevil — Temporada 2 (Oct–Nov 2015) — D+
+- Luke Cage — Temporada 1 (Nov–Dic 2015) — D+
 
 ### ♾️ Fase 3: La División y la Guerra del Infinito (2016–2023)
-- Agents of S.H.I.E.L.D. — Temporada 3 (2015–2016) — D+
-- Iron Fist — Temporada 1 (Feb 2016, Netflix) — D+
-- The Defenders (Mayo 2016, Netflix) — D+
+
+#### 2016: Guerra Civil y sus consecuencias
+- Agents of S.H.I.E.L.D. — T3, Eps. 1–19 (2015–2016) — D+
+- Iron Fist — Temporada 1 (Feb 2016) — D+
+- The Defenders (Mayo 2016) — D+
 - Capitán América: Civil War (2016) — D+
-- Black Widow (Post-Civil War) — D+
+- Agents of S.H.I.E.L.D. — T3, Eps. 20–22 (2016) — D+
+- Black Widow (2016) — D+
 - Black Panther (2016) — D+
 - Spider-Man: Homecoming (Otoño 2016) — NF/VIX
-- The Punisher — Temporada 1 (Nov–Dic 2016, Netflix) — D+
+- The Punisher — Temporada 1 (Nov–Dic 2016) — D+
 - Doctor Strange (2016–2017) — D+
+
+#### 2017: Ragnarök y expansión
 - Agents of S.H.I.E.L.D. — Temporada 4 (2017) — D+
-- Jessica Jones — Temporada 2 (Abr–Jun 2017, Netflix) — D+
-- Luke Cage — Temporada 2 (Ago–Sep 2017, Netflix) — D+
-- Iron Fist — Temporada 2 (2017, Netflix) — D+
+- Jessica Jones — Temporada 2 (Abr–Jun 2017) — D+
+- Luke Cage — Temporada 2 (Ago–Sep 2017) — D+
+- Iron Fist — Temporada 2 (2017) — D+
 - Thor: Ragnarok (2017) — D+
-- Daredevil — Temporada 3 (Finales 2017, Netflix) — D+
-- The Punisher — Temporada 2 (2017–2018, Netflix) — D+
-- Jessica Jones — Temporada 3 (2018, Netflix) — D+
+- Daredevil — Temporada 3 (Finales 2017) — D+
+- The Punisher — Temporada 2 (2017–2018) — D+
+- Jessica Jones — Temporada 3 (2018) — D+
+
+#### 2018: El Chasquido
 - Agents of S.H.I.E.L.D. — Temporada 5 (2017–2018) — D+
 - Ant-Man and the Wasp (2018) — D+
 - Avengers: Infinity War (2018) — D+
-- Agents of S.H.I.E.L.D. — Temporada 6 (2019, timeline alternativo) — D+
-- Agents of S.H.I.E.L.D. — Temporada 7 (viajes en el tiempo) — D+
-- Avengers: Endgame (2018→Oct 2023) — D+
 
-### 🌌 Fase 4: La Saga del Multiverso — Inicio (2023–2025)
-- Loki — Temporada 1 (TVA, fuera del tiempo) — D+
-- What If...? — Temporada 1 (Multiverso, animada) — D+
+#### El Blip (2018–2023)
+- Agents of S.H.I.E.L.D. — Temporada 6 (2019) — D+
+- Agents of S.H.I.E.L.D. — Temporada 7 (Viajes en el tiempo) — D+
+
+#### 2023: El Regreso
+- Avengers: Endgame (2018 → Oct 2023) — D+
+
+### 🌌 Saga del Multiverso I: Post-Blip (2023–2025)
+- Loki — Temporada 1 (Fuera del tiempo (TVA)) — D+
+- What If...? — Temporada 1 (Multiverso) — D+
 - WandaVision (Finales 2023) — D+
 - The Falcon and the Winter Soldier (Principios 2024) — D+
 - Shang-Chi y la Leyenda de los Diez Anillos (Abril 2024) — D+
 - Spider-Man: Far From Home (Verano 2024) — NF/D+
 - Eternals (Otoño 2024) — D+
 - Spider-Man: No Way Home (Otoño–Invierno 2024) — NF
-- Doctor Strange en el Multiverso de la Locura (Finales 2024) — D+
+
+#### Universo Sony SSU (Tierra-688B) — ver después de No Way Home
+- Venom (2018) (Universo propio) — NF
+- Venom: Let There Be Carnage (2021) (Universo propio) — NF
+- Morbius (2022) (Universo propio) — NF
+- Venom: The Last Dance (2024) (Universo propio) — NF
 - Hawkeye (Navidad 2024) — D+
+- Doctor Strange en el Multiverso de la Locura (2025) — D+
 - Moon Knight (Principios 2025) — D+
-- Echo (Mayo 2025) — D+
-- She-Hulk: Defensora de Héroes (2024–2025) — D+
+- Echo (2025) — D+
 - Ms. Marvel (2025) — D+
 - Thor: Love and Thunder (~2025) — D+
+- She-Hulk: Defensora de Héroes (2025) — D+
 - Werewolf by Night (~2025) — D+
 - Black Panther: Wakanda Forever (~2025) — D+
-- Guardianes de la Galaxia: Especial Navideño (~2025) — D+
-- Ironheart (~Oct 2025) — D+
+- Ironheart (Finales 2025) — D+
+- Guardianes de la Galaxia: Especial Navideño (Navidad ~2025) — D+
 
-### ⚡ Fase 5: La Saga del Multiverso — Escalada (2026)
+### ⚡ Saga del Multiverso II: Escalada (2026)
 - Ant-Man and the Wasp: Quantumania (2026) — D+
 - Guardianes de la Galaxia Vol. 3 (2026) — D+
 - Secret Invasion (2026) — D+
 - The Marvels (2026) — D+
-- Loki — Temporada 2 (TVA) — D+
-- Deadpool & Wolverine (2024/Vacío) — D+
-- What If...? — Temporada 2 (Multiverso, animada) — D+
+- Loki — Temporada 2 (Fuera del tiempo (TVA)) — D+
+- Deadpool & Wolverine (2024 / Vacío) — D+
+- What If...? — Temporada 2 (Multiverso) — D+
 - Agatha All Along (2026) — D+
-- What If...? — Temporada 3 (Multiverso, animada, final) — D+
+- What If...? — Temporada 3 (Multiverso) — D+
 
-### 🔥 Fase 6: El Camino a Doomsday (2026–2027+)
-- Daredevil: Born Again — Temporada 1 — D+
-- Wonder Man — D+
-- Captain America: Brave New World — D+
-- Thunderbolts* — D+
-- Daredevil: Born Again — Temporada 2 — D+
-- Daredevil: Born Again — Temporada 3 (Marzo 2027, en rodaje) — D+
-- The Punisher — Especial (60 min, Jon Bernthal) — D+
-- The Fantastic Four: First Steps (Earth-828, Doctor Doom/RDJ) — CINE
-- Spider-Man: Brand New Day (Tom Holland, Jon Bernthal, Mark Ruffalo) — CINE
-- VisionQuest (Paul Bettany, James Spader como Ultron) — D+
-- Avengers: Doomsday (Estreno: 18 dic 2026, Hermanos Russo, RDJ como Doom, Chris Evans regresa) — CINE
-- Avengers: Secret Wars (Estreno: 17 dic 2027, Finale de la Saga del Multiverso, el reset del MCU, Hermanos Russo, RDJ regresa como Doom) — CINE
+### 🔥 Camino a Doomsday (2026–2028)
+- Captain America: Brave New World (~2026) — D+
+- Daredevil: Born Again — Temporada 1 (~2026) — D+
+- Thunderbolts* (~2027) — D+
+- The Punisher: One Last Kill (Concurrente con Born Again T2) — D+
+- Daredevil: Born Again — Temporada 2 (6 meses post-T1) — D+
+- Wonder Man (Sin anclaje temporal conocido) — D+
+- Daredevil: Born Again — Temporada 3 (Sin estrenar) — D+
+- The Fantastic Four: First Steps (~1965 (Earth-828)) — CINE
+- VisionQuest (Fecha in-universe por confirmar) — D+
+- Spider-Man: Brand New Day (Fecha in-universe por confirmar) — CINE
+- Avengers: Doomsday (Sin estrenar) — CINE
+- Avengers: Secret Wars (Sin estrenar) — CINE
 
 ### 🌐 Fuera de la Línea Temporal Sagrada
-- Yo Soy Groot — Temporadas 1 y 2 (Cortos animados) — D+
-- Your Friendly Neighborhood Spider-Man — T1 y T2 (Animada) — D+
-- X-Men '97 — T1 y T2 (Animada, continuación de los 90s) — D+
-- Marvel Zombies (Animada, spin-off What If) — D+
-- Spider-Noir (Nicolas Cage, blanco y negro) — Prime Video
-- Inhumans — T1 (No canónica) — D+
-- Runaways — T1-3 (No canónica) — D+
-- Cloak & Dagger — T1-2 (No canónica) — D+
-- Helstrom — T1 (No canónica) — ❓
 
+#### Canónico pero fuera de Earth-616
+- Yo Soy Groot — Temporada 1 (Cortos animados) — D+
+- Yo Soy Groot — Temporada 2 (Cortos animados) — D+
+- Your Friendly Neighborhood Spider-Man — T1 (Línea alternativa) — D+
+- Your Friendly Neighborhood Spider-Man — T2 (Línea alternativa) — D+
+- X-Men '97 — T1 (Earth-92131) — D+
+- X-Men '97 — T2 (Earth-92131) — D+
+- Marvel Zombies (~2023 alt) — D+
+
+#### No es MCU pero conecta al multiverso
+- Spider-Noir (Universo propio) — PV
+
+#### Marvel Television — canon no confirmado
+- Inhumans — Temporada 1 (~2016) — D+
+- Runaways — Temporadas 1-3 (2017–2019) — D+
+- Cloak & Dagger — Temporadas 1-2 (2017) — D+
+- Helstrom — Temporada 1 (~2020) — ❓
 ## Plataformas de Streaming (LATAM)
 
 - D+ = Disney+

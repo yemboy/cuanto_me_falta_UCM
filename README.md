@@ -32,7 +32,7 @@ bun test
 bun run check
 ```
 
-El progreso se guarda en `localStorage` (`mcu_tracker_watched`). Los datos de las obras viven en `data.js`; **ojo**: el orden de los arrays define el formato de los links de progreso compartidos — leer la advertencia en `progress-codec.js` antes de insertar items (el test `tests/data-integrity.test.js` lo vigila).
+El progreso se guarda en `localStorage` (`mcu_tracker_watched`). Los datos de las obras viven en `data.js`; **ojo**: las posiciones de bit de los links de progreso viven en `progress-order.js` (append-only) — todo id nuevo en `data.js` debe agregarse también al final de ese archivo (el test `tests/data-integrity.test.js` lo vigila). El orden de `data.js` es libre y es el orden de visualización.
 
 ## Estructura
 
