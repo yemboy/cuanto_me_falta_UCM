@@ -6,7 +6,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 echo "— Sintaxis JS —"
-for f in app.js utils.js progress-codec.js three-scene.js countdown.js \
+for f in app.js utils.js progress-codec.js progress-order.js three-scene.js countdown.js \
          data.js releases.js owner_progress.js equivalences.js sw.js; do
   bun build --no-bundle "$f" > /dev/null
   echo "OK $f"

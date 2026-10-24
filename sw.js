@@ -1,7 +1,7 @@
 // Service Worker — MCU Tracker
 // Estrategia: network-first con fallback a cache. No hay build step ni hashing
 // de assets, así que cache-first dejaría datos stale tras cada commit de data.js.
-const CACHE_NAME = 'mcu-tracker-v3';
+const CACHE_NAME = 'mcu-tracker-v4';
 
 const PRECACHE_URLS = [
   '/',
@@ -10,6 +10,7 @@ const PRECACHE_URLS = [
   '/app.js',
   '/utils.js',
   '/progress-codec.js',
+  '/progress-order.js',
   '/data.js',
   '/releases.js',
   '/owner_progress.js',

@@ -1,15 +1,12 @@
-// Codec del progreso compartido por URL (#p=v1.{bitmask en base64url}).
+// Codec del progreso compartido por URL (#p=v2.{bitmask en base64url}).
 //
-// ADVERTENCIA: el formato v1 depende del ORDEN GLOBAL de declaración:
-// quickFiveData → fastTrackData → marathonData (concatenados), con los
-// episodios de cada serie inmediatamente después de su padre.
-// ÚNICA operación segura: agregar items al FINAL de marathonData.
-// Agregar al final de quickFiveData o fastTrackData, insertar en medio de
-// cualquier array, o insertar episodios en una serie existente DESPLAZA
-// todos los bits posteriores y corrompe los links viejos SILENCIOSAMENTE
-// (el decode no falla: devuelve IDs incorrectos).
-// Si el orden cambia de forma incompatible, subir el payload a v2 y
-// rechazar v1 en decodeProgress.
+// Las posiciones de bit las define PROGRESS_ORDER (progress-order.js), un
+// registro congelado y append-only, independiente del orden de data.js.
+// El formato v1 usaba el orden de declaración de los datasets; ese orden
+// quedó congelado como prefijo de PROGRESS_ORDER, así que v1 se decodifica
+// con el mismo registro (payload más corto → bits faltantes = no visto).
+// getCanonicalIdOrder se conserva para los tests de integridad (calcula el
+// conjunto de ids que data.js declara, episodios incluidos).
 import { getEpisodeIdsForSeries } from './utils.js';
 
 export function getCanonicalIdOrder(datasets) {
@@ -33,12 +30,13 @@ export function encodeProgress(order, watchedSet) {
   let bin = '';
   bytes.forEach(b => { bin += String.fromCharCode(b); });
   const b64url = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-  return `#p=v1.${b64url}`;
+  return `#p=v2.${b64url}`;
 }
 
-// Devuelve array de ids o null si el hash no es un payload v1 válido
+// Devuelve array de ids o null si el hash no es un payload v1/v2 válido.
+// v1 y v2 comparten layout: v1 es un prefijo (ver progress-order.js).
 export function decodeProgress(hash, order) {
-  const match = hash.match(/^#p=v1\.([A-Za-z0-9_-]+)$/);
+  const match = hash.match(/^#p=v[12]\.([A-Za-z0-9_-]+)$/);
   if (!match) return null;
   let b64 = match[1].replace(/-/g, '+').replace(/_/g, '/');
   while (b64.length % 4) b64 += '=';

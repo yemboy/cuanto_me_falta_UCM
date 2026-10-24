@@ -7,7 +7,7 @@ describe('encodeProgress / decodeProgress', () => {
   test('round-trip: lo codificado se decodifica idéntico', () => {
     const watched = new Set(['item-0', 'item-7', 'item-8', 'item-19']);
     const hash = encodeProgress(order, watched);
-    expect(hash.startsWith('#p=v1.')).toBe(true);
+    expect(hash.startsWith('#p=v2.')).toBe(true);
     expect(decodeProgress(hash, order)).toEqual(['item-0', 'item-7', 'item-8', 'item-19']);
   });
 
@@ -22,7 +22,7 @@ describe('encodeProgress / decodeProgress', () => {
   });
 
   test('hash inválido o de versión futura → null', () => {
-    expect(decodeProgress('#p=v2.AAAA', order)).toBe(null);
+    expect(decodeProgress('#p=v3.AAAA', order)).toBe(null);
     expect(decodeProgress('#otracosa', order)).toBe(null);
     expect(decodeProgress('#p=v1.$$$', order)).toBe(null);
   });
@@ -31,6 +31,12 @@ describe('encodeProgress / decodeProgress', () => {
     const oldOrder = order.slice(0, 8); // solo 1 byte de payload
     const hash = encodeProgress(oldOrder, new Set(['item-2']));
     expect(decodeProgress(hash, order)).toEqual(['item-2']);
+  });
+
+  test('v1 se sigue decodificando con el mismo layout', () => {
+    const v2 = encodeProgress(order, new Set(['item-1', 'item-9']));
+    const v1 = v2.replace('#p=v2.', '#p=v1.');
+    expect(decodeProgress(v1, order)).toEqual(['item-1', 'item-9']);
   });
 });
 

@@ -6,7 +6,8 @@ import {
   getEpisodeId, isEpisodeId, getSeriesIdFromEpisodeId, getEpisodeIdsForSeries,
   formatDateKey, calcStreak
 } from './utils.js';
-import { getCanonicalIdOrder, encodeProgress, decodeProgress } from './progress-codec.js';
+import { encodeProgress, decodeProgress } from './progress-codec.js';
+import { PROGRESS_ORDER } from './progress-order.js';
 
 // Fecha del reset del MCU: estreno de Avengers: Secret Wars
 const RESET_DATE = new Date('2027-12-17T00:00:00-05:00');
@@ -1230,17 +1231,17 @@ function closeStatsModal() {
 }
 
 // ===== SHARE PROGRESS VIA URL (bitmask) =====
-// La lógica del formato (y la advertencia sobre el orden de los datos)
-// vive en progress-codec.js; aquí solo se conectan los datasets globales.
+// Las posiciones de bit viven en progress-order.js (registro congelado,
+// independiente del orden de data.js). Ver reglas en ese archivo.
 function canonicalOrder() {
-  return getCanonicalIdOrder([quickFiveData, fastTrackData, marathonData]);
+  return PROGRESS_ORDER;
 }
 
 function encodeProgressToHash() {
   return encodeProgress(canonicalOrder(), watchedItems);
 }
 
-// Devuelve array de ids o null si el hash no es un payload v1 válido
+// Devuelve array de ids o null si el hash no es un payload v1/v2 válido
 function decodeProgressFromHash(hash) {
   return decodeProgress(hash, canonicalOrder());
 }
