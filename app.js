@@ -564,22 +564,19 @@ function render() {
     const groupDuration = calcGroupDuration(items);
     const durationLabel = groupDuration > 0 ? ` · ⏳ ${formatMinutes(groupDuration)}` : '';
 
-    // Subcategory logic
+    // Subcategorías: se respeta el orden del array (cronológico). Se abre un
+    // encabezado cada vez que cambia la subcategoría; los ítems sin ella no
+    // llevan encabezado. Así un sub-bloque puede ir en medio de una fase.
     let itemsHTML = '';
-    const subGroups = groupData(items, 'subcategory');
-    
-    // Process items without subcategory first
-    if (subGroups['_none']) {
-      itemsHTML += subGroups['_none'].map(item => createMovieHTML(item, isOwnerMode, activeSet)).join('');
-    }
-    
-    // Process items with subcategories
-    for (const [subName, subItems] of Object.entries(subGroups)) {
-      if (subName !== '_none') {
-        itemsHTML += `<div class="subcategory-header">${subName}</div>`;
-        itemsHTML += subItems.map(item => createMovieHTML(item, isOwnerMode, activeSet)).join('');
+    let currentSub = null;
+    items.forEach(item => {
+      const sub = item.subcategory || null;
+      if (sub !== currentSub) {
+        if (sub) itemsHTML += `<div class="subcategory-header">${sub}</div>`;
+        currentSub = sub;
       }
-    }
+      itemsHTML += createMovieHTML(item, isOwnerMode, activeSet);
+    });
 
     accordion.innerHTML = `
       <div class="accordion-header" role="button" tabindex="0" aria-expanded="false">
