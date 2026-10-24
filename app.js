@@ -154,6 +154,28 @@ function setWatchedClass(id, watched) {
   if (added) saveProgress();
 })();
 
+// One-shot: AoS T2 y T3 se dividieron en dos ítems (eps. 1–19 / 20–22).
+// El id original pasó a representar los eps. 1–19; quien lo tenía marcado
+// había visto la temporada completa → marcar también el ítem nuevo.
+// Solo aditiva e idempotente; nunca al revés (20–22 no implica 1–19).
+const SPLIT_MIGRATIONS = {
+  'marathon-agentsofshieldtemporada2': 'marathon-agentsofshieldt2eps2022',
+  'marathon-agentsofshieldtemporada3': 'marathon-agentsofshieldt3eps2022'
+};
+const SPLIT_MIGRATION_KEY = 'mcu_tracker_migr_aos_split';
+(function migrateSplitSeasons() {
+  if (localStorage.getItem(SPLIT_MIGRATION_KEY)) return;
+  let added = false;
+  Object.entries(SPLIT_MIGRATIONS).forEach(([oldId, newId]) => {
+    if (watchedItems.has(oldId) && !watchedItems.has(newId)) {
+      watchedItems.add(newId);
+      added = true;
+    }
+  });
+  localStorage.setItem(SPLIT_MIGRATION_KEY, '1');
+  if (added) saveProgress();
+})();
+
 // DOM Elements
 const contentArea = document.getElementById('contentArea');
 const tesseractScene = document.getElementById('tesseractScene');
