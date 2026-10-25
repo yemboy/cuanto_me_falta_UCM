@@ -1088,8 +1088,8 @@ function shareProgressAsImage() {
 
   // URL del sitio
   ctx.fillStyle = '#ff9500';
-  ctx.font = '700 44px Inter, sans-serif';
-  ctx.fillText('losfiebruos.lat', 540, 960);
+  ctx.font = '700 34px Inter, sans-serif';
+  ctx.fillText('yemboy.github.io/cuanto_me_falta_UCM', 540, 960);
 
   // Preview en modal vía data: URL (permitida por la CSP actual: img-src 'self' data:)
   shareCanvas = canvas;

@@ -1,7 +1,7 @@
 {
   "name": "cuanto-me-falta-ucm",
   "private": true,
-  "description": "MCU Tracker — checklist del Universo Cinematográfico de Marvel (losfiebruos.lat)",
+  "description": "MCU Tracker — checklist del Universo Cinematográfico de Marvel (yemboy.github.io/cuanto_me_falta_UCM)",
   "scripts": {
     "test": "bun test",
     "check": "bash scripts/check.sh"

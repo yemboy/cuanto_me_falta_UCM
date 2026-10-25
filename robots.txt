@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://losfiebruos.lat/sitemap.xml
+Sitemap: https://yemboy.github.io/cuanto_me_falta_UCM/sitemap.xml
 
 # LLMs.txt — Contexto para modelos de IA
 # https://llmstxt.org/

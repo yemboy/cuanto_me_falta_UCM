@@ -1,8 +1,8 @@
-# MCU Tracker — Lista Completa de Contenido (losfiebruos.lat)
+# MCU Tracker — Lista Completa de Contenido (yemboy.github.io/cuanto_me_falta_UCM)
 
-> Este archivo contiene la lista completa de todas las películas y series del MCU incluidas en el tracker interactivo de losfiebruos.lat, organizadas por fase y en orden cronológico. Es la guía de maratón de Marvel más completa en español.
+> Este archivo contiene la lista completa de todas las películas y series del MCU incluidas en el tracker interactivo de yemboy.github.io/cuanto_me_falta_UCM, organizadas por fase y en orden cronológico. Es la guía de maratón de Marvel más completa en español.
 
-URL: https://losfiebruos.lat/
+URL: https://yemboy.github.io/cuanto_me_falta_UCM/
 Idioma: Español (audiencia LATAM)
 Licencia: GPLv3 — Código abierto
 Tecnología: HTML, CSS, JavaScript vanilla. Hospedado en GitHub Pages.
@@ -263,4 +263,4 @@ Las 5 películas mínimas imprescindibles si no tienes tiempo:
 - Fechas de estreno reales de cada título
 - Totalmente gratuito, sin registro, sin ads
 - Código abierto bajo licencia GPLv3
-- URL: https://losfiebruos.lat/
+- URL: https://yemboy.github.io/cuanto_me_falta_UCM/

@@ -1,6 +1,6 @@
 # MCU Tracker — ¿Cuánto me falta para el reset del MCU?
 
-**[losfiebruos.lat](https://losfiebruos.lat/)** — Checklist interactivo para llevar la cuenta de todas las películas y series del Universo Cinematográfico de Marvel antes de *Avengers: Doomsday* y el gran reset en *Avengers: Secret Wars*.
+**[yemboy.github.io/cuanto_me_falta_UCM](https://yemboy.github.io/cuanto_me_falta_UCM/)** — Checklist interactivo para llevar la cuenta de todas las películas y series del Universo Cinematográfico de Marvel antes de *Avengers: Doomsday* y el gran reset en *Avengers: Secret Wars*.
 
 ![Progreso del MCU Tracker](og-image.jpg)
 

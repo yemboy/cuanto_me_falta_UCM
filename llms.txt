@@ -1,6 +1,6 @@
 # MCU Tracker — LosFiebruos
 
-> MCU Tracker (losfiebruos.lat) es una aplicación web interactiva y gratuita en español para llevar el control de todas las películas y series del Universo Cinematográfico de Marvel (UCM/MCU). Permite marcar lo que ya viste y descubrir cuánto te falta antes del gran reset del MCU en Avengers: Secret Wars (estreno 17 dic 2027).
+> MCU Tracker (yemboy.github.io/cuanto_me_falta_UCM) es una aplicación web interactiva y gratuita en español para llevar el control de todas las películas y series del Universo Cinematográfico de Marvel (UCM/MCU). Permite marcar lo que ya viste y descubrir cuánto te falta antes del gran reset del MCU en Avengers: Secret Wars (estreno 17 dic 2027).
 
 La herramienta ofrece tres modos de seguimiento con diferentes niveles de profundidad:
 
@@ -19,7 +19,7 @@ Características principales:
 
 ## Contenido
 
-- [Página principal](https://losfiebruos.lat/): Aplicación web interactiva con checklist de películas y series Marvel
+- [Página principal](https://yemboy.github.io/cuanto_me_falta_UCM/): Aplicación web interactiva con checklist de películas y series Marvel
 - [Repositorio en GitHub](https://github.com/yemboy/cuanto_me_falta_UCM): Código fuente del proyecto, licencia GPLv3
 
 ## Fases del MCU incluidas
@@ -35,7 +35,7 @@ Características principales:
 
 ## Datos técnicos
 
-- URL: https://losfiebruos.lat/
+- URL: https://yemboy.github.io/cuanto_me_falta_UCM/
 - Idioma: Español (enfocado en audiencia LATAM)
 - Tecnología: HTML, CSS, JavaScript vanilla (sin frameworks). Hospedado en GitHub Pages
 - Licencia: GNU GPLv3

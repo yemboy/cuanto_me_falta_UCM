@@ -9,10 +9,10 @@
 | Campo | Valor |
 |---|---|
 | **Nombre** | MCU Tracker — ¿Cuánto te falta antes del reset del MCU? |
-| **URL** | https://losfiebruos.lat/ |
+| **URL** | https://yemboy.github.io/cuanto_me_falta_UCM/ |
 | **Repositorio** | https://github.com/yemboy/cuanto_me_falta_UCM |
 | **Stack** | HTML + CSS + JavaScript vanilla (cero frameworks, cero dependencias) |
-| **Hosting** | GitHub Pages con dominio custom (`CNAME → losfiebruos.lat`) |
+| **Hosting** | GitHub Pages, sin dominio custom (subruta `/cuanto_me_falta_UCM/`) |
 | **Licencia** | GNU GPLv3 (copyleft — derivados deben ser open source) |
 | **Idioma UI** | Español (audiencia LATAM) |
 | **Tipo** | Single Page Application (SPA) estática, sin backend, sin build step |
@@ -38,7 +38,6 @@ cuanto_me_falta_UCM/
 ├── llms-full.txt         ← Contexto completo con lista de +120 títulos para IA
 ├── robots.txt            ← Configuración SEO + reglas de crawling
 ├── sitemap.xml           ← Sitemap para motores de búsqueda
-├── CNAME                 ← Dominio custom: losfiebruos.lat
 ├── og-image.jpg          ← Imagen Open Graph para redes sociales (1024x1024)
 ├── LICENSE               ← Texto completo GPLv3
 ├── README.md             ← Readme del repo (mínimo)
@@ -327,7 +326,7 @@ IIFE auto-ejecutable que maneja un `<canvas>` a pantalla completa:
 - `<title>` descriptivo con keywords
 - `<meta description>` con CTA
 - `<meta keywords>` con 12+ términos relevantes
-- `<link rel="canonical">` apuntando a `https://losfiebruos.lat/`
+- `<link rel="canonical">` apuntando a `https://yemboy.github.io/cuanto_me_falta_UCM/`
 - Open Graph completo (og:title, og:description, og:image 1200x630, og:locale es_MX)
 - Twitter Card (summary_large_image)
 - JSON-LD `WebApplication` schema con `applicationCategory: EntertainmentApplication`
@@ -393,7 +392,7 @@ IIFE auto-ejecutable que maneja un `<canvas>` a pantalla completa:
 
 - **Push a `main`** → GitHub Pages sirve el sitio automáticamente
 - **No hay build step** — Los archivos se sirven tal cual
-- **Dominio:** `CNAME` apunta a `losfiebruos.lat`
+- **Sin dominio custom:** el sitio vive en una subruta, así que las rutas a assets deben ser relativas (nada de `/archivo`)
 - **Sin CI/CD complejo** — Solo el deploy automático de GitHub Pages
 
 ---
