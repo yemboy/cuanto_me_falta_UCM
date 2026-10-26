@@ -332,6 +332,8 @@ body {
   letter-spacing: 0.5px;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
+  white-space: pre-line; /* una línea por meta (Doomsday / reset) */
+  line-height: 1.6;
 }
 
 .pace-indicator:empty { display: none; }

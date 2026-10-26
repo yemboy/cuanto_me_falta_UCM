@@ -1,7 +1,7 @@
 // Service Worker — MCU Tracker
 // Estrategia: network-first con fallback a cache. No hay build step ni hashing
 // de assets, así que cache-first dejaría datos stale tras cada commit de data.js.
-const CACHE_NAME = 'mcu-tracker-v5';
+const CACHE_NAME = 'mcu-tracker-v6';
 
 const PRECACHE_URLS = [
   './',
@@ -51,8 +51,16 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
+  // GitHub Pages sirve todo con max-age=600: sin revalidar, tras un deploy el
+  // navegador puede mezclar un app.js nuevo con un utils.js viejo y el import
+  // falla (app en blanco). 'no-cache' revalida con ETag (304 si no cambió).
+  // Las navegaciones no admiten RequestInit; esas ya revalidan por su cuenta.
+  const request = event.request.mode === 'navigate'
+    ? event.request
+    : new Request(event.request, { cache: 'no-cache' });
+
   event.respondWith(
-    fetch(event.request)
+    fetch(request)
       .then(response => {
         // Solo cachear respuestas same-origin exitosas
         if (response.ok && new URL(event.request.url).origin === self.location.origin) {

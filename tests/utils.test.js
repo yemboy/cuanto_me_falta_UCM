@@ -2,7 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import {
   normalizeText, parseDuration, calcGroupDuration, formatMinutes, groupData,
   getEpisodeId, isEpisodeId, getSeriesIdFromEpisodeId, getEpisodeIdsForSeries,
-  formatDateKey, calcStreak
+  formatDateKey, calcStreak, parseSpanishDate
 } from '../utils.js';
 
 describe('normalizeText', () => {
@@ -133,5 +133,25 @@ describe('calcStreak', () => {
 
   test('sin actividad → 0', () => {
     expect(calcStreak([], today)).toBe(0);
+  });
+});
+
+describe('parseSpanishDate', () => {
+  test('fecha exacta → Date local', () => {
+    const d = parseSpanishDate('18 diciembre 2026');
+    expect([d.getFullYear(), d.getMonth(), d.getDate()]).toEqual([2026, 11, 18]);
+  });
+
+  test('mes con mayúscula también vale', () => {
+    expect(parseSpanishDate('1 Julio 2026').getMonth()).toBe(6);
+  });
+
+  test('fechas aproximadas o mal formadas → null', () => {
+    expect(parseSpanishDate('~Marzo 2027')).toBeNull();
+    expect(parseSpanishDate('~Otoño 2026')).toBeNull();
+    expect(parseSpanishDate('Marzo 2027')).toBeNull();
+    expect(parseSpanishDate('18 diciembr 2026')).toBeNull();
+    expect(parseSpanishDate('')).toBeNull();
+    expect(parseSpanishDate(undefined)).toBeNull();
   });
 });

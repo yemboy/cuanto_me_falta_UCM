@@ -4,13 +4,30 @@
 import {
   normalizeText, parseDuration, calcGroupDuration, formatMinutes, groupData,
   getEpisodeId, isEpisodeId, getSeriesIdFromEpisodeId, getEpisodeIdsForSeries,
-  formatDateKey, calcStreak
+  formatDateKey, calcStreak, parseSpanishDate
 } from './utils.js';
 import { encodeProgress, decodeProgress } from './progress-codec.js';
 import { PROGRESS_ORDER } from './progress-order.js';
 
 // Fecha del reset del MCU: estreno de Avengers: Secret Wars
 const RESET_DATE = new Date('2027-12-17T00:00:00-05:00');
+
+// Meta intermedia: estreno de Avengers: Doomsday
+const DOOMSDAY_ID = 'marathon-avengersdoomsday';
+const DOOMSDAY_DATE = new Date('2026-12-18T00:00:00-05:00');
+
+// ¿Se puede (y se debe) ver antes de Doomsday? Solo lo estrenado antes de esa
+// fecha. Sin fecha en releases.js = contenido viejo → cuenta. Fecha aproximada
+// ("~") = sin fecha firme → no cuenta. Los alias fast/quick5 usan la fecha de
+// su id canónico.
+function isWatchableBeforeDoomsday(item) {
+  const id = (typeof itemEquivalences !== 'undefined' && itemEquivalences[item.id]) || item.id;
+  if (id === DOOMSDAY_ID) return false;
+  const raw = typeof releaseDates !== 'undefined' ? releaseDates[id] : null;
+  if (!raw) return true;
+  const date = parseSpanishDate(raw);
+  return date !== null && date < DOOMSDAY_DATE;
+}
 
 // Global State
 const STORAGE_KEY = 'mcu_tracker_watched';
@@ -867,27 +884,45 @@ function updateProgress(watched, total) {
   const activeSet = getActiveWatchedSet();
   let watchedMin = 0;
   let totalMin = 0;
+  let doomsdayRemainingMin = 0;
   for (const it of data) {
     const d = parseDuration(it.duration);
     totalMin += d;
     if (activeSet.has(it.id)) watchedMin += d;
+    else if (isWatchableBeforeDoomsday(it)) doomsdayRemainingMin += d;
   }
   const twCurrent = document.getElementById('timeWatchedCurrent');
   const twTotal = document.getElementById('timeWatchedTotal');
   if (twCurrent) twCurrent.textContent = formatMinutes(watchedMin) || '0m';
   if (twTotal) twTotal.textContent = formatMinutes(totalMin) || '0m';
 
-  // --- PACE INDICATOR: minutos/día necesarios para llegar al reset ---
+  // --- PACE INDICATOR: minutos/día necesarios para Doomsday y para el reset ---
   const paceEl = document.getElementById('paceIndicator');
   if (paceEl) {
+    const lines = [];
+
+    // Doomsday: solo mientras no se haya estrenado
+    const doomsdayMs = DOOMSDAY_DATE - Date.now();
+    if (doomsdayMs > 0) {
+      const doomsdayDays = Math.max(1, Math.ceil(doomsdayMs / 86400000));
+      if (doomsdayRemainingMin === 0) {
+        lines.push('🎯 Listo para Doomsday — todo lo estrenado, visto');
+      } else {
+        const pace = Math.ceil(doomsdayRemainingMin / doomsdayDays);
+        lines.push(`🎯 ${doomsdayDays} días para Doomsday · ritmo: ${pace} min/día`);
+      }
+    }
+
     const remainingMin = totalMin - watchedMin;
     const daysLeft = Math.max(1, Math.ceil((RESET_DATE - Date.now()) / 86400000));
     if (remainingMin === 0) {
-      paceEl.textContent = '✅ Llegas al reset — todo visto';
+      lines.push('✅ Llegas al reset — todo visto');
     } else {
       const pace = Math.ceil(remainingMin / daysLeft);
-      paceEl.textContent = `📅 ${daysLeft} días para el reset · ritmo: ${pace} min/día`;
+      lines.push(`📅 ${daysLeft} días para el reset · ritmo: ${pace} min/día`);
     }
+
+    paceEl.textContent = lines.join('\n');
   }
   // Owner-mode CSS hook
   document.body.classList.toggle('owner-mode', currentMode === 'owner');

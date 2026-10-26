@@ -47,6 +47,23 @@ export function formatDateKey(d) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
+// Parse a release date like "18 diciembre 2026" (formato de releases.js) into a
+// local Date. Fechas aproximadas ("~Marzo 2027") o mal formadas → null.
+const SPANISH_MONTHS = {
+  enero: 0, febrero: 1, marzo: 2, abril: 3, mayo: 4, junio: 5,
+  julio: 6, agosto: 7, septiembre: 8, octubre: 9, noviembre: 10, diciembre: 11
+};
+export function parseSpanishDate(str) {
+  if (!str || str.includes('~')) return null;
+  const parts = str.trim().split(/\s+/);
+  if (parts.length !== 3) return null;
+  const day = parseInt(parts[0]);
+  const month = SPANISH_MONTHS[parts[1].toLowerCase()];
+  const year = parseInt(parts[2]);
+  if (isNaN(day) || month === undefined || isNaN(year)) return null;
+  return new Date(year, month, day);
+}
+
 // Racha de días consecutivos con actividad. La racha sigue viva si el último
 // día activo fue hoy o ayer (no se rompe justo a medianoche).
 export function calcStreak(days, today = new Date()) {
